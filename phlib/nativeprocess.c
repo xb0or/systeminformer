@@ -14,6 +14,12 @@
 #include <hndlinfo.h>
 #include <kphuser.h>
 
+// Forward declaration (defined in nativefile.c; declared here for internal use).
+NTSTATUS PhGetFileIsRemoteDevice(
+    _In_ HANDLE FileHandle,
+    _Out_ PBOOLEAN FileIsRemoteDevice
+    );
+
 /**
  * Opens a process.
  *

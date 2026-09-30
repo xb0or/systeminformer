@@ -13,6 +13,7 @@
 #include <ph.h>
 #include <commdlg.h>
 #include <d3dkmthk.h>
+#include <devpkey.h>
 #include <ntintsafe.h>
 #include <processsnapshot.h>
 #include <sddl.h>

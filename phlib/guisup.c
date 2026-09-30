@@ -7281,7 +7281,6 @@ NTSTATUS NTAPI PhGetRawInputData(
         return STATUS_SUCCESS;
     }
 
-    *ProcessHandle = NULL;
     return PhGetLastWin32ErrorAsNtStatus();
 }
 

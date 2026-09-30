@@ -8163,7 +8163,7 @@ NTSTATUS PhEnumVirtualMemoryBulk(
     {
         SIZE_T bufferLength;
         PNTPSS_MEMORY_BULK_INFORMATION buffer;
-        PMEMORY_BASIC_INFORMATION information;
+        PMEMORY_BASIC_INFORMATION information = NULL;
         PH_ARRAY entries;
 
         bufferLength = sizeof(NTPSS_MEMORY_BULK_INFORMATION) + sizeof(MEMORY_BASIC_INFORMATION[256]);

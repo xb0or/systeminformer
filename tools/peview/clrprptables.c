@@ -1081,7 +1081,7 @@ BOOLEAN NTAPI PvClrEnumTableCallback(
     return TRUE;
 }
 
-INT_PTR CALLBACK PvPeClrTablesDlgProc(
+INT_PTR CALLBACK PvpPeClrTablesDlgProc(
     _In_ HWND hwndDlg,
     _In_ UINT uMsg,
     _In_ WPARAM wParam,

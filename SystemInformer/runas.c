@@ -1347,7 +1347,7 @@ VOID PhRunAsExecuteCommmand(
         status = PhCreateProcessAsUser(
             &createInfo,
             PH_CREATE_PROCESS_DEFAULT_ERROR_MODE | PH_CREATE_PROCESS_SUSPENDED |
-            PH_CREATE_PROCESS_WITH_PROFILE | PH_CREATE_PROCESS_SET_LOGON_ID,
+            PH_CREATE_PROCESS_AS_USER_WITH_PROFILE | PH_CREATE_PROCESS_AS_USER_SET_LOGON_ID,
             NULL,
             NULL,
             &newProcessHandle,
@@ -2544,28 +2544,28 @@ NTSTATUS PhInvokeRunAsService(
     createInfo.SessionId = Parameters->SessionId;
     createInfo.DesktopName = Parameters->DesktopName;
 
-    flags = PH_CREATE_PROCESS_SET_SESSION_ID | PH_CREATE_PROCESS_DEFAULT_ERROR_MODE;
+    flags = PH_CREATE_PROCESS_AS_USER_SET_SESSION_ID | PH_CREATE_PROCESS_DEFAULT_ERROR_MODE;
 
     if (Parameters->ProcessId)
     {
         createInfo.ProcessIdWithToken = UlongToHandle(Parameters->ProcessId);
-        flags |= PH_CREATE_PROCESS_USE_PROCESS_TOKEN;
+        flags |= PH_CREATE_PROCESS_AS_USER_USE_PROCESS_TOKEN;
     }
 
     //if (Parameters->UserName)
     //{
     //    createInfo.LogonId = PhRunAsGetLogonId();
-    //    flags |= PH_CREATE_PROCESS_SET_LOGON_ID;
+    //    flags |= PH_CREATE_PROCESS_AS_USER_SET_LOGON_ID;
     //}
 
     if (Parameters->UseLinkedToken)
-        flags |= PH_CREATE_PROCESS_USE_LINKED_TOKEN;
+        flags |= PH_CREATE_PROCESS_AS_USER_USE_LINKED_TOKEN;
     //if (Parameters->CreateSuspendedProcess)
     //    flags |= PH_CREATE_PROCESS_SUSPENDED;
     if (Parameters->CreateUIAccessProcess)
-        flags |= PH_CREATE_PROCESS_SET_UIACCESS;
+        flags |= PH_CREATE_PROCESS_AS_USER_SET_UIACCESS;
     if (!Parameters->NoProfile)
-        flags |= PH_CREATE_PROCESS_WITH_PROFILE;
+        flags |= PH_CREATE_PROCESS_AS_USER_WITH_PROFILE;
 
     status = PhCreateProcessAsUser(
         &createInfo,

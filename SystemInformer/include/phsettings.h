@@ -255,6 +255,7 @@ EXT ULONG PhCsProcessMonitorCacheLimit;
 #define SETTING_ENABLE_MEM_STRINGS_BULK_SEARCH                      L"EnableMemStringsBulkSearch"
 #define SETTING_ENABLE_PACKAGE_ICON_SUPPORT                         L"EnablePackageIconSupport"
 #define SETTING_ENABLE_PROCESS_HANDLE_PNP_DEVICE_NAME_SUPPORT       L"EnableProcessHandlePnPDeviceNameSupport"
+#define SETTING_ENABLE_PROCESS_PROGRESS_DIALOG                      L"EnableProcessProgressDialog"
 #define SETTING_ENABLE_PLUGINS                                      L"EnablePlugins"
 #define SETTING_ENABLE_PLUGINS_NATIVE                               L"EnablePluginsNative"
 #define SETTING_ENABLE_GRAPH_MAX_SCALE                              L"EnableGraphMaxScale"

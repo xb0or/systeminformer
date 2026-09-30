@@ -167,6 +167,39 @@ NTSTATUS PhConsoleSetForeground(
 }
 
 /**
+ * Sets the owner of a console window (reparents the console window to the given process).
+ *
+ * \param[in] ProcessId The process which will own the console window.
+ * \param[in] ThreadId The thread which will own the console window.
+ * \param[in] WindowHandle Handle to the console window.
+ * \return NTSTATUS Successful or errant status.
+ */
+NTSTATUS PhConsoleSetWindow(
+    _In_ HANDLE ProcessId,
+    _In_ HANDLE ThreadId,
+    _In_ HWND WindowHandle
+    )
+{
+    NTSTATUS status;
+    CONSOLE_WINDOW_OWNER consoleInfo;
+
+    if (!ConsoleControl_Import())
+        return STATUS_NOT_SUPPORTED;
+
+    consoleInfo.WindowHandle = WindowHandle;
+    consoleInfo.OwnerProcessId = HandleToUlong(ProcessId);
+    consoleInfo.OwnerThreadId = HandleToUlong(ThreadId);
+
+    status = ConsoleControl_Import()(
+        ConsoleSetWindowOwner,
+        &consoleInfo,
+        sizeof(CONSOLE_WINDOW_OWNER)
+        );
+
+    return status;
+}
+
+/**
  * Retrieves the current console window handle. 
  * \return HWND Handle to the console window or the root owner when a pseudo console is detected.
  */

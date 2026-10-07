@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
   push:
     branches: ['master', 'main', 'l10n-zh-cn']
+    tags: ['v*']
 
 jobs:
   build-release:
     permissions:
-      contents: read
+      contents: write
     strategy:
       matrix:
         os: ['windows-2025-vs2026']
@@ -76,3 +77,24 @@ jobs:
           path: build/output/*
           if-no-files-found: error
           retention-days: 7
+
+      - name: Create GitHub Release (tag builds only)
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        run: |
+          $tag = "${env:GITHUB_REF_NAME}"
+          $lines = @(
+            '简体中文汉化版 / Simplified Chinese localization build.',
+            '',
+            '下载对应架构的压缩包解压即可使用（免安装）。 / Download the archive for your architecture, extract and run (portable).',
+            '',
+            '- systeminformer-build-win64-bin.zip - 64 位便携版 / 64-bit portable',
+            '- systeminformer-build-win32-bin.zip - 32 位便携版 / 32-bit portable',
+            '- systeminformer-build-arm64-bin.zip - ARM64 便携版 / ARM64 portable',
+            '- systeminformer-build-release-setup.exe - 安装程序 / Setup',
+            '- systeminformer-build-canary-setup.exe - Canary 安装程序 / Canary setup'
+          )
+          $notes = $lines -join [Environment]::NewLine
+          gh release create $tag --title "System Informer 简体中文版 $tag" --notes $notes build/output/*bin.zip build/output/*setup*.exe
+        env:
+          GH_TOKEN: ${{ github.token }}

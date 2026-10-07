@@ -51,21 +51,23 @@ static INT_PTR CALLBACK PhpAboutDlgProc(
             PhDereferenceObject(versionString);
 
             PhSetDialogItemText(hwndDlg, IDC_CREDITS,
-                L"致谢：\n"
-                L"    <a href=\"https://github.com/wj32\">wj32</a> - Wen Jia Liu\n"
-                L"    <a href=\"https://github.com/dmex\">dmex</a> - Steven G\n"
-                L"    <a href=\"https://github.com/jxy-s\">jxy-s</a> - Johnny Shaw\n"
-                L"    <a href=\"https://github.com/ionescu007\">ionescu007</a> - Alex Ionescu\n"
-                L"    <a href=\"https://github.com/yardenshafir\">yardenshafir</a> - Yarden Shafir\n"
-                L"    <a href=\"https://github.com/winsiderss/systeminformer/graphs/contributors\">Contributors</a> - thank you for your additions!\n"
-                L"    Donors - thank you for your support!\n\n"
-                L"System Informer 使用以下组件：\n"
-                L"    <a href=\"https://github.com/GameTechDev/PresentMon\">PresentMon</a> by Intel Corporation\n"
-                L"    <a href=\"https://github.com/michaelrsweet/mxml\">Mini-XML</a> by Michael Sweet\n"
-                L"    <a href=\"https://github.com/PCRE2Project/pcre2\">PCRE2</a> by Philip Hazel\n"
-                L"    <a href=\"https://github.com/json-c/json-c\">json-c</a> by Michael Clark\n"
-                L"    MD5 code by Jouni Malinen\n"
-                L"    SHA1 code by Filip Navara, based on code by Steve Reid\n"
+                L"致谢 / Credits:\\n"
+                L"    <a href=\"https://github.com/wj32\">wj32</a> - Wen Jia Liu\\n"
+                L"    <a href=\"https://github.com/dmex\">dmex</a> - Steven G\\n"
+                L"    <a href=\"https://github.com/jxy-s\">jxy-s</a> - Johnny Shaw\\n"
+                L"    <a href=\"https://github.com/ionescu007\">ionescu007</a> - Alex Ionescu\\n"
+                L"    <a href=\"https://github.com/yardenshafir\">yardenshafir</a> - Yarden Shafir\\n"
+                L"    <a href=\"https://github.com/winsiderss/systeminformer/graphs/contributors\">Contributors</a> - 贡献者，感谢你们的 additions！\\n"
+                L"    Donors - 捐赠者，感谢你们的支持！\\n\\n"
+                L"System Informer 使用以下组件 / uses the following components:\\n"
+                L"    <a href=\"https://github.com/GameTechDev/PresentMon\">PresentMon</a> by Intel Corporation\\n"
+                L"    <a href=\"https://github.com/michaelrsweet/mxml\">Mini-XML</a> by Michael Sweet\\n"
+                L"    <a href=\"https://github.com/PCRE2Project/pcre2\">PCRE2</a> by Philip Hazel\\n"
+                L"    <a href=\"https://github.com/json-c/json-c\">json-c</a> by Michael Clark\\n"
+                L"    MD5 代码 code by Jouni Malinen\\n"
+                L"    SHA1 代码 code by Filip Navara, based on code by Steve Reid\\n\\n"
+                L"简体中文社区汉化版 / Simplified Chinese community localization\\n"
+                L"    基于 upstream master 源码直接汉化构建 / built from upstream master\\n"
                 );
 
             PhSetDialogFocus(hwndDlg, GetDlgItem(hwndDlg, IDOK));

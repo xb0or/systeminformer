@@ -109,6 +109,7 @@ ipch/
 build/output/
 plugins-extra/
 sdk/
+!SystemInformer/sdk/
 target/
 tools/thirdparty/vcpkg_installed/*
 bin-cmake/

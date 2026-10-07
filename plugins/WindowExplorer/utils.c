@@ -296,16 +296,16 @@ HICON WeGetWindowIcon(
     )
 {
     ULONG_PTR windowIcon = 0;
-    BOOLEAN status;
+    NTSTATUS status;
 
     status = PhSendMessageTimeout(WindowHandle, WM_GETICON, ICON_SMALL2, 0, 100, &windowIcon);
 
-    if (status == 0 || windowIcon == 0)
+    if (!NT_SUCCESS(status) || windowIcon == 0)
     {
         status = PhSendMessageTimeout(WindowHandle, WM_GETICON, 0, 0, 100, &windowIcon);
     }
 
-    if (status == 0 || windowIcon == 0)
+    if (!NT_SUCCESS(status) || windowIcon == 0)
     {
         windowIcon = GetClassLongPtr(WindowHandle, GCLP_HICONSM);
 

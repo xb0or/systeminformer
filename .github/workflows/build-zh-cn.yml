@@ -59,10 +59,20 @@ jobs:
         working-directory: ${{github.workspace}}
         run: build\build_release.cmd
 
-      - name: Upload build output
+      - name: Upload binaries
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # 4.6.2
         with:
-          name: systeminformer-zh-cn-${{ matrix.os }}
-          path: build/output/*
+          name: systeminformer-zh-cn-bin
+          path: |
+            build/output/*bin.zip
+            build/output/*setup*.exe
           if-no-files-found: error
           retention-days: 14
+
+      - name: Upload full build output
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # 4.6.2
+        with:
+          name: systeminformer-zh-cn-full
+          path: build/output/*
+          if-no-files-found: error
+          retention-days: 7

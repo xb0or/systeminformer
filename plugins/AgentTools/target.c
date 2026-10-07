@@ -45,7 +45,7 @@ NTSTATUS AtResolveProcessTarget(
 
     if (!(processItem = PhReferenceProcessItem(UlongToHandle((ULONG)processId))))
     {
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"No process with pid %llu is in the provider cache.", processId);
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"提供程序缓存中没有 PID 为 %llu 的进程。", processId);
         return STATUS_NOT_FOUND;
     }
 
@@ -71,7 +71,7 @@ NTSTATUS AtResolveProcessTarget(
 
         if (!PH_IS_REAL_PROCESS_ID(processItem->ProcessId))
         {
-            AtSetToolError(Result, "invalid_arguments", STATUS_INVALID_CID, L"This pid is not a real process.");
+            AtSetToolError(Result, "invalid_arguments", STATUS_INVALID_CID, L"此 PID 不是真实进程。");
             PhDereferenceObject(processItem);
             return STATUS_INVALID_CID;
         }
@@ -84,7 +84,7 @@ NTSTATUS AtResolveProcessTarget(
 
         if (!NT_SUCCESS(status))
         {
-            AtSetToolStatusError(Result, status, L"Opening the process");
+            AtSetToolStatusError(Result, status, L"正在打开进程");
             PhDereferenceObject(processItem);
             return status;
         }
@@ -93,7 +93,7 @@ NTSTATUS AtResolveProcessTarget(
 
         if (!NT_SUCCESS(status))
         {
-            AtSetToolStatusError(Result, status, L"Validating the process identity");
+            AtSetToolStatusError(Result, status, L"正在验证进程身份");
             NtClose(processHandle);
             PhDereferenceObject(processItem);
             return status;
@@ -187,7 +187,7 @@ NTSTATUS AtpResolveThreadTarget(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the thread");
+        AtSetToolStatusError(Result, status, L"正在打开线程");
         AtDeleteTarget(Target);
         return status;
     }
@@ -196,7 +196,7 @@ NTSTATUS AtpResolveThreadTarget(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Validating the thread identity");
+        AtSetToolStatusError(Result, status, L"正在验证线程身份");
         NtClose(threadHandle);
         AtDeleteTarget(Target);
         return status;
@@ -304,7 +304,7 @@ NTSTATUS AtpResolveServiceTarget(
 
         if (!NT_SUCCESS(status))
         {
-            AtSetToolStatusError(Result, status, L"Opening the service");
+            AtSetToolStatusError(Result, status, L"正在打开服务");
             PhDereferenceObject(serviceItem);
             PhDereferenceObject(name);
             return status;
@@ -355,7 +355,7 @@ NTSTATUS AtResolveHandleTarget(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating handles");
+        AtSetToolStatusError(Result, status, L"正在枚举句柄");
         AtDeleteTarget(Target);
         return status;
     }
@@ -453,7 +453,7 @@ NTSTATUS AtpResolveDeviceTarget(
 
     if (!(tree = PhReferenceDeviceTree()))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The device tree is not available.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"设备树不可用。");
         PhDereferenceObject(instanceId);
         return STATUS_UNSUCCESSFUL;
     }

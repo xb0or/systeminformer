@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -162,7 +162,7 @@ VOID AtpSetProcessComment(
             Result,
             "invalid_arguments",
             STATUS_INVALID_PARAMETER,
-            L"This process has no command line to file the comment under."
+            L"此进程没有可用于归档备注的命令行。"
             );
         return;
     }
@@ -180,7 +180,7 @@ VOID AtpSetProcessComment(
             Result,
             "not_found",
             STATUS_NOT_FOUND,
-            L"There was no saved entry to change."
+            L"没有已保存的条目可更改。"
             );
         PhClearReference(&comment);
         return;
@@ -214,7 +214,7 @@ VOID AtNoteInvokeTool(
         AtpSetProcessComment(Call, Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

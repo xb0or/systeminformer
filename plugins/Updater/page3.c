@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -81,7 +81,7 @@ VOID ShowAvailableDialog(
     config.lpCallbackData = (LONG_PTR)Context;
     config.pfCallback = ShowAvailableCallbackProc;
 
-    config.pszWindowTitle = L"System Informer - Updater";
+    config.pszWindowTitle = L"System Informer - 更新程序";
     if (Context->SwitchingChannel)
     {
         switch (Context->Channel)
@@ -105,7 +105,7 @@ VOID ShowAvailableDialog(
     }
     else
     {
-        config.pszMainInstruction = L"A newer build of System Informer is available.";
+        config.pszMainInstruction = L"有新版本的 System Informer 可用。";
     }
 
     config.pszContent = PhaFormatString(

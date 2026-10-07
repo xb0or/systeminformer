@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -758,7 +758,7 @@ VOID AtpSendToolResult(
     {
         NT_ASSERT(FALSE);
         AtSetToolError(ToolResult, "internal_error", STATUS_INTERNAL_ERROR,
-            L"The tool returned neither a result nor an error.");
+            L"工具未返回结果或错误。");
     }
 
     result = PhCreateJsonObject();
@@ -887,19 +887,19 @@ VOID AtpHandleToolsCall(
                 sendResult = FALSE;
                 break;
             case AtConsentDenied:
-                AtSetToolError(&result, "consent_denied", STATUS_SUCCESS, L"The user denied this request.");
+                AtSetToolError(&result, "consent_denied", STATUS_SUCCESS, L"用户拒绝了此请求。");
                 break;
             case AtConsentTimeout:
                 AtSetToolError(&result, "consent_timeout", STATUS_SUCCESS, L"The user did not answer the confirmation in time; the request was denied.");
                 break;
             case AtConsentDeclined:
-                AtSetToolError(&result, "consent_declined", STATUS_SUCCESS, L"The confirmation was declined or cancelled.");
+                AtSetToolError(&result, "consent_declined", STATUS_SUCCESS, L"确认被拒绝或取消。");
                 break;
             case AtConsentElicitationRequired:
                 AtSetToolError(&result, "elicitation_required", STATUS_SUCCESS, L"System Informer is configured to delegate confirmation to the client, but this client does not support elicitation. Enable confirmation in System Informer's AgentTools options or use a client with elicitation support.");
                 break;
             default:
-                AtSetToolError(&result, "consent_failed", STATUS_SUCCESS, L"The confirmation could not be completed.");
+                AtSetToolError(&result, "consent_failed", STATUS_SUCCESS, L"确认无法完成。");
                 break;
             }
         }

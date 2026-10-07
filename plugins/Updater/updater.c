@@ -399,10 +399,10 @@ PPH_STRING UpdatePlatformSupportString(
 //        SendMessage(updater->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"Connecting...");
 //        break;
 //    case PHHTTP_EVENT_SENDING_REQUEST:
-//        SendMessage(updater->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"Sending download request...");
+//        SendMessage(updater->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"正在发送下载请求...");
 //        break;
 //    case PHHTTP_EVENT_RECEIVING_RESPONSE:
-//        SendMessage(updater->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"Waiting for response...");
+//        SendMessage(updater->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"等待响应...");
 //        break;
 //    }
 //
@@ -775,7 +775,7 @@ NTSTATUS UpdateCheckSilentThread(
             if (PhGetIntegerSetting(SETTING_NAME_SHOW_NOTIFICATION))
             {
                 if (!HR_SUCCESS(PhShowIconNotificationEx(
-                    L"New version of System Informer available",
+                    L"有新版本的 System Informer 可用",
                     L"Help menu > Check for updates",
                     5000,
                     NULL,
@@ -989,12 +989,12 @@ NTSTATUS UpdateDownloadThread(
 
     PhHttpSetFeature(httpContext, PH_HTTP_FEATURE_KEEP_ALIVE, FALSE);
 
-    SendMessage(context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"Sending download request...");
+    SendMessage(context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"正在发送下载请求...");
 
     if (!NT_SUCCESS(status = PhHttpSendRequest(httpContext, PH_HTTP_NO_ADDITIONAL_HEADERS, 0, PH_HTTP_NO_REQUEST_DATA, 0, 0)))
         goto CleanupExit;
 
-    SendMessage(context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"Waiting for response...");
+    SendMessage(context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"等待响应...");
 
     if (!NT_SUCCESS(status = PhHttpReceiveResponse(httpContext)))
         goto CleanupExit;
@@ -1112,7 +1112,7 @@ NTSTATUS UpdateDownloadThread(
         WCHAR stringformat[MAX_PATH];
 
         // L"Downloaded: %s / %s (%.0f%%)\r\nSpeed: %s/s"
-        PhInitFormatS(&format[0], L"Downloaded: ");
+        PhInitFormatS(&format[0], L"已下载：");
         PhInitFormatSize(&format[1], totalDownloaded);
         PhInitFormatS(&format[2], L" of ");
         PhInitFormatSize(&format[3], contentLength);
@@ -1283,7 +1283,7 @@ LRESULT CALLBACK TaskDialogSubclassProc(
                     WCHAR string[MAX_PATH];
 
                     // L"Downloaded: %s / %s (%.0f%%)\r\nSpeed: %s/s"
-                    PhInitFormatS(&format[0], L"Downloaded: ");
+                    PhInitFormatS(&format[0], L"已下载：");
                     PhInitFormatSize(&format[1], context->ProgressDownloaded);
                     PhInitFormatS(&format[2], L" of ");
                     PhInitFormatSize(&format[3], context->ProgressTotal);
@@ -1575,7 +1575,7 @@ VOID ShowStartupUpdateDialog(
     if (PhGetIntegerSetting(SETTING_NAME_SHOW_NOTIFICATION))
     {
         if (HR_SUCCESS(PhShowIconNotificationEx(
-            L"New version of System Informer available",
+            L"有新版本的 System Informer 可用",
             L"Help menu > Check for updates",
             5000,
             NULL,

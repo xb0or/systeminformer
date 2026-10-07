@@ -824,7 +824,7 @@ BOOLEAN NTAPI PhSipNotifyCommitGraph(
                     usedPages = PhGetItemCircularBuffer_ULONG(&PhCommitHistory, getTooltipText->Index);
 
                     // Commit charge: %s\n%s
-                    //PhInitFormatS(&format[0], L"Commit charge: ");
+                    //PhInitFormatS(&format[0], L"提交内存：");
                     PhInitFormatSize(&format[0], UInt32x32To64(usedPages, PAGE_SIZE));
                     PhInitFormatC(&format[1], L'\n');
                     PhInitFormatSR(&format[2], PH_AUTO_T(PH_STRING, PhGetStatisticsTimeString(NULL, getTooltipText->Index))->sr);
@@ -926,7 +926,7 @@ BOOLEAN NTAPI PhSipNotifyPhysicalGraph(
                     {
                         PH_FORMAT format[13];
 
-                        PhInitFormatS(&format[0], L"Physical memory: ");
+                        PhInitFormatS(&format[0], L"物理内存：");
                         PhInitFormatSize(&format[1], UInt32x32To64(usedPages, PAGE_SIZE));
                         PhInitFormatC(&format[2], L'\n');
                         PhInitFormatS(&format[3], L"Compressed memory: ");

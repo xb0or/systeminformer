@@ -297,7 +297,7 @@ VOID AtpGetProcessModules(
                 PhAddJsonArrayObject(results, AtCreateBatchError(
                     processId,
                     "not_found",
-                    L"No process with this pid is in the provider cache."
+                    L"提供程序缓存中没有此 PID 的进程。"
                     ));
                 continue;
             }
@@ -311,7 +311,7 @@ VOID AtpGetProcessModules(
                 PhAddJsonArrayObject(results, AtCreateBatchError(
                     processId,
                     status == STATUS_ACCESS_DENIED ? "access_denied" : "failed",
-                    L"The modules of this process could not be enumerated."
+                    L"无法枚举此进程的模块。"
                     ));
             }
 
@@ -329,7 +329,7 @@ VOID AtpGetProcessModules(
 
     if (!structured)
     {
-        AtSetToolStatusError(Result, status, L"Enumerating modules");
+        AtSetToolStatusError(Result, status, L"正在枚举模块");
         AtDeleteTarget(&target);
         return;
     }
@@ -396,7 +396,7 @@ VOID AtpGetProcessUnloadedModules(
     // not a failure to read one.
     if (!NT_SUCCESS(status) && status != STATUS_NOT_FOUND)
     {
-        AtSetToolStatusError(Result, status, L"Reading the unloaded module trace");
+        AtSetToolStatusError(Result, status, L"正在读取已卸载模块跟踪");
         AtDeleteTarget(&target);
         return;
     }
@@ -675,7 +675,7 @@ VOID AtpGetProcessImageCoherency(
 
     if (!Target->ProcessItem->FileName)
     {
-        AtSetToolError(Result, "failed", STATUS_NOT_FOUND, L"The process has no image file to compare against.");
+        AtSetToolError(Result, "failed", STATUS_NOT_FOUND, L"进程没有可比较的映像文件。");
         return;
     }
 
@@ -811,7 +811,7 @@ VOID AtpGetImagePageModifications(
     {
         if (!AtFindProcessModule(Target->ProcessItem->ProcessId, Target->ProcessHandle, (PVOID)address, NULL, &baseAddress, &size, &fileName, &enumStatus))
         {
-            AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"No module of that process is loaded at that address.");
+            AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"该进程没有加载在该地址的模块。");
             PhClearReference(&moduleName);
             return;
         }
@@ -830,7 +830,7 @@ VOID AtpGetImagePageModifications(
             Result,
             "not_found",
             STATUS_NOT_FOUND,
-            moduleName ? L"That process has no module named %s." : L"The process's own image could not be found in its module list.",
+            moduleName ? L"该进程没有名为 %s 的模块。" : L"The process's own image could not be found in its module list.",
             PhGetStringOrEmpty(moduleName)
             );
         PhClearReference(&moduleName);
@@ -852,7 +852,7 @@ VOID AtpGetImagePageModifications(
 
     if (!NT_SUCCESS(status) && context.PageCount == 0)
     {
-        AtSetToolStatusError(Result, status, L"Reading the page attributes");
+        AtSetToolStatusError(Result, status, L"正在读取页面属性");
         AtDeleteRows(&context.Rows);
 
         if (context.SymbolProvider)
@@ -906,7 +906,7 @@ VOID AtModuleInvokeTool(
         AtpGetImagePageModifications(Call, Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

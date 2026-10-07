@@ -102,8 +102,8 @@ VOID NTAPI MenuItemCallback(
 
             if (PhaChoiceDialog(
                 menuItem->OwnerWindow,
-                L"Desktop Windows",
-                L"Display windows for the following desktop:",
+                L"桌面窗口",
+                L"显示以下桌面的窗口：",
                 (PWSTR *)desktopNames->Items,
                 desktopNames->Count,
                 NULL,
@@ -291,8 +291,8 @@ LOGICAL DllMain(
             if (!PluginInstance)
                 return FALSE;
 
-            info->DisplayName = L"Window Explorer";
-            info->Description = L"View and manipulate windows.";
+            info->DisplayName = L"窗口资源管理器";
+            info->Description = L"查看和操作窗口。";
 
             PhRegisterCallback(
                 PhGetPluginCallback(PluginInstance, PluginCallbackLoad),

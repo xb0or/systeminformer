@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -759,7 +759,7 @@ VOID AtEventInvokeTool(
         AtpListRecentProcessExits(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

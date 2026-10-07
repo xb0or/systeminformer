@@ -214,7 +214,7 @@ INT_PTR CALLBACK EtPoolMonDlgProc(
             PhCreateSearchControl(
                 WindowHandle,
                 context->SearchboxHandle,
-                L"Search Pool Tags (Ctrl+K)",
+                L"搜索池标记 (Ctrl+K)",
                 EtPoolMonSearchControlCallback,
                 context
                 );
@@ -347,7 +347,7 @@ INT_PTR CALLBACK EtPoolMonDlgProc(
                     if (selectedNode = EtGetSelectedPoolTagNode(context))
                     {
                         menu = PhCreateEMenu();
-                        PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 1, L"Show allocations", NULL, NULL), ULONG_MAX);
+                        PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 1, L"显示分配", NULL, NULL), ULONG_MAX);
                         PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
                         PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 2, L"复制(&C)\bCtrl+C", NULL, NULL), ULONG_MAX);
                         PhInsertCopyCellEMenuItem(menu, 2, context->TreeNewHandle, contextMenuEvent->Column);

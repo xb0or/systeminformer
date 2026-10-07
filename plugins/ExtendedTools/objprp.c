@@ -386,7 +386,7 @@ VOID EtHandlePropertiesWindowInitialized(
         // Removing of row breaks cached indexes, so hide reference value instead
         //PhSetListViewSubItem(context->ListViewHandle, context->ListViewRowCache[PH_PLUGIN_HANDLE_GENERAL_INDEX_REFERENCES], 1, L"");
 
-        PhAddListViewGroupItem(context->ListViewHandle, PH_PLUGIN_HANDLE_GENERAL_CATEGORY_BASICINFO, OBJECT_GENERAL_INDEX_ATTRIBUTES, L"Object attributes", NULL);
+        PhAddListViewGroupItem(context->ListViewHandle, PH_PLUGIN_HANDLE_GENERAL_CATEGORY_BASICINFO, OBJECT_GENERAL_INDEX_ATTRIBUTES, L"对象属性", NULL);
 
         {
             // Show object attributes
@@ -422,12 +422,12 @@ VOID EtHandlePropertiesWindowInitialized(
             PPH_STRING driverName;
             KPH_DRIVER_BASIC_INFORMATION basicInfo;
 
-            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, L"Driver information");
+            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, L"驱动信息");
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERIMAGE, L"驱动映像", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERSERVICE, L"Driver Service Name", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERSIZE, L"Driver Size", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERSTART, L"Driver Start Address", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERFLAGS, L"Driver Flags", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERSERVICE, L"驱动服务名", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERSIZE, L"驱动大小", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERSTART, L"驱动起始地址", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DRIVER, OBJECT_GENERAL_INDEX_DRIVERFLAGS, L"驱动标志", NULL);
 
             if (KsiLevel() == KphLevelMax &&
                 NT_SUCCESS(EtDuplicateHandleFromProcessEx(
@@ -484,12 +484,12 @@ VOID EtHandlePropertiesWindowInitialized(
             OBJECT_ATTRIBUTES objectAttributes;
             UNICODE_STRING objectName;
 
-            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, L"Device information");
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVLOW, L"Lower-edge driver", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVLOWPATH, L"Lower-edge driver image", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVHIGH, L"Upper-edge driver", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVHIGHPATH, L"Upper-edge driver Image", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEPNPNAME, L"PnP Device Name", NULL);
+            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, L"设备信息");
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVLOW, L"下层驱动", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVLOWPATH, L"下层驱动映像", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVHIGH, L"上层驱动", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEDRVHIGHPATH, L"上层驱动映像", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DEVICE, OBJECT_GENERAL_INDEX_DEVICEPNPNAME, L"PnP 设备名", NULL);
 
             if (KsiLevel() == KphLevelMax &&
                 !PhIsNullOrEmptyString(context->HandleItem->ObjectName))
@@ -568,7 +568,7 @@ VOID EtHandlePropertiesWindowInitialized(
             PH_STRINGREF stationName;
             PH_STRINGREF pathPart;
 
-            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_WINDOWSTATION, L"Window Station information");
+            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_WINDOWSTATION, L"窗口站信息");
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_WINDOWSTATION, OBJECT_GENERAL_INDEX_WINSTATYPE, L"类型", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_WINDOWSTATION, OBJECT_GENERAL_INDEX_WINSTAVISIBLE, L"Visible", NULL);
 
@@ -606,10 +606,10 @@ VOID EtHandlePropertiesWindowInitialized(
         {
             HDESK hDesktop;
 
-            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, L"Desktop information");
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, OBJECT_GENERAL_INDEX_DESKTOPIO, L"Input desktop", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, OBJECT_GENERAL_INDEX_DESKTOPSID, L"User SID", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, OBJECT_GENERAL_INDEX_DESKTOPHEAP, L"Heap size", NULL);
+            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, L"桌面信息");
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, OBJECT_GENERAL_INDEX_DESKTOPIO, L"输入桌面", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, OBJECT_GENERAL_INDEX_DESKTOPSID, L"用户 SID", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_DESKTOP, OBJECT_GENERAL_INDEX_DESKTOPHEAP, L"堆大小", NULL);
 
             if (NT_SUCCESS(EtDuplicateHandleFromProcessEx(
                 (PHANDLE)&hDesktop,
@@ -654,13 +654,13 @@ VOID EtHandlePropertiesWindowInitialized(
             PPH_STRING accessString;
             PH_STRING_BUILDER stringBuilder;
 
-            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, L"Type information");
+            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, L"类型信息");
             PhAddListViewGroupItem(context->ListViewHandle,OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEINDEX, L"索引", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEOBJECTS, L"对象", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEHANDLES, L"句柄", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEPEAKOBJECTS, L"Peak Objects", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEPEAKHANDLES, L"Peak Handles", NULL);
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEPOOLTYPE, L"Pool Type", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEPEAKOBJECTS, L"峰值对象", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEPEAKHANDLES, L"峰值句柄", NULL);
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEPOOLTYPE, L"池类型", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPEPAGECHARGE, L"Default Paged Charge", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE, OBJECT_GENERAL_INDEX_TYPENPAGECHARGE, L"Default NP Charge", NULL);
 
@@ -704,12 +704,12 @@ VOID EtHandlePropertiesWindowInitialized(
                             PhSetListViewSubItem(context->ListViewHandle, OBJECT_GENERAL_INDEX_TYPENPAGECHARGE, 1, string);
 
                             PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, L"Type access information");
-                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEVALIDMASK, L"Valid Access Mask", NULL);
-                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICREAD, L"Generic Read", NULL);
-                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICWRITE, L"Generic Write", NULL);
-                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICEXECUTE, L"Generic Execute", NULL);
-                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICALL, L"Generic All", NULL);
-                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEINVALIDATTRIBUTES, L"Invalid Attributes", NULL);
+                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEVALIDMASK, L"有效访问掩码", NULL);
+                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICREAD, L"通用读取", NULL);
+                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICWRITE, L"通用写入", NULL);
+                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICEXECUTE, L"通用执行", NULL);
+                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEGENERICALL, L"通用全部", NULL);
+                            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_TYPE_ACCESS, OBJECT_GENERAL_INDEX_TYPEINVALIDATTRIBUTES, L"无效属性", NULL);
 
                             accessString = PH_AUTO(EtGetAccessString2(&typeName, objectType->ValidAccessMask));
                             PhSetListViewSubItem(context->ListViewHandle, OBJECT_GENERAL_INDEX_TYPEVALIDMASK, 1, PhGetString(accessString));
@@ -768,8 +768,8 @@ VOID EtHandlePropertiesWindowInitialized(
             ULONG sessionId;
             SYSTEMTIME systemTime;
 
-            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_SESSION, L"Session information");
-            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_SESSION, OBJECT_GENERAL_INDEX_SESSIONNAME, L"Session Name", NULL);
+            PhAddListViewGroup(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_SESSION, L"会话信息");
+            PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_SESSION, OBJECT_GENERAL_INDEX_SESSIONNAME, L"会话名", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_SESSION, OBJECT_GENERAL_INDEX_SESSIONID, L"会话 ID", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_SESSION, OBJECT_GENERAL_INDEX_SESSIONUSERNAME, L"用户名", NULL);
             PhAddListViewGroupItem(context->ListViewHandle, OBJECT_GENERAL_CATEGORY_SESSION, OBJECT_GENERAL_INDEX_SESSIONSTATE, L"状态", NULL);
@@ -828,7 +828,7 @@ PPH_STRING EtGetWindowStationType(
 {
     if (PhEqualStringRef2(StationName, T_WINSTA_INTERACTIVE, TRUE))
     {
-        return PhCreateString(L"Interactive Window Station");
+        return PhCreateString(L"交互式窗口站");
     }
 
     PH_FORMAT format[3];
@@ -842,9 +842,9 @@ PPH_STRING EtGetWindowStationType(
     if (PhFindStringInStringRefZ(StationName, T_WINSTA_ANONYMOUS, TRUE) != SIZE_MAX)
         PhInitFormatS(&format[0], L"匿名");
     if (PhFindStringInStringRefZ(StationName, T_WINSTA_LOCALSERVICE, TRUE) != SIZE_MAX)
-        PhInitFormatS(&format[0], L"Local Service");
+        PhInitFormatS(&format[0], L"本地服务");
     if (PhFindStringInStringRefZ(StationName, T_WINSTA_NETWORK_SERVICE, TRUE) != SIZE_MAX)
-        PhInitFormatS(&format[0], L"Network Service");
+        PhInitFormatS(&format[0], L"网络服务");
 
     return format[0].u.Char != UNICODE_NULL ? PhFormat(format, RTL_NUMBER_OF(format), 0) : NULL;
 }
@@ -1027,7 +1027,7 @@ INT_PTR CALLBACK EtpTpWorkerFactoryPageDlgProc(
                         PhSetDialogItemText(
                             hwndDlg,
                             IDC_WORKERTHREADSTART,
-                            PhaFormatString(L"Worker Thread Start: %s", symbol->Buffer)->Buffer
+                            PhaFormatString(L"工作线程起始地址：%s", symbol->Buffer)->Buffer
                             );
                         PhDereferenceObject(symbol);
                     }
@@ -1037,7 +1037,7 @@ INT_PTR CALLBACK EtpTpWorkerFactoryPageDlgProc(
                         PhSetDialogItemText(
                             hwndDlg,
                             IDC_WORKERTHREADSTART,
-                            PhaFormatString(L"Worker Thread Start: %s", value)->Buffer
+                            PhaFormatString(L"工作线程起始地址：%s", value)->Buffer
                             );
                     }
 
@@ -1045,7 +1045,7 @@ INT_PTR CALLBACK EtpTpWorkerFactoryPageDlgProc(
                     PhSetDialogItemText(
                         hwndDlg,
                         IDC_WORKERTHREADCONTEXT,
-                        PhaFormatString(L"Worker Thread Context: %s", value)->Buffer
+                        PhaFormatString(L"工作线程上下文：%s", value)->Buffer
                         );
                 }
 
@@ -1438,7 +1438,7 @@ VOID EtpEnumObjectHandles(
     }
 
     if (isTypeObject)
-        PhSetDialogItemText(Context->WindowHandle, IDC_OBJ_HANDLESBYNAME_L, L"By type:");
+        PhSetDialogItemText(Context->WindowHandle, IDC_OBJ_HANDLESBYNAME_L, L"按类型：");
 
     PhPrintUInt32(string, Context->TotalHandlesCount);
     PhSetDialogItemText(Context->WindowHandle, IDC_OBJ_HANDLESTOTAL, string);
@@ -2219,7 +2219,7 @@ INT_PTR CALLBACK EtpWinStaPageDlgProc(
             PhSetControlTheme(context->ListViewHandle, L"explorer");
             PhAddListViewColumn(context->ListViewHandle, ETDTLVC_NAME, ETDTLVC_NAME, ETDTLVC_NAME, LVCFMT_LEFT, 152, L"名称");
             PhAddListViewColumn(context->ListViewHandle, ETDTLVC_SID, ETDTLVC_SID, ETDTLVC_SID, LVCFMT_LEFT, 105, L"SID");
-            PhAddListViewColumn(context->ListViewHandle, ETDTLVC_HEAP, ETDTLVC_HEAP, ETDTLVC_HEAP, LVCFMT_LEFT, 62, L"Heap Size");
+            PhAddListViewColumn(context->ListViewHandle, ETDTLVC_HEAP, ETDTLVC_HEAP, ETDTLVC_HEAP, LVCFMT_LEFT, 62, L"堆大小");
             PhAddListViewColumn(context->ListViewHandle, ETDTLVC_IO, ETDTLVC_IO, ETDTLVC_IO, LVCFMT_LEFT, 45, L"Input");
             PhSetExtendedListView(context->ListViewHandle);
             ExtendedListView_SetSort(context->ListViewHandle, 0, NoSortOrder);

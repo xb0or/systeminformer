@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -71,7 +71,7 @@ LOGICAL DllMain(
             if (!PluginInstance)
                 return FALSE;
 
-            info->DisplayName = L"Agent Tools";
+            info->DisplayName = L"代理工具";
             info->Description = L"Exposes System Informer's process data and actions to AI agents over the Model Context Protocol.";
 
             PhRegisterCallback(
@@ -179,14 +179,14 @@ VOID NTAPI ShowOptionsCallback(
     PPH_PLUGIN_OPTIONS_POINTERS optionsEntry = (PPH_PLUGIN_OPTIONS_POINTERS)Parameter;
 
     optionsEntry->CreateSection(
-        L"Agent Tools",
+        L"代理工具",
         PluginInstance->DllBase,
         MAKEINTRESOURCE(IDD_OPTIONS),
         AtOptionsDlgProc,
         NULL
         );
     optionsEntry->CreateSection(
-        L"Agent Tools - Agents",
+        L"代理工具 - 代理",
         PluginInstance->DllBase,
         MAKEINTRESOURCE(IDD_OPTIONS_AGENTS),
         AtAgentsDlgProc,

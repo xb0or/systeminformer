@@ -35,7 +35,7 @@ VOID WepRemoveWindowNode(
 HWND WepWindowsDialogHandle = NULL;
 HANDLE WepWindowsDialogThreadHandle = NULL;
 PH_EVENT WepWindowsInitializedEvent = PH_EVENT_INIT;
-PH_STRINGREF WepEmptyWindowsText = PH_STRINGREF_INIT(L"There are no windows to display.");
+PH_STRINGREF WepEmptyWindowsText = PH_STRINGREF_INIT(L"没有可显示的窗口。");
 #define WE_WM_FINDWINDOW (WM_APP + 502)
 
 _Function_class_(USER_THREAD_START_ROUTINE)
@@ -620,7 +620,7 @@ PPH_EMENU WepCreateWindowMenu(
 {
     PPH_EMENU_ITEM menuItem;
 
-    PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_BRINGTOFRONT, L"Bring to front", NULL, NULL), ULONG_MAX);
+    PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_BRINGTOFRONT, L"置顶", NULL, NULL), ULONG_MAX);
     PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_RESTORE, L"Restore", NULL, NULL), ULONG_MAX);
     PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_MINIMIZE, L"Minimize", NULL, NULL), ULONG_MAX);
     PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_MAXIMIZE, L"Maximize", NULL, NULL), ULONG_MAX);
@@ -630,7 +630,7 @@ PPH_EMENU WepCreateWindowMenu(
 
     PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_VISIBLE, L"Visible", NULL, NULL), ULONG_MAX);
     PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_ENABLED, L"已启用", NULL, NULL), ULONG_MAX);
-    PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_ALWAYSONTOP, L"Always on top", NULL, NULL), ULONG_MAX);
+    PhInsertEMenuItem(WindowMenu, PhCreateEMenuItem(0, ID_WINDOW_ALWAYSONTOP, L"总是置顶", NULL, NULL), ULONG_MAX);
 
     menuItem = PhCreateEMenuItem(0, 0, L"不透明度(&O)", NULL, NULL);
     PhInsertEMenuItem(menuItem, PhCreateEMenuItem(0, ID_OPACITY_10, L"10%(&1)", NULL, NULL), ULONG_MAX);
@@ -776,7 +776,7 @@ BOOLEAN WepExecuteWindowCommand(
             status = WeDestroyRemoteWindow(WindowHandle, clientId.UniqueProcess);
 
             if (!NT_SUCCESS(status))
-                PhShowStatus(ParentWindowHandle, L"Unable to destroy the window.", status, 0);
+                PhShowStatus(ParentWindowHandle, L"无法销毁窗口。", status, 0);
         }
         break;
     case ID_WINDOW_VISIBLE:
@@ -796,9 +796,9 @@ BOOLEAN WepExecuteWindowCommand(
                     {
                         showParents = MessageBoxW(
                             ParentWindowHandle,
-                            L"The parent window(s) of this window are currently invisible.\n\n"
+                            L"此窗口的父窗口当前不可见。\n\n"
                             L"Do you want to make the parent window(s) visible along with this window?",
-                            L"Confirm Parent Visibility Change",
+                            L"确认父窗口可见性更改",
                             MB_YESNO | MB_ICONQUESTION
                             ) == IDYES;
                         break;
@@ -952,8 +952,8 @@ BOOLEAN WepExecuteWindowCommand(
 
             while (PhaChoiceDialog(
                 ParentWindowHandle,
-                L"Enter new Window DPI:",
-                L"Enter new Window DPI:",
+                L"输入新窗口 DPI：",
+                L"输入新窗口 DPI：",
                 NULL,
                 0,
                 NULL,
@@ -1205,7 +1205,7 @@ INT_PTR CALLBACK WepWindowsDlgProc(
             PhCreateSearchControl(
                 WindowHandle,
                 context->SearchBoxHandle,
-                L"Search Windows (Ctrl+K)",
+                L"搜索窗口 (Ctrl+K)",
                 WepWindowsSearchControlCallback,
                 context
                 );
@@ -1448,20 +1448,20 @@ INT_PTR CALLBACK WepWindowsDlgProc(
                     GetWindowRect(GetDlgItem(WindowHandle, IDC_OPTIONS), &rect);
 
                     menu = PhCreateEMenu();
-                    PhInsertEMenuItem(menu, enumMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_MESSAGEONLY, L"Enumerate message-only windows", NULL, NULL), ULONG_MAX);
-                    PhInsertEMenuItem(menu, enumNonVisibleItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_NONVISIBLE, L"Enumerate non-visible windows", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, enumMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_MESSAGEONLY, L"枚举仅消息窗口", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, enumNonVisibleItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_NONVISIBLE, L"枚举不可见窗口", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, highlightMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_HIGHLIGHT_MESSAGEONLY, L"Highlight message-only windows", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, highlightMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_HIGHLIGHT_MESSAGEONLY, L"高亮仅消息窗口", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, iconsItem = PhCreateEMenuItem(0, 1, L"Enable icons", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, iconsItem = PhCreateEMenuItem(0, 1, L"启用图标", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, desktopItem = PhCreateEMenuItem(0, 3, L"Show desktop windows", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, desktopItem = PhCreateEMenuItem(0, 3, L"显示桌面窗口", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, findSnapshotItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_FIND_SNAPSHOT, L"Use snapshot window finder", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, findSnapshotItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_FIND_SNAPSHOT, L"使用快照窗口查找器", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, parentChildItem = PhCreateEMenuItem(0, ID_VIEW_MODE_PARENTCHILD, L"Enumerate windows", NULL, NULL), ULONG_MAX);
-                    PhInsertEMenuItem(menu, zOrderItem = PhCreateEMenuItem(0, ID_VIEW_MODE_ZORDER, L"Enumerate windows by z-order", NULL, NULL), ULONG_MAX);
-                    PhInsertEMenuItem(menu, ownerItem = PhCreateEMenuItem(0, ID_VIEW_MODE_OWNER, L"Enumerate windows by owner", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, parentChildItem = PhCreateEMenuItem(0, ID_VIEW_MODE_PARENTCHILD, L"枚举窗口", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, zOrderItem = PhCreateEMenuItem(0, ID_VIEW_MODE_ZORDER, L"按 Z 顺序枚举窗口", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, ownerItem = PhCreateEMenuItem(0, ID_VIEW_MODE_OWNER, L"按所有者枚举窗口", NULL, NULL), ULONG_MAX);
 
                     if (PhGetIntegerSetting(SETTING_NAME_WINDOW_ENUM_MESSAGEONLY))
                         enumMessageOnlyItem->Flags |= PH_EMENU_CHECKED;
@@ -1710,9 +1710,9 @@ INT_PTR CALLBACK WepWindowsDlgProc(
                                 {
                                     if (MessageBoxW(
                                         context->WindowHandle, // Parent window for the message box
-                                        L"The parent window(s) of this window are currently invisible.\n\n"
+                                        L"此窗口的父窗口当前不可见。\n\n"
                                         L"Do you want to make the parent window(s) visible along with this window?",
-                                        L"Confirm Parent Visibility Change",
+                                        L"确认父窗口可见性更改",
                                         MB_YESNO | MB_ICONQUESTION
                                     ) == IDNO)
                                     {
@@ -1957,8 +1957,8 @@ INT_PTR CALLBACK WepWindowsDlgProc(
 
                         while (PhaChoiceDialog(
                             WindowHandle,
-                            L"Enter new Window DPI:",
-                            L"Enter new Window DPI:",
+                            L"输入新窗口 DPI：",
+                            L"输入新窗口 DPI：",
                             NULL,
                             0,
                             NULL,
@@ -2291,7 +2291,7 @@ INT_PTR CALLBACK WepWindowsPageProc(
             PhCreateSearchControl(
                 WindowHandle,
                 context->SearchBoxHandle,
-                L"Search Windows (Ctrl+K)",
+                L"搜索窗口 (Ctrl+K)",
                 WepWindowsSearchControlCallback,
                 context
                 );
@@ -2380,7 +2380,7 @@ INT_PTR CALLBACK WepWindowsPageProc(
             //PhCreateSearchControl(
             //    WindowHandle,
             //    context->SearchBoxHandle,
-            //    L"Search Windows (Ctrl+K)",
+            //    L"搜索窗口 (Ctrl+K)",
             //    WepWindowsPageSearchControlCallback,
             //    context
             //    );
@@ -2608,18 +2608,18 @@ INT_PTR CALLBACK WepWindowsPageProc(
                     GetWindowRect(GetDlgItem(WindowHandle, IDC_OPTIONS), &rect);
 
                     menu = PhCreateEMenu();
-                    PhInsertEMenuItem(menu, enumMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_MESSAGEONLY, L"Enumerate message-only windows", NULL, NULL), ULONG_MAX);
-                    PhInsertEMenuItem(menu, enumNonVisibleItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_NONVISIBLE, L"Enumerate non-visible windows", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, enumMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_MESSAGEONLY, L"枚举仅消息窗口", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, enumNonVisibleItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_ENUM_NONVISIBLE, L"枚举不可见窗口", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, highlightMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_HIGHLIGHT_MESSAGEONLY, L"Highlight message-only windows", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, highlightMessageOnlyItem = PhCreateEMenuItem(0, ID_WINDOW_OPTIONS_HIGHLIGHT_MESSAGEONLY, L"高亮仅消息窗口", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, iconsItem = PhCreateEMenuItem(0, 1, L"Enable icons", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, iconsItem = PhCreateEMenuItem(0, 1, L"启用图标", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, desktopItem = PhCreateEMenuItem(0, 3, L"Show desktop windows", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, desktopItem = PhCreateEMenuItem(0, 3, L"显示桌面窗口", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-                    PhInsertEMenuItem(menu, parentChildItem = PhCreateEMenuItem(0, ID_VIEW_MODE_PARENTCHILD, L"Enumerate windows", NULL, NULL), ULONG_MAX);
-                    PhInsertEMenuItem(menu, zOrderItem = PhCreateEMenuItem(0, ID_VIEW_MODE_ZORDER, L"Enumerate windows by z-order", NULL, NULL), ULONG_MAX);
-                    PhInsertEMenuItem(menu, ownerItem = PhCreateEMenuItem(0, ID_VIEW_MODE_OWNER, L"Enumerate windows by owner", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, parentChildItem = PhCreateEMenuItem(0, ID_VIEW_MODE_PARENTCHILD, L"枚举窗口", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, zOrderItem = PhCreateEMenuItem(0, ID_VIEW_MODE_ZORDER, L"按 Z 顺序枚举窗口", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, ownerItem = PhCreateEMenuItem(0, ID_VIEW_MODE_OWNER, L"按所有者枚举窗口", NULL, NULL), ULONG_MAX);
 
                     if (PhGetIntegerSetting(SETTING_NAME_WINDOW_ENUM_MESSAGEONLY))
                         enumMessageOnlyItem->Flags |= PH_EMENU_CHECKED;
@@ -2838,7 +2838,7 @@ INT_PTR CALLBACK WepWindowsPageProc(
                             );
 
                         if (!NT_SUCCESS(status))
-                            PhShowStatus(WindowHandle, L"Unable to destroy the window.", status, 0);
+                            PhShowStatus(WindowHandle, L"无法销毁窗口。", status, 0);
                     }
                 }
                 break;
@@ -2874,9 +2874,9 @@ INT_PTR CALLBACK WepWindowsPageProc(
                             {
                                 if (MessageBoxW(
                                     context->WindowHandle, // Parent window for the message box
-                                    L"The parent window(s) of this window are currently invisible.\n\n"
+                                    L"此窗口的父窗口当前不可见。\n\n"
                                     L"Do you want to make the parent window(s) visible along with this window?",
-                                    L"Confirm Parent Visibility Change",
+                                    L"确认父窗口可见性更改",
                                     MB_YESNO | MB_ICONQUESTION
                                 ) == IDNO)
                                 {
@@ -3014,7 +3014,7 @@ INT_PTR CALLBACK WepWindowsPageProc(
                         }
                         else
                         {
-                            PhShowError2(WindowHandle, L"The window does not exist.", L"%s", L"");
+                            PhShowError2(WindowHandle, L"窗口不存在。", L"%s", L"");
                         }
                     }
                 }
@@ -3071,7 +3071,7 @@ INT_PTR CALLBACK WepWindowsPageProc(
                     {
                         if (!WeShowWindowProperties(WindowHandle, selectedNode->WindowHandle))
                         {
-                            PhShowError2(WindowHandle, L"The window does not exist.", L"%s", L"");
+                            PhShowError2(WindowHandle, L"窗口不存在。", L"%s", L"");
                         }
                     }
                 }
@@ -3095,8 +3095,8 @@ INT_PTR CALLBACK WepWindowsPageProc(
 
                         while (PhaChoiceDialog(
                             WindowHandle,
-                            L"Enter new Window DPI:",
-                            L"Enter new Window DPI:",
+                            L"输入新窗口 DPI：",
+                            L"输入新窗口 DPI：",
                             NULL,
                             0,
                             NULL,

@@ -735,11 +735,11 @@ PCWSTR MediumTypeToString(
     case NdisPhysicalMediumWirelessLan:
         return L"Wireless LAN";
     case NdisPhysicalMediumCableModem:
-        return L"Cable Modem";
+        return L"电缆调制解调器";
     case NdisPhysicalMediumPhoneLine:
-        return L"Phone Line";
+        return L"电话线";
     case NdisPhysicalMediumPowerLine:
-        return L"Power Line";
+        return L"电力线";
     case NdisPhysicalMediumDSL:      // includes ADSL and UADSL (G.Lite)
         return L"DSL";
     case NdisPhysicalMediumFibreChannel:
@@ -747,7 +747,7 @@ PCWSTR MediumTypeToString(
     case NdisPhysicalMedium1394:
         return L"1394";
     case NdisPhysicalMediumWirelessWan:
-        return L"Wireless WAN";
+        return L"无线 WAN";
     case NdisPhysicalMediumNative802_11:
         return L"Native802_11";
     case NdisPhysicalMediumBluetooth:
@@ -765,9 +765,9 @@ PCWSTR MediumTypeToString(
     case NdisPhysicalMediumIrda:
         return L"Infrared";
     case NdisPhysicalMediumWiredWAN:
-        return L"Wired WAN";
+        return L"有线 WAN";
     case NdisPhysicalMediumWiredCoWan:
-        return L"Wired CoWan";
+        return L"有线 CoWan";
     case NdisPhysicalMediumOther:
         return L"其他";
     case NdisPhysicalMediumNative802_15_4:

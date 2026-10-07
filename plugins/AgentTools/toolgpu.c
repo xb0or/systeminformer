@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -361,7 +361,7 @@ VOID AtpGetGpuUsage(
 
     if (!AtpEnumerateGraphicsAdapters(&adapters, &adapterCount, &status))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating the graphics adapters");
+        AtSetToolStatusError(Result, status, L"正在枚举图形适配器");
         return;
     }
 
@@ -641,7 +641,7 @@ VOID AtpListGpuAdapters(
 
     if (!AtpEnumerateGraphicsAdapters(&adapters, &adapterCount, &status))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating the graphics adapters");
+        AtSetToolStatusError(Result, status, L"正在枚举图形适配器");
         return;
     }
 
@@ -779,7 +779,7 @@ VOID AtpGetProcessGpuStats(
             Result,
             "unavailable",
             STATUS_NOT_SUPPORTED,
-            L"GPU monitoring is not running in this System Informer instance."
+            L"此 System Informer 实例未运行 GPU 监控。"
             );
         AtDeleteTarget(&target);
         return;
@@ -850,7 +850,7 @@ VOID AtGpuInvokeTool(
         AtpGetProcessGpuStats(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

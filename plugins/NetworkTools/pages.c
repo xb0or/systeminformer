@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -200,7 +200,7 @@ VOID ShowDbCheckForUpdatesDialog(
     config.pfCallback = CheckForUpdatesDbCallbackProc;
     config.lpCallbackData = (LONG_PTR)Context;
 
-    config.pszWindowTitle = L"Network Tools - GeoLite Updater";
+    config.pszWindowTitle = L"网络工具 - GeoLite 更新器";
     config.pszMainInstruction = L"Download the latest GeoLite database?";
     config.pszContent = L"This product includes GeoLite2 data created by MaxMind, available from <a href=\"https://www.maxmind.com\">https://www.maxmind.com</a>\r\n\r\nSelect download to continue.";
 
@@ -222,7 +222,7 @@ VOID ShowDbCheckingForUpdatesDialog(
     config.pfCallback = CheckingForUpdatesDbCallbackProc;
     config.lpCallbackData = (LONG_PTR)Context;
 
-    config.pszWindowTitle = L"Network Tools - GeoLite Updater";
+    config.pszWindowTitle = L"网络工具 - GeoLite 更新器";
     config.pszMainInstruction = L"Downloading";
     config.pszContent = L"Downloaded: ~ of ~ (~%%)\r\nSpeed: ~/s";
 
@@ -246,9 +246,9 @@ VOID ShowDbInstallRestartDialog(
     config.pButtons = RestartButtonArray;
     config.cButtons = ARRAYSIZE(RestartButtonArray);
 
-    config.pszWindowTitle = L"Network Tools - GeoLite Updater";
-    config.pszMainInstruction = L"The GeoLite database has been updated.";
-    config.pszContent = L"Please restart System Informer for the changes to take effect...";
+    config.pszWindowTitle = L"网络工具 - GeoLite 更新器";
+    config.pszMainInstruction = L"GeoLite 数据库已更新。";
+    config.pszContent = L"请重启 System Informer 使更改生效...";
 
     PhTaskDialogNavigatePage(Context->DialogHandle, &config);
 }
@@ -269,8 +269,8 @@ VOID ShowDbUpdateFailedDialog(
     config.pfCallback = FinalDbTaskDialogCallbackProc;
     config.lpCallbackData = (LONG_PTR)Context;
 
-    config.pszWindowTitle = L"Network Tools - GeoLite Updater";
-    config.pszMainInstruction = L"Error downloading GeoLite database.";
+    config.pszWindowTitle = L"网络工具 - GeoLite 更新器";
+    config.pszMainInstruction = L"下载 GeoLite 数据库出错。";
 
     if (Context->ErrorCode)
     {
@@ -293,7 +293,7 @@ VOID ShowDbUpdateFailedDialog(
     }
     else
     {
-        config.pszContent = L"Click Retry to download the update again.";
+        config.pszContent = L"点击“重试”重新下载更新。";
     }
 
     PhTaskDialogNavigatePage(Context->DialogHandle, &config);
@@ -310,8 +310,8 @@ VOID ShowDbInvalidSettingsDialog(
     config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION;
     config.dwCommonButtons = TDCBF_CLOSE_BUTTON;
     config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(Context->DialogHandle));
-    config.pszWindowTitle = L"Network Tools - GeoLite Updater";
-    config.pszMainInstruction = L"Unable to download GeoLite update.";
+    config.pszWindowTitle = L"网络工具 - GeoLite 更新器";
+    config.pszMainInstruction = L"无法下载 GeoLite 更新。";
     config.pszContent = L"Please check the Options > Network Tools > GeoLite ID or Key are configured before downloading geoLite updates.";
     config.cxWidth = 200;
 

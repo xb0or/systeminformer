@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -158,7 +158,7 @@ VOID AtpGetDotNetAssemblies(
     switch (status)
     {
     case DotNetToolsAssembliesNotDotNet:
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"This process is not running a .NET runtime.");
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"此进程未运行 .NET 运行时。");
         break;
     case DotNetToolsAssembliesWow64:
         AtSetToolError(
@@ -214,7 +214,7 @@ VOID AtDotNetInvokeTool(
         AtpGetDotNetAssemblies(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

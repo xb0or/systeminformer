@@ -181,7 +181,7 @@ VOID AtpGetAlpcPortInfo(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Querying the ALPC port");
+        AtSetToolStatusError(Result, status, L"正在查询 ALPC 端口");
         return;
     }
 
@@ -1061,7 +1061,7 @@ VOID AtpListNamedPipes(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the named pipe directory");
+        AtSetToolStatusError(Result, status, L"正在打开命名管道目录");
         PhClearReference(&context.NameContains);
         PhDereferenceObject(context.Pipes);
         return;
@@ -1288,7 +1288,7 @@ VOID AtpGetSectionMappings(
 
         if (!NT_SUCCESS(status))
         {
-            AtSetToolStatusError(Result, status, L"Opening the file");
+            AtSetToolStatusError(Result, status, L"正在打开文件");
             AtDeleteRows(&rows);
             PhDereferenceObject(path);
             return;
@@ -1376,7 +1376,7 @@ VOID AtpGetSectionMappings(
 
         if (!NT_SUCCESS(status))
         {
-            AtSetToolStatusError(Result, status, L"Querying the section mappings");
+            AtSetToolStatusError(Result, status, L"正在查询节映射");
             PhFree(mappings);
             AtDeleteRows(&rows);
             AtDeleteTarget(&target);
@@ -1439,7 +1439,7 @@ VOID AtpFindObjectHandles(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating handles");
+        AtSetToolStatusError(Result, status, L"正在枚举句柄");
         AtDeleteTarget(&target);
         return;
     }
@@ -1516,7 +1516,7 @@ VOID AtHandleInvokeTool(
         AtpFindObjectHandles(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"Unhandled tool.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"未处理的工具。");
         break;
     }
 }

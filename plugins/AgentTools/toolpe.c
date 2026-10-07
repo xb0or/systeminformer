@@ -257,7 +257,7 @@ VOID AtpVerifyFileSignature(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the file");
+        AtSetToolStatusError(Result, status, L"正在打开文件");
         PhDereferenceObject(path);
         return;
     }
@@ -531,14 +531,14 @@ VOID AtpGetFileHashes(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the file");
+        AtSetToolStatusError(Result, status, L"正在打开文件");
         PhDereferenceObject(path);
         return;
     }
 
     if (!NT_SUCCESS(status = PhGetFileSize(fileHandle, &fileSize)))
     {
-        AtSetToolStatusError(Result, status, L"Reading the file size");
+        AtSetToolStatusError(Result, status, L"正在读取文件大小");
         NtClose(fileHandle);
         PhDereferenceObject(path);
         return;
@@ -575,7 +575,7 @@ VOID AtpGetFileHashes(
                     PhSymCryptDestroyHash(&requests[j].Context, requests[j].Size);
             }
 
-            AtSetToolStatusError(Result, status, L"Starting the hash");
+            AtSetToolStatusError(Result, status, L"正在开始哈希");
             NtClose(fileHandle);
             PhDereferenceObject(path);
             return;
@@ -617,7 +617,7 @@ VOID AtpGetFileHashes(
     if (offset.QuadPart != fileSize.QuadPart)
     {
         AtSetToolStatusError(Result, NT_SUCCESS(status) ? STATUS_END_OF_FILE : status,
-            hashFailed ? L"Hashing the file" : L"Reading the file");
+            hashFailed ? L"正在计算文件哈希" : L"正在读取文件");
 
         for (i = 0; i < RTL_NUMBER_OF(requests); i++)
         {
@@ -819,7 +819,7 @@ VOID AtpGetImageInfo(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the file");
+        AtSetToolStatusError(Result, status, L"正在打开文件");
         PhDereferenceObject(path);
         return;
     }
@@ -829,14 +829,14 @@ VOID AtpGetImageInfo(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Loading the image");
+        AtSetToolStatusError(Result, status, L"正在加载映像");
         PhDereferenceObject(path);
         return;
     }
 
     if (mappedImage.Signature != IMAGE_DOS_SIGNATURE)
     {
-        AtSetToolError(Result, "invalid_image", STATUS_INVALID_IMAGE_FORMAT, L"The file is not a PE image.");
+        AtSetToolError(Result, "invalid_image", STATUS_INVALID_IMAGE_FORMAT, L"文件不是 PE 映像。");
         PhUnloadMappedImage(&mappedImage);
         PhDereferenceObject(path);
         return;
@@ -997,7 +997,7 @@ VOID AtpReadProcessMemory(
 
     if (!NT_SUCCESS(status) && bytesRead == 0)
     {
-        AtSetToolStatusError(Result, status, L"Reading process memory");
+        AtSetToolStatusError(Result, status, L"正在读取进程内存");
         PhFree(buffer);
         return;
     }
@@ -1100,7 +1100,7 @@ BOOLEAN AtpBuildSearchPattern(
 
     if (count == 0)
     {
-        AtSetToolError(Result, "invalid_arguments", STATUS_INVALID_PARAMETER, L"The search pattern is empty.");
+        AtSetToolError(Result, "invalid_arguments", STATUS_INVALID_PARAMETER, L"搜索模式为空。");
         goto CleanupExit;
     }
 
@@ -1145,7 +1145,7 @@ VOID AtpSearchProcessMemory(
 
     if (!NT_SUCCESS(status = PhQueryMemoryItemList(Target->ProcessItem->ProcessId, PH_QUERY_MEMORY_IGNORE_FREE, &list)))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating the process memory");
+        AtSetToolStatusError(Result, status, L"正在枚举进程内存");
         return;
     }
 
@@ -1153,7 +1153,7 @@ VOID AtpSearchProcessMemory(
     // any JSON so nothing leaks.
     if (!(buffer = PhAllocatePage(bufferSize, NULL)))
     {
-        AtSetToolError(Result, "failed", STATUS_NO_MEMORY, L"The scan buffer could not be allocated.");
+        AtSetToolError(Result, "failed", STATUS_NO_MEMORY, L"无法分配扫描缓冲区。");
         PhDeleteMemoryItemList(&list);
         return;
     }
@@ -1308,7 +1308,7 @@ VOID AtPeInvokeTool(
         AtpSearchProcessMemory(Call, Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

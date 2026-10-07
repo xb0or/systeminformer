@@ -15,24 +15,24 @@ VOID DiskDeviceAddListViewItems(
     _Inout_ PDV_DISK_PAGE_CONTEXT Context
     )
 {
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FS_CREATION_TIME, L"Volume creation time", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_SERIAL_NUMBER, L"Volume serial number", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_UNIQUEID, L"Volume unique identifier", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FS_CREATION_TIME, L"卷创建时间", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_SERIAL_NUMBER, L"卷序列号", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_UNIQUEID, L"卷唯一标识符", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_PARTITIONID, L"Volume partition identifier(s)", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FILE_SYSTEM, L"Volume file system", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FILE_SYSTEM, L"卷文件系统", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FS_VERSION, L"Volume version", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_LFS_VERSION, L"LFS version", NULL);
 
     //PhAddListViewItem(Context->ListViewHandle, MAXINT, L"BytesPerPhysicalSector", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_SIZE, L"Total size", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_FREE, L"Total free", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_USED, L"Total used", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_SECTORS, L"Total sectors", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_CLUSTERS, L"Total clusters", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FREE_CLUSTERS, L"Free clusters", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_RESERVED, L"Reserved clusters", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_BYTES_PER_SECTOR, L"Bytes per sector", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_BYTES_PER_CLUSTER, L"Bytes per cluster", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_SIZE, L"总大小", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_FREE, L"总可用", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_USED, L"总已用", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_SECTORS, L"总扇区", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_CLUSTERS, L"总簇", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FREE_CLUSTERS, L"可用簇", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_RESERVED, L"保留簇", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_BYTES_PER_SECTOR, L"每扇区字节", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_BYTES_PER_CLUSTER, L"每簇字节", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_BYTES_PER_RECORD, L"Bytes per file record segment", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_TOTAL_CLUSTERS_PER_RECORD, L"Clusters per File record segment", NULL);
 
@@ -45,8 +45,8 @@ VOID DiskDeviceAddListViewItems(
 
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FILE_READS, L"File reads", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FILE_WRITES, L"File writes", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_DISK_READS, L"Disk reads", NULL);
-    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_DISK_WRITES, L"Disk writes", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_DISK_READS, L"磁盘读取", NULL);
+    PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_DISK_WRITES, L"磁盘写入", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FILE_READ_BYTES, L"File read bytes", NULL);
     PhAddListViewItem(Context->ListViewHandle, DISKDRIVE_DETAILS_INDEX_FILE_WRITE_BYTES, L"File write bytes", NULL);
 
@@ -956,7 +956,7 @@ NTSTATUS ShowDiskDeviceDetailsDialogThread(
 
     PhSetEvent(&pageContext->SysInfoContext->DetailsWindowInitializedEvent);
 
-    if (propContext = HdCreatePropContext(L"Disk Device"))
+    if (propContext = HdCreatePropContext(L"磁盘设备"))
     {
         PPV_PROPPAGECONTEXT newPage;
 

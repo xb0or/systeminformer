@@ -131,4 +131,9 @@ _c_ui_candidates.json
 _c_ui_review.txt
 _plugin_strings.json
 _plugin_rc_review.txt
-_ci_log.txt
+_ci_log*.txt
+_commitmsg.txt
+build_output_zh/
+.snow/
+/systeminformer-zh-cn-*.zip
+

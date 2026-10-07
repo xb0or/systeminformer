@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -149,7 +149,7 @@ VOID AtpPingHost(
 
     if (!AtpInitializeIcmp())
     {
-        AtSetToolError(Result, "failed", STATUS_NOT_SUPPORTED, L"The ICMP helper is not available.");
+        AtSetToolError(Result, "failed", STATUS_NOT_SUPPORTED, L"ICMP 帮助程序不可用。");
         return;
     }
 
@@ -205,7 +205,7 @@ VOID AtpPingHost(
 
     if (icmpHandle == INVALID_HANDLE_VALUE)
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"Opening an ICMP handle failed.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"打开 ICMP 句柄失败。");
         PhDereferenceObject(addressString);
         return;
     }
@@ -386,7 +386,7 @@ VOID AtpWhoisLookup(
 
     if (!pluginInterface->QueryWhois(addressString->Buffer, address.Type == PH_NETWORK_TYPE_IPV6, &response))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"No whois server answered.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"无 whois 服务器响应。");
         PhDereferenceObject(addressString);
         return;
     }
@@ -421,7 +421,7 @@ VOID AtEgressInvokeTool(
         AtpWhoisLookup(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

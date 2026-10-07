@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -410,7 +410,7 @@ VOID AtpGetWindowInfo(
 
     if (!IsWindow(windowHandle))
     {
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"That window handle does not name a window.");
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"该窗口句柄不对应窗口。");
         return;
     }
 
@@ -514,7 +514,7 @@ VOID AtpControlWindow(
 
     if (!IsWindow(windowHandle))
     {
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"That window handle does not name a window.");
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"该窗口句柄不对应窗口。");
         return;
     }
 
@@ -614,7 +614,7 @@ VOID AtWindowInvokeTool(
         AtpGetWindowInfo(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -1482,7 +1482,7 @@ PPH_STRING EtpGpuGetNameString(
         {
             // Ignore "Microsoft Basic Render Driver" unless we don't have any other adapters.
             // This does not take into account localization.
-            if (count == 1 || !PhEqualString2(description, L"Microsoft Basic Render Driver", TRUE))
+            if (count == 1 || !PhEqualString2(description, L"Microsoft 基本呈现驱动程序", TRUE))
             {
                 PhAppendStringBuilder(&sb, &description->sr);
                 PhAppendStringBuilder2(&sb, L", ");

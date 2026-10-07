@@ -546,7 +546,7 @@ BOOLEAN UpdaterShowProgressToast(
     }
 
     Context->ToastMode = TRUE;
-    UpdaterUpdateProgressToast(Context, L"Starting download...");
+    UpdaterUpdateProgressToast(Context, L"正在开始下载...");
 
     PhReferenceObject(Context);
     PhCreateThread2(UpdateInstallerDownloadThreadStage1, Context);
@@ -665,11 +665,11 @@ BOOLEAN UpdaterShowFailedToast(
 
     if (SignatureFailed)
     {
-        errorText = L"Signature check failed.";
+        errorText = L"签名检查失败。";
     }
     else if (HashFailed)
     {
-        errorText = L"Hash check failed.";
+        errorText = L"哈希检查失败。";
     }
     else if (Context->UpdateStatus)
     {
@@ -689,12 +689,12 @@ BOOLEAN UpdaterShowFailedToast(
         }
         else
         {
-            errorText = L"Click Check for updates to try again.";
+            errorText = L"点击“检查更新”重试。";
         }
     }
     else
     {
-        errorText = L"Click Check for updates to try again.";
+        errorText = L"点击“检查更新”重试。";
     }
 
     xml = PhFormatString(

@@ -399,7 +399,7 @@ VOID FindDiskDrives(
         {
             if (
                 PhEndsWithStringRef2(&deviceDescription->sr, L"Xvd", TRUE) || // Windows Store Games DRM
-                PhEndsWithStringRef2(&deviceDescription->sr, L"Microsoft Virtual Disk", TRUE)
+                PhEndsWithStringRef2(&deviceDescription->sr, L"Microsoft 虚拟磁盘", TRUE)
                 )
             {
                 PhDereferenceObject(deviceDescription);
@@ -549,7 +549,7 @@ VOID FindDiskDrives(
         {
             PPH_STRING description;
 
-            if (description = PhCreateString(L"Unknown disk"))
+            if (description = PhCreateString(L"未知磁盘"))
             {
                 AddDiskDriveToListView(
                     Context,

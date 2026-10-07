@@ -493,7 +493,7 @@ INT_PTR CALLBACK EtpWsWatchDlgProc(
 
             if (!context->SymbolProvider)
             {
-                PhShowError2(WindowHandle, L"Unable to create the symbol provider.", L"%s", L"");
+                PhShowError2(WindowHandle, L"无法创建符号提供程序。", L"%s", L"");
                 EndDialog(WindowHandle, IDCANCEL);
                 break;
             }
@@ -585,7 +585,7 @@ INT_PTR CALLBACK EtpWsWatchDlgProc(
                     }
                     else
                     {
-                        PhShowStatus(WindowHandle, L"Unable to enable WS watch.", status, 0);
+                        PhShowStatus(WindowHandle, L"无法启用工作集监视。", status, 0);
                     }
                 }
                 break;

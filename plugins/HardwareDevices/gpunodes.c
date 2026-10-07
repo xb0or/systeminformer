@@ -88,7 +88,7 @@ VOID GraphicsDeviceShowNodesDialog(
 {
     if (Context->DeviceEntry->NumberOfNodes == 0)
     {
-        PhShowError2(ParentWindowHandle, L"There are no graphics nodes to display.", L"%s", L"");
+        PhShowError2(ParentWindowHandle, L"没有可显示的图形节点。", L"%s", L"");
         return;
     }
 

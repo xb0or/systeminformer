@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -321,7 +321,7 @@ VOID ScanExclusionsAddFromEdit(
     }
     else
     {
-        PhShowError2(WindowHandle, L"The regular expression could not be compiled.", L"%s", message);
+        PhShowError2(WindowHandle, L"无法编译正则表达式。", L"%s", message);
     }
 
     PhDereferenceObject(pattern);

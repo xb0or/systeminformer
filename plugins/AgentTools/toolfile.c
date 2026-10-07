@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -225,14 +225,14 @@ VOID AtpGetFileInfo(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the file");
+        AtSetToolStatusError(Result, status, L"正在打开文件");
         PhDereferenceObject(path);
         return;
     }
 
     if (!NT_SUCCESS(status = PhGetFileAllInformation(fileHandle, &allInformation)))
     {
-        AtSetToolStatusError(Result, status, L"Querying the file");
+        AtSetToolStatusError(Result, status, L"正在查询文件");
         NtClose(fileHandle);
         PhDereferenceObject(path);
         return;
@@ -413,7 +413,7 @@ VOID AtpGetFileScanResultCached(
             Result,
             "invalid_arguments",
             STATUS_INVALID_PARAMETER,
-            path ? L"The file could not be read to hash it." : L"sha256 or path is required."
+            path ? L"无法读取文件以计算哈希。" : L"sha256 or path is required."
             );
         PhClearReference(&sha256);
         PhClearReference(&path);
@@ -612,7 +612,7 @@ VOID AtpLookupFileHashVirusTotal(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Asking VirusTotal");
+        AtSetToolStatusError(Result, status, L"正在询问 VirusTotal");
         PhFreeJsonObject(structured);
         PhDereferenceObject(sha256);
         return;
@@ -711,7 +711,7 @@ VOID AtpLookupFileHashHybridAnalysis(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Asking Hybrid Analysis");
+        AtSetToolStatusError(Result, status, L"正在询问 Hybrid Analysis");
         PhFreeJsonObject(structured);
         PhDereferenceObject(sha256);
         return;
@@ -1008,7 +1008,7 @@ VOID AtpReadRegistryKey(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the key");
+        AtSetToolStatusError(Result, status, L"正在打开项");
         PhDereferenceObject(subKey);
         PhClearReference(&context.NameContains);
         PhDereferenceObject(path);
@@ -1190,7 +1190,7 @@ VOID AtpListDirectory(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the directory");
+        AtSetToolStatusError(Result, status, L"正在打开目录");
         goto CleanupExit;
     }
 
@@ -1205,7 +1205,7 @@ VOID AtpListDirectory(
     // Nothing matched is not a failure; the pattern being nonsense is.
     if (!NT_SUCCESS(status) && status != STATUS_NO_MORE_FILES && status != STATUS_NO_SUCH_FILE)
     {
-        AtSetToolStatusError(Result, status, L"Listing the directory");
+        AtSetToolStatusError(Result, status, L"正在列出目录");
         AtDeleteRows(&rows);
         goto CleanupExit;
     }

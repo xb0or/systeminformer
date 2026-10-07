@@ -27,11 +27,11 @@ typedef struct _SERVICE_RECOVERY_CONTEXT
 
 static CONST PH_KEY_VALUE_PAIR ServiceActionPairs[] =
 {
-    SIP(L"Take no action", SC_ACTION_NONE),
-    SIP(L"Restart the service", SC_ACTION_RESTART),
-    SIP(L"Restart the computer", SC_ACTION_REBOOT),
-    SIP(L"Run a program", SC_ACTION_RUN_COMMAND),
-    SIP(L"Own restart", SC_ACTION_OWN_RESTART),
+    SIP(L"不采取操作", SC_ACTION_NONE),
+    SIP(L"重启服务", SC_ACTION_RESTART),
+    SIP(L"重启计算机", SC_ACTION_REBOOT),
+    SIP(L"运行程序", SC_ACTION_RUN_COMMAND),
+    SIP(L"自行重启", SC_ACTION_OWN_RESTART),
 };
 
 INT_PTR CALLBACK RestartComputerDlgProc(
@@ -305,7 +305,7 @@ INT_PTR CALLBACK EspServiceRecoveryDlgProc(
                 {
                     PhShowWarning2(
                         WindowHandle,
-                        L"Unable to query service recovery information.",
+                        L"无法查询服务恢复信息。",
                         L"The service has %lu failure actions configured, but this program only supports editing 3. "
                         L"If you save the recovery information using this program, the additional failure actions will be lost.",
                         context->NumberOfActions
@@ -323,7 +323,7 @@ INT_PTR CALLBACK EspServiceRecoveryDlgProc(
 
                 PhShowWarning2(
                     WindowHandle,
-                    L"Unable to query service recovery information.",
+                    L"无法查询服务恢复信息。",
                     L"%s",
                     PhGetStringOrDefault(errorMessage, L"未知错误。")
                     );
@@ -568,7 +568,7 @@ ErrorCase:
 
                         if (PhShowContinueStatus(
                             WindowHandle,
-                            L"Unable to change service recovery information.",
+                            L"无法更改服务恢复信息。",
                             status,
                             0))
                         {

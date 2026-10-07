@@ -219,7 +219,7 @@ BOOLEAN EtpGpuNodesGraphMessageCallback(
                             }
                             else
                             {
-                                adapterDescription = PhCreateString(L"Unknown Adapter");
+                                adapterDescription = PhCreateString(L"未知适配器");
                             }
 
                             if (!PhIsNullOrEmptyString(adapterEngineName))

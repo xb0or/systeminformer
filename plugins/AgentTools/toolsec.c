@@ -494,7 +494,7 @@ VOID AtpGetObjectSecurity(
             ))
         {
             AtSetToolError(Result, "invalid_arguments", PhGetLastWin32ErrorAsNtStatus(),
-                L"The security descriptor could not be read as SDDL.");
+                L"无法以 SDDL 读取安全描述符。");
             goto CleanupExit;
         }
 
@@ -508,7 +508,7 @@ VOID AtpGetObjectSecurity(
 
         if (!NT_SUCCESS(status))
         {
-            AtSetToolStatusError(Result, status, L"Opening the object");
+            AtSetToolStatusError(Result, status, L"正在打开对象");
             goto CleanupExit;
         }
 
@@ -548,7 +548,7 @@ VOID AtpGetObjectSecurity(
 
         if (!NT_SUCCESS(status))
         {
-            AtSetToolStatusError(Result, status, L"Reading the security descriptor");
+            AtSetToolStatusError(Result, status, L"正在读取安全描述符");
             goto CleanupExit;
         }
     }
@@ -710,7 +710,7 @@ VOID AtSecurityInvokeTool(
         AtpGetObjectSecurity(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

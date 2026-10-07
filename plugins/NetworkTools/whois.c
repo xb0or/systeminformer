@@ -741,18 +741,18 @@ BOOLEAN NetworkToolsQueryWhois(
 
     if (WSAStartup(WINSOCK_VERSION, &winsockStartup) != ERROR_SUCCESS)
     {
-        *Response = PhCreateString(L"Windows sockets could not be started.\n");
+        *Response = PhCreateString(L"无法启动 Windows 套接字。\n");
         return FALSE;
     }
 
     PhInitializeStringBuilder(&stringBuilder, 0x100);
 
     if (Progress)
-        Progress(L"Connecting to whois.iana.org...", Context);
+        Progress(L"正在连接 whois.iana.org...", Context);
 
     if (!WhoisQueryServer(L"whois.iana.org", IPPORT_WHOIS, (PWSTR)Address, Ipv6Support, &whoisResponse))
     {
-        PhAppendFormatStringBuilder(&stringBuilder, L"Connection to whois.iana.org failed.\n");
+        PhAppendFormatStringBuilder(&stringBuilder, L"连接 whois.iana.org 失败。\n");
         goto CleanupExit;
     }
 
@@ -1205,7 +1205,7 @@ NTSTATUS NetworkWhoisDialogThreadStart(
 
     if (!dllhandle)
     {
-        PhShowStatus(context->ParentWindowHandle, L"Unable to display the whois window.", 0, ERROR_MOD_NOT_FOUND);
+        PhShowStatus(context->ParentWindowHandle, L"无法显示 whois 窗口。", 0, ERROR_MOD_NOT_FOUND);
         PhDereferenceObject(context);
         return STATUS_SUCCESS;
     }

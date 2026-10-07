@@ -3820,7 +3820,7 @@ VOID EtSMBIOSTPMDevice(
         vendor[3] = (WCHAR)Entry->TPMDevice.VendorID[3];
         vendor[4] = UNICODE_NULL;
 
-        EtAddSMBIOSItem(Context, group, L"Vendor ID", vendor);
+        EtAddSMBIOSItem(Context, group, L"供应商 ID", vendor);
     }
 
     if (PH_SMBIOS_CONTAINS_FIELD(Entry, TPMDevice, MajorSpecVersion))

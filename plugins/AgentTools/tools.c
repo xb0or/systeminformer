@@ -1218,19 +1218,19 @@ PCWSTR AtVerifyResultString(
     switch (Result)
     {
     case VrNoSignature:
-        return L"No signature";
+        return L"无签名";
     case VrTrusted:
         return L"受信任";
     case VrExpired:
-        return L"Expired certificate";
+        return L"已过期证书";
     case VrRevoked:
-        return L"Revoked certificate";
+        return L"已吊销证书";
     case VrDistrust:
-        return L"Not trusted";
+        return L"不受信任";
     case VrSecuritySettings:
-        return L"Security policy failure";
+        return L"安全策略失败";
     case VrBadSignature:
-        return L"Invalid hash";
+        return L"无效哈希";
     }
 
     return NULL;
@@ -1894,7 +1894,7 @@ VOID AtInvokeTool(
         AtPeInvokeTool(Tool, Call, Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 

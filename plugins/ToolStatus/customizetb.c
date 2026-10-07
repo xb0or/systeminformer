@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -14,14 +14,14 @@
 
 static CONST PCWSTR CustomizeTextOptionsStrings[] =
 {
-    L"No text labels",
-    L"Selective text",
-    L"Show text labels"
+    L"无文本标签",
+    L"选择性文本",
+    L"显示文本标签"
 };
 
 static CONST PCWSTR CustomizeSearchDisplayStrings[] =
 {
-    L"Always show",
+    L"总是显示",
     L"Hide when inactive (Ctrl+K)",
     // L"Auto-hide"
 };

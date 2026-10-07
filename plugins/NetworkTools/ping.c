@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -429,7 +429,7 @@ INT_PTR CALLBACK NetworkPingWndProc(
                 PhCenterWindow(hwndDlg, context->ParentWindowHandle);
 
             PhSetWindowText(hwndDlg, PhaFormatString(L"Ping %s", context->RemoteAddressString)->Buffer);
-            PhSetWindowText(context->StatusHandle, PhaFormatString(L"Pinging %s with %lu bytes of data...",
+            PhSetWindowText(context->StatusHandle, PhaFormatString(L"正在 Ping %s（数据 %lu 字节）...",
                 context->RemoteAddressString,
                 PhGetIntegerSetting(SETTING_NAME_PING_SIZE))->Buffer
                 );
@@ -537,7 +537,7 @@ INT_PTR CALLBACK NetworkPingWndProc(
                 L"Maximum: %.2f ms", context->PingMaxMs)->Buffer);
 
             PhSetDialogItemText(hwndDlg, IDC_PINGS_SENT, PhaFormatString(
-                L"Pings sent: %lu", context->PingSentCount)->Buffer);
+                L"已发送 Ping：%lu", context->PingSentCount)->Buffer);
             PhSetDialogItemText(hwndDlg, IDC_PINGS_LOST, PhaFormatString(
                 L"Pings lost: %lu (%.0f%%)", context->PingLossCount,
                 ((FLOAT)context->PingLossCount / context->PingSentCount * 100))->Buffer);
@@ -548,9 +548,9 @@ INT_PTR CALLBACK NetworkPingWndProc(
             //    L"Variance: %.2f ms", pingVarianceValue)->Buffer);
 
             PhSetDialogItemText(hwndDlg, IDC_BAD_HASH, PhaFormatString(
-                L"Bad replies: %lu", context->HashFailCount)->Buffer);
+                L"错误回复：%lu", context->HashFailCount)->Buffer);
             PhSetDialogItemText(hwndDlg, IDC_ANON_ADDR, PhaFormatString(
-                L"Anon replies: %lu", context->UnknownAddrCount)->Buffer);
+                L"匿名回复：%lu", context->UnknownAddrCount)->Buffer);
         }
         break;
     case WM_NOTIFY:

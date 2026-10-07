@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -577,7 +577,7 @@ VOID NTAPI ProcessMenuInitializingCallback(
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_HYBRIDANALYSIS_UPLOAD, L"&hybrid-analysis.com", processItem ? processItem->FileName : NULL), ULONG_MAX);
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_JOTTI_UPLOAD, L"virusscan.&jotti.org", processItem ? processItem->FileName : NULL), ULONG_MAX);
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_VIRUSTOTAL_UPLOAD, L"&virustotal.com", processItem ? processItem->FileName : NULL), ULONG_MAX);
-    scanWithMenu = PhPluginCreateEMenuItem(PluginInstance, 0, 0, L"Scan with", NULL);
+    scanWithMenu = PhPluginCreateEMenuItem(PluginInstance, 0, 0, L"扫描方式", NULL);
     PhInsertEMenuItem(scanWithMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_VIRUSTOTAL_SCAN_PROCESS, L"VirusTotal", processItem), ULONG_MAX);
     PhInsertEMenuItem(scanWithMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_HYBRIDANALYSIS_SCAN_PROCESS, L"Hybrid-Analysis", processItem), ULONG_MAX);
 
@@ -628,7 +628,7 @@ VOID NTAPI ModuleMenuInitializingCallback(
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_HYBRIDANALYSIS_UPLOAD, L"&hybrid-analysis.com", moduleItem ? moduleItem->FileName : NULL), ULONG_MAX);
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_JOTTI_UPLOAD, L"virusscan.&jotti.org", moduleItem ? moduleItem->FileName : NULL), ULONG_MAX);
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_VIRUSTOTAL_UPLOAD, L"&virustotal.com", moduleItem ? moduleItem->FileName : NULL), ULONG_MAX);
-    scanWithMenu = PhPluginCreateEMenuItem(PluginInstance, 0, 0, L"Scan with", NULL);
+    scanWithMenu = PhPluginCreateEMenuItem(PluginInstance, 0, 0, L"扫描方式", NULL);
     PhInsertEMenuItem(scanWithMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_VIRUSTOTAL_SCAN_MODULE, L"VirusTotal", moduleItem), ULONG_MAX);
     PhInsertEMenuItem(scanWithMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_HYBRIDANALYSIS_SCAN_MODULE, L"Hybrid-Analysis", moduleItem), ULONG_MAX);
     PhInsertEMenuItem(menuInfo->Menu, PhCreateEMenuSeparator(), ULONG_MAX);
@@ -666,7 +666,7 @@ VOID NTAPI ServiceMenuInitializingCallback(
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_HYBRIDANALYSIS_UPLOAD_SERVICE, L"&hybrid-analysis.com", serviceItem), ULONG_MAX);
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_JOTTI_UPLOAD_SERVICE, L"virusscan.&jotti.org", serviceItem), ULONG_MAX);
     PhInsertEMenuItem(sendToMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_VIRUSTOTAL_UPLOAD_SERVICE, L"&virustotal.com", serviceItem), ULONG_MAX);
-    scanWithMenu = PhPluginCreateEMenuItem(PluginInstance, 0, 0, L"Scan with", NULL);
+    scanWithMenu = PhPluginCreateEMenuItem(PluginInstance, 0, 0, L"扫描方式", NULL);
     PhInsertEMenuItem(scanWithMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_VIRUSTOTAL_SCAN_SERVICE, L"VirusTotal", serviceItem), ULONG_MAX);
     PhInsertEMenuItem(scanWithMenu, PhPluginCreateEMenuItem(PluginInstance, 0, MENUITEM_HYBRIDANALYSIS_SCAN_SERVICE, L"Hybrid-Analysis", serviceItem), ULONG_MAX);
     PhInsertEMenuItem(menuInfo->Menu, PhCreateEMenuSeparator(), ULONG_MAX);
@@ -700,7 +700,7 @@ PH_STRINGREF GetScanText(
     _In_ SCAN_TYPE Type
     )
 {
-    static PH_STRINGREF scanningDisabled = PH_STRINGREF_INIT(L"Scanning disabled");
+    static PH_STRINGREF scanningDisabled = PH_STRINGREF_INIT(L"扫描已禁用");
 
     if (!ScanningInitialized)
         return scanningDisabled;
@@ -1197,8 +1197,8 @@ LOGICAL DllMain(
                 return FALSE;
 
             info->Interface = &PluginInterface;
-            info->DisplayName = L"Online Checks";
-            info->Description = L"Allows files to be checked with online services.";
+            info->DisplayName = L"在线检查";
+            info->Description = L"允许使用在线服务检查文件。";
 
             PhRegisterCallback(
                 PhGetPluginCallback(PluginInstance, PluginCallbackLoad),

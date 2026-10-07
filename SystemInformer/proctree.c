@@ -152,8 +152,8 @@ VOID PhInitializeProcessTreeList(
     PhAddTreeNewColumnEx(hwnd, PHPRTLC_IORORATE, FALSE, L"I/O 读取+其他速率", 70, PH_ALIGN_RIGHT, ULONG_MAX, DT_RIGHT, TRUE);
     PhAddTreeNewColumnEx(hwnd, PHPRTLC_IOWRATE, FALSE, L"I/O 写入速率", 70, PH_ALIGN_RIGHT, ULONG_MAX, DT_RIGHT, TRUE);
     PhAddTreeNewColumn(hwnd, PHPRTLC_INTEGRITY, FALSE, L"Integrity", 100, PH_ALIGN_LEFT, ULONG_MAX, 0);
-    PhAddTreeNewColumnEx(hwnd, PHPRTLC_IOPRIORITY, FALSE, L"I/O priority", 70, PH_ALIGN_LEFT, ULONG_MAX, 0, TRUE);
-    PhAddTreeNewColumnEx(hwnd, PHPRTLC_PAGEPRIORITY, FALSE, L"Page priority", 45, PH_ALIGN_RIGHT, ULONG_MAX, DT_RIGHT, TRUE);
+    PhAddTreeNewColumnEx(hwnd, PHPRTLC_IOPRIORITY, FALSE, L"I/O 优先级", 70, PH_ALIGN_LEFT, ULONG_MAX, 0, TRUE);
+    PhAddTreeNewColumnEx(hwnd, PHPRTLC_PAGEPRIORITY, FALSE, L"页面优先级", 45, PH_ALIGN_RIGHT, ULONG_MAX, DT_RIGHT, TRUE);
     PhAddTreeNewColumnEx(hwnd, PHPRTLC_STARTTIME, FALSE, L"启动时间", 100, PH_ALIGN_LEFT, ULONG_MAX, 0, TRUE);
     PhAddTreeNewColumnEx(hwnd, PHPRTLC_TOTALCPUTIME, FALSE, L"总 CPU 时间", 90, PH_ALIGN_RIGHT, ULONG_MAX, DT_RIGHT, TRUE);
     PhAddTreeNewColumnEx(hwnd, PHPRTLC_KERNELCPUTIME, FALSE, L"内核 CPU 时间", 90, PH_ALIGN_RIGHT, ULONG_MAX, DT_RIGHT, TRUE);
@@ -4218,16 +4218,16 @@ BOOLEAN NTAPI PhpProcessTreeNewCallback(
                         PhInitializeStringRef(&getCellText->Text, L"Unaware");
                         break;
                     case PH_PROCESS_DPI_AWARENESS_SYSTEM_DPI_AWARE + 1:
-                        PhInitializeStringRef(&getCellText->Text, L"System aware");
+                        PhInitializeStringRef(&getCellText->Text, L"系统感知");
                         break;
                     case PH_PROCESS_DPI_AWARENESS_PER_MONITOR_DPI_AWARE + 1:
-                        PhInitializeStringRef(&getCellText->Text, L"Per-monitor aware");
+                        PhInitializeStringRef(&getCellText->Text, L"每监视器感知");
                         break;
                     case PH_PROCESS_DPI_AWARENESS_PER_MONITOR_AWARE_V2 + 1:
                         PhInitializeStringRef(&getCellText->Text, L"Per-monitor V2");
                         break;
                     case PH_PROCESS_DPI_AWARENESS_UNAWARE_GDISCALED + 1:
-                        PhInitializeStringRef(&getCellText->Text, L"Unaware (GDI scaled)");
+                        PhInitializeStringRef(&getCellText->Text, L"无感知（GDI 缩放）");
                         break;
                     }
                 }

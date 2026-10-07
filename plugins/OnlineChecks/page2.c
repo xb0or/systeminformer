@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -82,9 +82,9 @@ VOID ShowFileFoundDialog(
 {
     static TASKDIALOG_BUTTON TaskDialogButtonArray[] =
     {
-        { IDYES, L"View last analysis\nView the last or outdated analysis page" },
+        { IDYES, L"查看上次分析\n查看上次或过期的分析页面" },
         //{ IDRETRY, L"Reanalyze file\nRescan the existing sample on VirusTotal" },
-        { IDOK, L"Upload file\nUpload fresh sample for updated analysis" },
+        { IDOK, L"上传文件\n上传新样本以更新分析" },
     };
 
     TASKDIALOGCONFIG config;
@@ -107,13 +107,13 @@ VOID ShowFileFoundDialog(
             L"%s %s\r\n%s %s\r\n%s %s\r\n%s %s\r\n\r\n%s",
             L"Detections:",
             PhGetStringOrEmpty(Context->Detected),
-            L"First analyzed:",
+            L"首次分析：",
             PhGetStringOrEmpty(Context->FirstAnalysisDate),
-            L"Last analyzed:",
+            L"最后分析：",
             PhGetStringOrEmpty(Context->LastAnalysisDate),
-            L"Upload size:",
+            L"上传大小：",
             PhGetStringOrEmpty(Context->FileSize),
-            L"You can take a look at the last analysis or upload it again now."
+            L"您可以查看上次分析或立即重新上传。"
             )->Buffer;
     }
     else
@@ -122,11 +122,11 @@ VOID ShowFileFoundDialog(
             L"%s %s\r\n%s %s\r\n\r\n%s",
             L"Detections:",
             PhGetStringOrEmpty(Context->Detected),
-            //L"Last analyzed:",
+            //L"最后分析：",
             //PhGetStringOrEmpty(Context->LastAnalysisDate),
-            L"Upload size:",
+            L"上传大小：",
             PhGetStringOrEmpty(Context->FileSize),
-            L"You can take a look at the last analysis or upload it again now."
+            L"您可以查看上次分析或立即重新上传。"
             )->Buffer;
     }
 

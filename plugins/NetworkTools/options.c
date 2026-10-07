@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -14,8 +14,8 @@
 
 CONST PPH_STRINGREF OptionsGeoLiteEdition[2] =
 {
-    SREF(L"GeoLite Country (Small)"),
-    SREF(L"GeoLite City (Large)"),
+    SREF(L"GeoLite 国家（小）"),
+    SREF(L"GeoLite 城市（大）"),
 };
 
 VOID ShowGeoLiteConfigDialog(
@@ -189,12 +189,12 @@ INT_PTR CALLBACK OptionsGeoLiteDlgProc(
 
             if (id == IDC_KEYTEXT)
             {
-                PhSetDialogItemText(WindowHandle, IDC_KEYTEXT_L, L"Paste the license key here:");
+                PhSetDialogItemText(WindowHandle, IDC_KEYTEXT_L, L"在此粘贴许可证密钥：");
                 PhSetDialogItemText(WindowHandle, IDC_KEY_EDIT, PhaGetStringSetting(SETTING_NAME_GEOLITE_API_KEY)->Buffer);
             }
             else
             {
-                PhSetDialogItemText(WindowHandle, IDC_KEYTEXT_L, L"Paste the account id here:");
+                PhSetDialogItemText(WindowHandle, IDC_KEYTEXT_L, L"在此粘贴账户 ID：");
                 PhSetDialogItemText(WindowHandle, IDC_KEY_EDIT, PhaGetStringSetting(SETTING_NAME_GEOLITE_API_ID)->Buffer);
             }
 

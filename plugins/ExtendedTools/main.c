@@ -317,9 +317,9 @@ VOID NTAPI MainMenuInitializingCallback(
     PhInsertEMenuItem(systemMenu, PhPluginCreateEMenuItem(PluginInstance, 0, ID_POWER_GRID, L"Power &Forecast", NULL), ULONG_MAX);
     PhInsertEMenuItem(systemMenu, PhPluginCreateEMenuItem(PluginInstance, 0, ID_CACHE_LATENCY, L"Cache &Latency", NULL), ULONG_MAX);
     PhInsertEMenuItem(systemMenu, PhPluginCreateEMenuItem(PluginInstance, 0, ID_PIPE_ENUM, L"&Named Pipes", NULL), ULONG_MAX);
-    PhInsertEMenuItem(systemMenu, reparsePointsMenu = PhPluginCreateEMenuItem(PluginInstance, 0, ID_REPARSE_POINTS, L"NTFS Reparse Points", NULL), ULONG_MAX);
-    PhInsertEMenuItem(systemMenu, reparseObjIdMenu = PhPluginCreateEMenuItem(PluginInstance, 0, ID_REPARSE_OBJID, L"NTFS Object Identifiers", NULL), ULONG_MAX);
-    PhInsertEMenuItem(systemMenu, reparseSsdlMenu = PhPluginCreateEMenuItem(PluginInstance, 0, ID_REPARSE_SDDL, L"NTFS Security Descriptors", NULL), ULONG_MAX);
+    PhInsertEMenuItem(systemMenu, reparsePointsMenu = PhPluginCreateEMenuItem(PluginInstance, 0, ID_REPARSE_POINTS, L"NTFS 重分析点", NULL), ULONG_MAX);
+    PhInsertEMenuItem(systemMenu, reparseObjIdMenu = PhPluginCreateEMenuItem(PluginInstance, 0, ID_REPARSE_OBJID, L"NTFS 对象标识符", NULL), ULONG_MAX);
+    PhInsertEMenuItem(systemMenu, reparseSsdlMenu = PhPluginCreateEMenuItem(PluginInstance, 0, ID_REPARSE_SDDL, L"NTFS 安全描述符", NULL), ULONG_MAX);
 
     if (!PhGetOwnTokenAttributes().Elevated)
     {
@@ -735,7 +735,7 @@ VOID NTAPI ProcessStatsEventCallback(
             PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUTOTALCOMMIT],
                 UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUTOTALCOMMIT)));
             block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUTOTAL] = PhAddListViewGroupItem(
-                listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPU], MAXINT, L"Total memory", NULL);
+                listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPU], MAXINT, L"总内存", NULL);
             PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUTOTAL],
                 UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUTOTAL)));
 
@@ -832,40 +832,40 @@ VOID NTAPI ProcessStatsEventCallback(
             PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_NPUTOTALCOMMIT],
                 UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_NPUTOTALCOMMIT)));
             block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_NPUTOTAL] = PhAddListViewGroupItem(
-                listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_NPU], MAXINT, L"Total memory", NULL);
+                listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_NPU], MAXINT, L"总内存", NULL);
             PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_NPUTOTAL],
                 UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_NPUTOTAL)));
 
             if (EtGpuAdapterStatsEnabled)
             {
                 block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER] = PhAddListViewGroup(
-                    listViewHandle, (LONG)ListView_GetGroupCount(listViewHandle), L"GPU adapter");
+                    listViewHandle, (LONG)ListView_GetGroupCount(listViewHandle), L"GPU 适配器");
                 block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUVIRTUALMEMORY] = PhAddListViewGroupItem(
-                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"Virtual memory", NULL);
+                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"虚拟内存", NULL);
                 PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUVIRTUALMEMORY],
                     UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUVIRTUALMEMORY)));
                 block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUEVICTED] = PhAddListViewGroupItem(
-                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"Evicted bytes", NULL);
+                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"逐出字节", NULL);
                 PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUEVICTED],
                     UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUEVICTED)));
                 block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUDMASIZE] = PhAddListViewGroupItem(
-                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"DMA buffer size", NULL);
+                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"DMA 缓冲区大小", NULL);
                 PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUDMASIZE],
                     UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUDMASIZE)));
                 block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUDMAALLOCLIST] = PhAddListViewGroupItem(
-                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"DMA allocation list", NULL);
+                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"DMA 分配列表", NULL);
                 PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUDMAALLOCLIST],
                     UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUDMAALLOCLIST)));
                 block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUDMAPATCHLIST] = PhAddListViewGroupItem(
-                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"DMA patch list", NULL);
+                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"DMA 修补列表", NULL);
                 PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUDMAPATCHLIST],
                     UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUDMAPATCHLIST)));
                 block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUINTERFERENCE] = PhAddListViewGroupItem(
-                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"Contention events", NULL);
+                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"争用事件", NULL);
                 PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUINTERFERENCE],
                     UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUINTERFERENCE)));
                 block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUVIDPNSOURCES] = PhAddListViewGroupItem(
-                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"Display outputs", NULL);
+                    listViewHandle, block->ListViewGroupCache[ET_PROCESS_STATISTICS_CATEGORY_GPUADAPTER], MAXINT, L"显示输出", NULL);
                 PhSetListViewItemParam(listViewHandle, block->ListViewRowCache[ET_PROCESS_STATISTICS_INDEX_GPUVIDPNSOURCES],
                     UlongToPtr(ET_PROCESS_STATISTICS_PARAM(ET_PROCESS_STATISTICS_INDEX_GPUVIDPNSOURCES)));
             }
@@ -1661,7 +1661,7 @@ LOGICAL DllMain(
             if (!PluginInstance)
                 return FALSE;
 
-            info->DisplayName = L"Extended Tools";
+            info->DisplayName = L"扩展工具";
             info->Description = L"Extended functionality for Windows 7 and above, including ETW, GPU, Disk and Firewall monitoring tabs.";
             info->Interface = &PluginInterface;
 

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -303,7 +303,7 @@ NTSTATUS AtFindNetworkConnection(
     // is showing.
     if (!PhGetNetworkConnections(&connections, &numberOfConnections))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"Enumerating the network connections failed.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"枚举网络连接失败。");
         PhClearReference(&protocolString);
         PhClearReference(&localString);
         PhClearReference(&remoteString);
@@ -352,7 +352,7 @@ NTSTATUS AtFindNetworkConnection(
 
     if (!found)
     {
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"No matching connection is in the live table. Re-list the connections and try again.");
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"活动表中无匹配连接。请重新列出连接并重试。");
         return STATUS_NOT_FOUND;
     }
 
@@ -468,7 +468,7 @@ VOID AtpListNetworkConnections(
     // is showing. A cached item, when there is one, still supplies the names the provider resolved.
     if (!PhGetNetworkConnections(&connections, &numberOfConnections))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"Enumerating the network connections failed.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"枚举网络连接失败。");
         PhClearReference(&filter.State);
         PhClearReference(&filter.AddressContains);
         return;
@@ -594,7 +594,7 @@ VOID AtpCloseNetworkConnection(
 
     if (Target->NetworkItem->State != MIB_TCP_STATE_ESTAB)
     {
-        AtSetToolError(Result, "invalid_state", STATUS_INVALID_PARAMETER, L"Only an established TCP connection can be closed.");
+        AtSetToolError(Result, "invalid_state", STATUS_INVALID_PARAMETER, L"只能关闭已建立的 TCP 连接。");
         return;
     }
 
@@ -602,7 +602,7 @@ VOID AtpCloseNetworkConnection(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Closing the connection");
+        AtSetToolStatusError(Result, status, L"正在关闭连接");
         return;
     }
 
@@ -634,7 +634,7 @@ VOID AtNetworkInvokeTool(
         AtpCloseNetworkConnection(Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

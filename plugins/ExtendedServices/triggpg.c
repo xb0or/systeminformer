@@ -93,7 +93,7 @@ INT_PTR CALLBACK EspServiceTriggersDlgProc(
 
                 PhShowWarning2(
                     WindowHandle,
-                    L"Unable to query service trigger information.",
+                    L"无法查询服务触发器信息。",
                     L"%s",
                     PhGetStringOrDefault(errorMessage, L"未知错误。")
                     );
@@ -166,7 +166,7 @@ INT_PTR CALLBACK EspServiceTriggersDlgProc(
                         {
                             if (PhShowContinueStatus(
                                 WindowHandle,
-                                L"Unable to change service trigger information.",
+                                L"无法更改服务触发器信息。",
                                 status,
                                 0))
                             {

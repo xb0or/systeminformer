@@ -43,14 +43,14 @@ static PH_KEY_VALUE_PAIR EspServiceSidTypePairs[] =
 static PH_KEY_VALUE_PAIR EspServiceLaunchProtectedPairs[] =
 {
     SIP(L"无", SERVICE_LAUNCH_PROTECTED_NONE),
-    SIP(L"Full (Windows)", SERVICE_LAUNCH_PROTECTED_WINDOWS),
-    SIP(L"Light (Windows)", SERVICE_LAUNCH_PROTECTED_WINDOWS_LIGHT),
-    SIP(L"Light (Antimalware)", SERVICE_LAUNCH_PROTECTED_ANTIMALWARE_LIGHT),
-    SIP(L"Light (StoreApp)", 0x4),
+    SIP(L"完整（Windows）", SERVICE_LAUNCH_PROTECTED_WINDOWS),
+    SIP(L"轻量（Windows）", SERVICE_LAUNCH_PROTECTED_WINDOWS_LIGHT),
+    SIP(L"轻量（反恶意软件）", SERVICE_LAUNCH_PROTECTED_ANTIMALWARE_LIGHT),
+    SIP(L"轻量（商店应用）", 0x4),
 };
 
 static WCHAR *EspServiceSidTypeStrings[3] = { L"无", L"Restricted", L"Unrestricted" };
-static WCHAR *EspServiceLaunchProtectedStrings[4] = { L"无", L"Full (Windows)", L"Light (Windows)", L"Light (Antimalware)" };
+static WCHAR *EspServiceLaunchProtectedStrings[4] = { L"无", L"完整（Windows）", L"轻量（Windows）", L"轻量（反恶意软件）" };
 
 PCWSTR EspGetServiceSidTypeString(
     _In_ ULONG SidType
@@ -366,7 +366,7 @@ INT_PTR CALLBACK EspServiceOtherDlgProc(
 
                 PhShowWarning2(
                     WindowHandle,
-                    L"Unable to query service information.",
+                    L"无法查询服务信息。",
                     L"%s",
                     PhGetStringOrDefault(errorMessage, L"未知错误。")
                     );
@@ -416,7 +416,7 @@ INT_PTR CALLBACK EspServiceOtherDlgProc(
 
                     if (!NT_SUCCESS(status))
                     {
-                        PhShowStatus(WindowHandle, L"Unable to open LSA policy", status, 0);
+                        PhShowStatus(WindowHandle, L"无法打开 LSA 策略", status, 0);
                         break;
                     }
 
@@ -424,8 +424,8 @@ INT_PTR CALLBACK EspServiceOtherDlgProc(
 
                     while (PhaChoiceDialog(
                         WindowHandle,
-                        L"Add privilege",
-                        L"Select a privilege to add:",
+                        L"添加权限",
+                        L"选择要添加的权限：",
                         (PWSTR *)choices->Items,
                         choices->Count,
                         NULL,
@@ -456,7 +456,7 @@ INT_PTR CALLBACK EspServiceOtherDlgProc(
                                 WindowHandle,
                                 TD_OK_BUTTON | TD_CANCEL_BUTTON,
                                 TD_ERROR_ICON,
-                                 L"The selected privilege has already been added.",
+                                 L"所选权限已添加。",
                                  L"%s",
                                  L""
                                  ) == IDOK)
@@ -700,7 +700,7 @@ Done:
                         {
                             if (PhShowContinueStatus(
                                 WindowHandle,
-                                L"Unable to change service information.",
+                                L"无法更改服务信息。",
                                 status,
                                 0))
                             {

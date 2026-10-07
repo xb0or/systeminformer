@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -365,10 +365,10 @@ NTSTATUS NTAPI UpdateWinHttpEventCallbackStage4(
         UpdateSetDialogStatusText(updater, L"Connecting...");
         break;
     case PHHTTP_EVENT_SENDING_REQUEST:
-        UpdateSetDialogStatusText(updater, L"Sending download request...");
+        UpdateSetDialogStatusText(updater, L"正在发送下载请求...");
         break;
     case PHHTTP_EVENT_RECEIVING_RESPONSE:
-        UpdateSetDialogStatusText(updater, L"Waiting for response...");
+        UpdateSetDialogStatusText(updater, L"等待响应...");
         break;
     }
 

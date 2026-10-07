@@ -257,7 +257,7 @@ VOID AtpListLogonSessions(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating the logon sessions");
+        AtSetToolStatusError(Result, status, L"正在枚举登录会话");
         return;
     }
 
@@ -440,7 +440,7 @@ VOID AtpListTerminalSessions(
 
     if (!WinStationEnumerateW(WINSTATION_CURRENT_SERVER, &sessions, &sessionCount))
     {
-        AtSetToolStatusError(Result, PhGetLastWin32ErrorAsNtStatus(), L"Enumerating the sessions");
+        AtSetToolStatusError(Result, PhGetLastWin32ErrorAsNtStatus(), L"正在枚举会话");
         return;
     }
 
@@ -589,7 +589,7 @@ VOID AtpLookupAccount(
 
         if (!serviceSid)
         {
-            AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"A service SID could not be derived from that name.");
+            AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"无法从该名称派生服务 SID。");
             goto CleanupExit;
         }
 
@@ -610,7 +610,7 @@ VOID AtpLookupAccount(
     {
         if (!NT_SUCCESS(PhLookupName(&name->sr, &sid, NULL, NULL)) || !sid)
         {
-            AtSetToolError(Result, "not_found", STATUS_NONE_MAPPED, L"No account named %s could be found.", PhGetString(name));
+            AtSetToolError(Result, "not_found", STATUS_NONE_MAPPED, L"找不到名为 %s 的账户。", PhGetString(name));
             goto CleanupExit;
         }
     }
@@ -660,7 +660,7 @@ VOID AtSessionInvokeTool(
         AtpLookupAccount(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

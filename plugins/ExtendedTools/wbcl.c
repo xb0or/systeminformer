@@ -258,11 +258,11 @@ PCWSTR EtWbclSipaTypeToString(
     switch (SipaType)
     {
     case 0x00010000: return L"TrustBoundary";
-    case 0x00010001: return L"ELAM Aggregation";
-    case 0x00010002: return L"LoadedModule Aggregation";
-    case 0x00010003: return L"TrustPoint Aggregation";
-    case 0x00010004: return L"KSR Aggregation";
-    case 0x00010005: return L"KSR Signed Measurement Aggregation";
+    case 0x00010001: return L"ELAM 聚合";
+    case 0x00010002: return L"已加载模块聚合";
+    case 0x00010003: return L"信任点聚合";
+    case 0x00010004: return L"KSR 聚合";
+    case 0x00010005: return L"KSR 签名度量聚合";
     case 0x00020001: return L"信息";
     case 0x00020002: return L"BootCounter";
     case 0x00020003: return L"TransferControl";
@@ -304,8 +304,8 @@ PCWSTR EtWbclSipaTypeToString(
     case 0x00040026: return L"VbsVsmMandatoryEnforcement";
     case 0x00040027: return L"VbsHvciPolicy";
     case 0x00040028: return L"VbsMicrosoftBootChainRequired";
-    case 0x00050001: return L"ImageLoad (NoAuthority)";
-    case 0x00050002: return L"ImageBase (Authority)";
+    case 0x00050001: return L"映像加载（无颁发机构）";
+    case 0x00050002: return L"映像基址（有颁发机构）";
     case 0x00050003: return L"ImageSize";
     case 0x00050004: return L"AuthorityIssuer";
     case 0x00050005: return L"AuthoritySerial";
@@ -318,10 +318,10 @@ PCWSTR EtWbclSipaTypeToString(
     case 0x00060002: return L"QuoteSignature";
     case 0x00060003: return L"AikId";
     case 0x00060004: return L"AikPubDigest";
-    case 0x00070001: return L"ELAM Keyname";
-    case 0x00070002: return L"ELAM Configuration";
-    case 0x00070003: return L"ELAM Policy";
-    case 0x00070004: return L"ELAM Measured";
+    case 0x00070001: return L"ELAM 键名";
+    case 0x00070002: return L"ELAM 配置";
+    case 0x00070003: return L"ELAM 策略";
+    case 0x00070004: return L"ELAM 度量";
     default: return NULL;
     }
 }
@@ -1014,7 +1014,7 @@ VOID EtWbclLoadLiveLog(
     }
     else
     {
-        PhShowStatus(Context->WindowHandle, L"Unable to read the measured boot log", status, 0);
+        PhShowStatus(Context->WindowHandle, L"无法读取度量启动日志", status, 0);
     }
 }
 
@@ -1051,7 +1051,7 @@ VOID EtWbclLoadFileLog(
         }
         else
         {
-            PhShowStatus(Context->WindowHandle, L"Unable to read the log file", status, 0);
+            PhShowStatus(Context->WindowHandle, L"无法读取日志文件", status, 0);
         }
     }
 
@@ -1101,7 +1101,7 @@ VOID EtWbclShowEntryDetails(
     }
 
     text = PhFinalStringBuilderString(&stringBuilder);
-    PhShowInformation2(Context->WindowHandle, L"Boot log entry", L"%s", text->Buffer);
+    PhShowInformation2(Context->WindowHandle, L"启动日志条目", L"%s", text->Buffer);
     PhDereferenceObject(text);
 }
 
@@ -1142,9 +1142,9 @@ INT_PTR CALLBACK EtWbclDlgProc(
             PhSetControlTheme(context->ListViewHandle, L"explorer");
             PhAddListViewColumn(context->ListViewHandle, 0, 0, 0, LVCFMT_LEFT, 50, L"#");
             PhAddListViewColumn(context->ListViewHandle, 1, 1, 1, LVCFMT_LEFT, 40, L"PCR");
-            PhAddListViewColumn(context->ListViewHandle, 2, 2, 2, LVCFMT_LEFT, 230, L"Event type");
+            PhAddListViewColumn(context->ListViewHandle, 2, 2, 2, LVCFMT_LEFT, 230, L"事件类型");
             PhAddListViewColumn(context->ListViewHandle, 3, 3, 3, LVCFMT_LEFT, 60, L"Digest");
-            PhAddListViewColumn(context->ListViewHandle, 4, 4, 4, LVCFMT_LEFT, 220, L"Digest value");
+            PhAddListViewColumn(context->ListViewHandle, 4, 4, 4, LVCFMT_LEFT, 220, L"摘要值");
             PhAddListViewColumn(context->ListViewHandle, 5, 5, 5, LVCFMT_LEFT, 60, L"大小");
             PhAddListViewColumn(context->ListViewHandle, 6, 6, 6, LVCFMT_LEFT, 400, L"详细信息");
             PhSetExtendedListView(context->ListViewHandle);

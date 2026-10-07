@@ -131,7 +131,7 @@ VOID ToolbarGraphsInitialize(
     ToolbarRegisterGraph(
         PluginInstance,
         2,
-        L"Physical memory history",
+        L"物理内存历史",
         0,
         NULL,
         PhysicalHistoryGraphMessageCallback
@@ -140,7 +140,7 @@ VOID ToolbarGraphsInitialize(
     ToolbarRegisterGraph(
         PluginInstance,
         3,
-        L"Commit charge history",
+        L"提交内存历史",
         0,
         NULL,
         CommitHistoryGraphMessageCallback
@@ -927,7 +927,7 @@ BOOLEAN PhysicalHistoryGraphMessageCallback(
                     physicalUsage = PhGetItemCircularBuffer_ULONG(SystemStatistics.PhysicalHistory, getTooltipText->Index);
 
                     // Physical memory: %s\n%s
-                    PhInitFormatS(&format[0], L"Physical memory: ");
+                    PhInitFormatS(&format[0], L"物理内存：");
                     PhInitFormatSize(&format[1], UInt32x32To64(physicalUsage, PAGE_SIZE));
                     PhInitFormatC(&format[2], L'\n');
                     PhInitFormatSR(&format[3], PH_AUTO_T(PH_STRING, PhGetStatisticsTimeString(NULL, getTooltipText->Index))->sr);
@@ -1034,7 +1034,7 @@ BOOLEAN CommitHistoryGraphMessageCallback(
                     commitUsage = PhGetItemCircularBuffer_ULONG(SystemStatistics.CommitHistory, getTooltipText->Index);
 
                     // Commit charge: %s\n%s
-                    PhInitFormatS(&format[0], L"Commit charge: ");
+                    PhInitFormatS(&format[0], L"提交内存：");
                     PhInitFormatSize(&format[1], UInt32x32To64(commitUsage, PAGE_SIZE));
                     PhInitFormatC(&format[2], L'\n');
                     PhInitFormatSR(&format[3], PH_AUTO_T(PH_STRING, PhGetStatisticsTimeString(NULL, getTooltipText->Index))->sr);

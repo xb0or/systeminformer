@@ -681,7 +681,7 @@ VOID FindNetworkAdapters(
             if (NetworkAdapterQueryInterfaceRow(&id, MibIfEntryNormalWithoutStatistics, &interfaceRow))
                 description = PhCreateString(interfaceRow.Description);
             else
-                description = PhCreateString(L"Unknown network adapter");
+                description = PhCreateString(L"未知网络适配器");
 
             if (description)
             {

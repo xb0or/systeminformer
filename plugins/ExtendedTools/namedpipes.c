@@ -353,14 +353,14 @@ static VOID EtInitializePipeTree(
     PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_GRANTEDACCESS, Context->UseKph, L"授予的访问权限", 140, PH_ALIGN_LEFT, index++, 0);
     PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_TYPE, TRUE, L"类型", 80, PH_ALIGN_LEFT, index++, 0);
     PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_CONFIGURATION, TRUE, L"Configuration", 80, PH_ALIGN_LEFT, index++, 0);
-    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_MAXIMUMINSTANCES, TRUE, L"Max instances", 80, PH_ALIGN_LEFT, index++, 0);
-    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_CURRENTINSTANCES, TRUE, L"Current instances", 80, PH_ALIGN_LEFT, index++, 0);
-    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_READDATAAVAILABLE, TRUE, L"Read data available", 80, PH_ALIGN_LEFT, index++, 0);
-    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_OUTBOUNDQUOTA, TRUE, L"Outbound quota", 80, PH_ALIGN_LEFT, index++, 0);
+    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_MAXIMUMINSTANCES, TRUE, L"最大实例数", 80, PH_ALIGN_LEFT, index++, 0);
+    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_CURRENTINSTANCES, TRUE, L"当前实例数", 80, PH_ALIGN_LEFT, index++, 0);
+    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_READDATAAVAILABLE, TRUE, L"可读数据", 80, PH_ALIGN_LEFT, index++, 0);
+    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_OUTBOUNDQUOTA, TRUE, L"出站配额", 80, PH_ALIGN_LEFT, index++, 0);
     PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_STATE, TRUE, L"状态", 80, PH_ALIGN_LEFT, index++, 0);
-    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_REMOTECLIENTS, TRUE, L"Remote clients", 80, PH_ALIGN_LEFT, index++, 0);
-    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_READMODE, TRUE, L"Read mode", 80, PH_ALIGN_LEFT, index++, 0);
-    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_COMPLETIONMODE, TRUE, L"Completion mode", 80, PH_ALIGN_LEFT, index++, 0);
+    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_REMOTECLIENTS, TRUE, L"远程客户端", 80, PH_ALIGN_LEFT, index++, 0);
+    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_READMODE, TRUE, L"读取模式", 80, PH_ALIGN_LEFT, index++, 0);
+    PhAddTreeNewColumn(Context->TreeNewHandle, ET_PIPE_COLUMN_COMPLETIONMODE, TRUE, L"完成模式", 80, PH_ALIGN_LEFT, index++, 0);
 
     TreeNew_SetRedraw(Context->TreeNewHandle, TRUE);
 
@@ -882,7 +882,7 @@ INT_PTR CALLBACK EtPipeEnumDlgProc(
             PhCreateSearchControl(
                 WindowHandle,
                 context->SearchBoxHandle,
-                L"Search Named Pipes (Ctrl+K)",
+                L"搜索命名管道 (Ctrl+K)",
                 EtPipeSearchControlCallback,
                 context
                 );

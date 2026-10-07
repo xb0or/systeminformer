@@ -91,11 +91,11 @@ PCWSTR AtpAuthorizationText(
     switch (PhGetIntegerSetting(Tool->ConfirmSetting))
     {
     case AT_CONFIRM_ALWAYS:
-        return L"Always ask";
+        return L"总是询问";
     case AT_CONFIRM_DELEGATE:
-        return L"Delegate to client";
+        return L"委托给客户端";
     default:
-        return L"Not required";
+        return L"不需要";
     }
 }
 
@@ -111,25 +111,25 @@ VOID AtpUpdateStatus(
     {
     case AtServerRunning:
         text = PhFormatString(
-            L"Server running. Pipe: %s%s%u",
+            L"服务器运行中。管道：%s%s%u",
             elevated ? SIMCP_PIPE_PROTECTED_PREFIX : L"",
             SIMCP_PIPE_NAME_PREFIX,
             NtCurrentPeb()->SessionId
             );
         break;
     case AtServerFailedPipeExists:
-        text = PhCreateString(L"Not started: the pipe already exists (another instance in this session).");
+        text = PhCreateString(L"未启动：管道已存在（此会话中的另一个实例）。");
         break;
     case AtServerFailed:
         {
             PPH_STRING message = PhGetStatusMessage(status, 0);
 
-            text = PhFormatString(L"Not started: %s", PhGetStringOrDefault(message, L"unknown error"));
+            text = PhFormatString(L"未启动：%s", PhGetStringOrDefault(message, L"unknown error"));
             PhClearReference(&message);
         }
         break;
     default:
-        text = PhCreateString(L"Server stopped.");
+        text = PhCreateString(L"服务器已停止。");
         break;
     }
 
@@ -234,9 +234,9 @@ VOID AtpAppendAuthorizationItems(
 {
     ULONG confirm = AtpGetCommonValue(Tools, FALSE);
 
-    PhInsertEMenuItem(Menu, AtpCreateRadioItem(AT_MENU_CONFIRM_ALWAYS, L"Always ask", confirm == AT_CONFIRM_ALWAYS), ULONG_MAX);
-    PhInsertEMenuItem(Menu, AtpCreateRadioItem(AT_MENU_CONFIRM_DELEGATE, L"Delegate to client", confirm == AT_CONFIRM_DELEGATE), ULONG_MAX);
-    PhInsertEMenuItem(Menu, AtpCreateRadioItem(AT_MENU_CONFIRM_NONE, L"Not required", confirm == AT_CONFIRM_NONE), ULONG_MAX);
+    PhInsertEMenuItem(Menu, AtpCreateRadioItem(AT_MENU_CONFIRM_ALWAYS, L"总是询问", confirm == AT_CONFIRM_ALWAYS), ULONG_MAX);
+    PhInsertEMenuItem(Menu, AtpCreateRadioItem(AT_MENU_CONFIRM_DELEGATE, L"委托给客户端", confirm == AT_CONFIRM_DELEGATE), ULONG_MAX);
+    PhInsertEMenuItem(Menu, AtpCreateRadioItem(AT_MENU_CONFIRM_NONE, L"不需要", confirm == AT_CONFIRM_NONE), ULONG_MAX);
 }
 
 VOID AtpApplyMenuChoice(
@@ -271,7 +271,7 @@ VOID AtpApplyMenuChoice(
                 Context->WindowHandle,
                 L"移除",
                 PhGetString(object),
-                L"Connected agents will be able to use it without anyone being asked.",
+                L"已连接的代理可以直接使用，无需任何人确认。",
                 TRUE
                 );
 
@@ -384,7 +384,7 @@ VOID AtpShowContextMenu(
     PhInsertEMenuItem(menu, access, ULONG_MAX);
     PhInsertEMenuItem(menu, authorization, ULONG_MAX);
     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
-    PhInsertEMenuItem(menu, PhCreateEMenuItem(0, AT_MENU_RESET, selection ? L"Reset to defaults" : L"Reset all to defaults", NULL, NULL), ULONG_MAX);
+    PhInsertEMenuItem(menu, PhCreateEMenuItem(0, AT_MENU_RESET, selection ? L"重置为默认" : L"全部重置为默认", NULL, NULL), ULONG_MAX);
 
     item = PhShowEMenu(
         menu,
@@ -626,7 +626,7 @@ INT_PTR CALLBACK AtOptionsDlgProc(
             PhAddTreeNewFilter(&context->FilterSupport, AtpToolsFilterCallback, context);
             TreeNew_NodesStructured(treeNew);
 
-            PhCreateSearchControl(WindowHandle, context->SearchHandle, L"Search tools", AtpToolsSearchControlCallback, context);
+            PhCreateSearchControl(WindowHandle, context->SearchHandle, L"搜索工具", AtpToolsSearchControlCallback, context);
 
             PhInitializeLayoutManager(&context->LayoutManager, WindowHandle);
             PhAddLayoutItem(&context->LayoutManager, GetDlgItem(WindowHandle, IDC_STATUS), NULL, PH_ANCHOR_LEFT | PH_ANCHOR_TOP | PH_ANCHOR_RIGHT);
@@ -1114,7 +1114,7 @@ INT_PTR CALLBACK AtAgentsDlgProc(
     {
     case WM_INITDIALOG:
         {
-            static CONST PH_STRINGREF emptyText = PH_STRINGREF_INIT(L"No agents connected.");
+            static CONST PH_STRINGREF emptyText = PH_STRINGREF_INIT(L"未连接代理。");
             HWND treeNew;
             HWND configTarget;
             PPH_STRING columns;
@@ -1134,7 +1134,7 @@ INT_PTR CALLBACK AtAgentsDlgProc(
             PhAddTreeNewColumn(treeNew, AT_AGENT_COLUMN_LAUNCHER, TRUE, L"Launcher", 140, PH_ALIGN_LEFT, 3, DT_PATH_ELLIPSIS);
             PhAddTreeNewColumn(treeNew, AT_AGENT_COLUMN_CONNECTED, TRUE, L"已连接", 100, PH_ALIGN_LEFT, 4, 0);
             PhAddTreeNewColumn(treeNew, AT_AGENT_COLUMN_CALLS, TRUE, L"Calls", 40, PH_ALIGN_LEFT, 5, 0);
-            PhAddTreeNewColumn(treeNew, AT_AGENT_COLUMN_GRANTS, TRUE, L"Session grants", 140, PH_ALIGN_LEFT, 6, 0);
+            PhAddTreeNewColumn(treeNew, AT_AGENT_COLUMN_GRANTS, TRUE, L"会话授权", 140, PH_ALIGN_LEFT, 6, 0);
 
             columns = PhGetStringSetting(SETTING_NAME_AGENTS_LISTVIEW_COLUMNS);
             PhCmLoadSettings(treeNew, &columns->sr);

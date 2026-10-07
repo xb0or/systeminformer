@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -177,7 +177,7 @@ public:
             status->State != DODownloadState_Aborted &&
             !FAILED(status->Error))
         {
-            UpdateSetProgressFinalizingState(Context, L"Finalizing Delivery Optimization download...");
+            UpdateSetProgressFinalizingState(Context, L"正在完成传递优化下载...");
         }
         else
         {
@@ -241,9 +241,9 @@ EXTERN_C NTSTATUS UpdateDownloadFileWithDeliveryOptimization(
     IDODownload* rawDownload = nullptr;
 
     if (Context->DialogHandle)
-        SendMessage(Context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"Initializing Delivery Optimization...");
+        SendMessage(Context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, (LPARAM)L"正在初始化传递优化...");
     else if (Context->ToastMode)
-        UpdaterUpdateProgressToast(Context, L"Initializing Delivery Optimization...");
+        UpdaterUpdateProgressToast(Context, L"正在初始化传递优化...");
 
     memset(Result, 0, sizeof(UPDATER_DOWNLOAD_RESULT));
 
@@ -446,12 +446,12 @@ EXTERN_C NTSTATUS UpdateDownloadFileWithDeliveryOptimization(
 
     if (Context->DialogHandle)
     {
-        SendMessage(Context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, reinterpret_cast<LPARAM>(L"Starting Delivery Optimization download..."));
+        SendMessage(Context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_MAIN_INSTRUCTION, reinterpret_cast<LPARAM>(L"正在开始传递优化下载..."));
         SendMessage(Context->DialogHandle, TDM_UPDATE_ELEMENT_TEXT, TDE_CONTENT, reinterpret_cast<LPARAM>(L"Downloaded: ~ of ~ (0%)\r\nSpeed: ~ KB/s"));
     }
     else if (Context->ToastMode)
     {
-        UpdaterUpdateProgressToast(Context, L"Starting Delivery Optimization download...");
+        UpdaterUpdateProgressToast(Context, L"正在开始传递优化下载...");
     }
 
     result = idoDownloadClass->Start(nullptr);

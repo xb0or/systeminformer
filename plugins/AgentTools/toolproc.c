@@ -789,7 +789,7 @@ VOID AtpListProcesses(
     PhEnumProcessItems(&processItems, &numberOfProcessItems);
     if (!NT_SUCCESS(RtlSizeTMult(numberOfProcessItems, sizeof(BOOLEAN), &matchedSize)))
     {
-        AtSetToolError(Result, "failed", STATUS_INTEGER_OVERFLOW, L"There are too many processes to filter.");
+        AtSetToolError(Result, "failed", STATUS_INTEGER_OVERFLOW, L"要筛选的进程过多。");
         PhFree(processItems);
         return;
     }
@@ -889,7 +889,7 @@ VOID AtpGetProcess(
                 PhAddJsonArrayObject(results, AtCreateBatchError(
                     processId,
                     "not_found",
-                    L"No process with this pid is in the provider cache."
+                    L"提供程序缓存中没有此 PID 的进程。"
                     ));
                 continue;
             }
@@ -954,7 +954,7 @@ VOID AtpGetProcessEnvironment(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Reading the environment block");
+        AtSetToolStatusError(Result, status, L"正在读取环境块");
         return;
     }
 
@@ -1318,7 +1318,7 @@ VOID AtpGetProcessToken(
     if (!PH_IS_REAL_PROCESS_ID(target.ProcessItem->ProcessId) ||
         !NT_SUCCESS(status = PhOpenProcess(&processHandle, PROCESS_QUERY_LIMITED_INFORMATION, target.ProcessItem->ProcessId)))
     {
-        AtSetToolStatusError(Result, PH_IS_REAL_PROCESS_ID(target.ProcessItem->ProcessId) ? status : STATUS_INVALID_CID, L"Opening the process");
+        AtSetToolStatusError(Result, PH_IS_REAL_PROCESS_ID(target.ProcessItem->ProcessId) ? status : STATUS_INVALID_CID, L"正在打开进程");
         AtDeleteTarget(&target);
         return;
     }
@@ -1328,7 +1328,7 @@ VOID AtpGetProcessToken(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the process token");
+        AtSetToolStatusError(Result, status, L"正在打开进程令牌");
         AtDeleteTarget(&target);
         return;
     }
@@ -1920,7 +1920,7 @@ VOID AtpGetProcessKsiState(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Querying the driver for the process state");
+        AtSetToolStatusError(Result, status, L"正在向驱动查询进程状态");
         AtDeleteTarget(&target);
         return;
     }
@@ -2133,7 +2133,7 @@ VOID AtpListHiddenProcesses(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Reading the process list");
+        AtSetToolStatusError(Result, status, L"正在读取进程列表");
         goto CleanupExit;
     }
 
@@ -2265,7 +2265,7 @@ VOID AtProcessInvokeTool(
         AtpGetProcessKsiState(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

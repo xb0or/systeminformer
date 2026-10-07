@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -166,8 +166,8 @@ VOID ShowFileUploadProgressDialog(
     config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION | TDF_CAN_BE_MINIMIZED | TDF_EXPAND_FOOTER_AREA | TDF_ENABLE_HYPERLINKS | TDF_SHOW_PROGRESS_BAR | TDF_CALLBACK_TIMER;
     config.dwCommonButtons = TDCBF_CANCEL_BUTTON;
     config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(Context->DialogHandle));
-    config.pszWindowTitle = PhaFormatString(L"Uploading %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
-    config.pszMainInstruction = PhaFormatString(L"Uploading %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
+    config.pszWindowTitle = PhaFormatString(L"正在上传 %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
+    config.pszMainInstruction = PhaFormatString(L"正在上传 %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
     config.pszContent = L"Uploaded: ~ of ~ (0%)\r\nSpeed: ~ KB/s";
 
     config.cxWidth = 200;
@@ -188,8 +188,8 @@ VOID ShowVirusTotalReScanProgressDialog(
     config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION | TDF_CAN_BE_MINIMIZED | TDF_EXPAND_FOOTER_AREA | TDF_ENABLE_HYPERLINKS | TDF_SHOW_PROGRESS_BAR;
     config.dwCommonButtons = TDCBF_CANCEL_BUTTON;
     config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(Context->DialogHandle));
-    config.pszWindowTitle = PhaFormatString(L"Rescanning %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
-    config.pszMainInstruction = PhaFormatString(L"Rescanning %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
+    config.pszWindowTitle = PhaFormatString(L"正在重新扫描 %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
+    config.pszMainInstruction = PhaFormatString(L"正在重新扫描 %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
 
     config.cxWidth = 200;
     config.lpCallbackData = (LONG_PTR)Context;
@@ -209,8 +209,8 @@ VOID ShowVirusTotalViewReportProgressDialog(
     config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION | TDF_CAN_BE_MINIMIZED | TDF_EXPAND_FOOTER_AREA | TDF_ENABLE_HYPERLINKS | TDF_SHOW_PROGRESS_BAR;
     config.dwCommonButtons = TDCBF_CANCEL_BUTTON;
     config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(Context->DialogHandle));
-    config.pszWindowTitle = PhaFormatString(L"Locating analysis for %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
-    config.pszMainInstruction = PhaFormatString(L"Locating analysis for %s...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
+    config.pszWindowTitle = PhaFormatString(L"正在定位 %s 的分析...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
+    config.pszMainInstruction = PhaFormatString(L"正在定位 %s 的分析...", PhGetStringOrEmpty(Context->BaseFileName))->Buffer;
 
     config.cxWidth = 200;
     config.lpCallbackData = (LONG_PTR)Context;

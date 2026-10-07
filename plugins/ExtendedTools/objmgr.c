@@ -1411,14 +1411,14 @@ NTSTATUS EtEnumCurrentDirectoryObjects(
 
     if (!NT_SUCCESS(status) && status != STATUS_NO_MORE_ENTRIES)
     {
-        PhShowStatus(Context->WindowHandle, L"Unable to query directory object.", status, 0);
+        PhShowStatus(Context->WindowHandle, L"无法查询目录对象。", status, 0);
     }
 
     PhSetWindowText(Context->PathControlHandle, PhGetString(Context->CurrentPath));
     Edit_SetSel(Context->PathControlEdit, -2, -1);
 
     PhPrintUInt32(string, ListView_GetItemCount(Context->ListViewHandle));
-    PhSetWindowText(Context->StatusBarHandle, PH_AUTO_T(PH_STRING, PhFormatString(L"Objects in current directory: %s", string))->Buffer);
+    PhSetWindowText(Context->StatusBarHandle, PH_AUTO_T(PH_STRING, PhFormatString(L"当前目录中的对象：%s", string))->Buffer);
 
     // Apply current filter and sort
     PPH_STRING curentFilter = PH_AUTO(PhGetWindowText(Context->SearchBoxHandle));
@@ -2469,7 +2469,7 @@ start_scan:
             }
             else
             {
-                PhShowStatus(Context->WindowHandle, L"Unable to locate the target.", STATUS_NOT_FOUND, 0);
+                PhShowStatus(Context->WindowHandle, L"无法找到目标。", STATUS_NOT_FOUND, 0);
             }
         }
     }
@@ -2653,7 +2653,7 @@ VOID NTAPI EtpObjectManagerSearchControlCallback(
 
     WCHAR string[PH_INT32_STR_LEN_1];
     PhPrintUInt32(string, ListView_GetItemCount(context->ListViewHandle));
-    PhSetWindowText(context->StatusBarHandle, PH_AUTO_T(PH_STRING, PhFormatString(L"Objects in current directory: %s", string))->Buffer);
+    PhSetWindowText(context->StatusBarHandle, PH_AUTO_T(PH_STRING, PhFormatString(L"当前目录中的对象：%s", string))->Buffer);
 }
 
 VOID NTAPI EtpObjectManagerSortAndSelectOld(
@@ -2958,7 +2958,7 @@ INT_PTR CALLBACK WinObjDlgProc(
             PhCreateSearchControl(
                 hwndDlg,
                 context->SearchBoxHandle,
-                L"Search Objects (Ctrl+K)",
+                L"搜索对象 (Ctrl+K)",
                 EtpObjectManagerSearchControlCallback,
                 context
                 );
@@ -3493,7 +3493,7 @@ INT_PTR CALLBACK WinObjDlgProc(
                                     }
                                     else
                                     {
-                                        PhShowStatus(hwndDlg, L"Unable to locate the target.", STATUS_NOT_FOUND, 0);
+                                        PhShowStatus(hwndDlg, L"无法找到目标。", STATUS_NOT_FOUND, 0);
                                     }
                                 }
                                 break;

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -73,7 +73,7 @@ NTSTATUS UpdateShellExecute(
 
         if (status != STATUS_CANCELLED) // Ignore UAC decline.
         {
-            PhShowStatus(WindowHandle, L"Unable to execute the setup.", status, 0);
+            PhShowStatus(WindowHandle, L"无法执行安装程序。", status, 0);
 
             if (Context->StartupCheck)
                 ShowAvailableDialog(Context);

@@ -493,7 +493,7 @@ INT_PTR CALLBACK EtpUnloadedDllsDlgProc(
             PhAddListViewColumn(lvHandle, 1, 1, 1, LVCFMT_LEFT, 120, L"名称");
             PhAddListViewColumn(lvHandle, 2, 2, 2, LVCFMT_LEFT, 100, L"基址");
             PhAddListViewColumn(lvHandle, 3, 3, 3, LVCFMT_LEFT, 60, L"大小");
-            PhAddListViewColumn(lvHandle, 4, 4, 4, LVCFMT_LEFT, 120, L"Time Stamp");
+            PhAddListViewColumn(lvHandle, 4, 4, 4, LVCFMT_LEFT, 120, L"时间戳");
             PhAddListViewColumn(lvHandle, 5, 5, 5, LVCFMT_LEFT, 65, L"Checksum");
             PhAddListViewColumn(lvHandle, 6, 6, 6, LVCFMT_LEFT, 100, L"版本");
 
@@ -519,7 +519,7 @@ INT_PTR CALLBACK EtpUnloadedDllsDlgProc(
 
             if (!NT_SUCCESS(status = EtpRefreshUnloadedDlls(WindowHandle, context)))
             {
-                PhShowStatus(context->ParentWindowHandle, L"Unable to retrieve unload event trace information.", status, 0);
+                PhShowStatus(context->ParentWindowHandle, L"无法检索卸载事件跟踪信息。", status, 0);
                 EndDialog(WindowHandle, IDCANCEL);
                 return FALSE;
             }

@@ -209,21 +209,21 @@ static PH_KEY_VALUE_PAIR WaitChainObjectTypePairs[] =
     SIP(SREF(L"ThreadWait"), WctThreadWaitType),
     SIP(SREF(L"ProcessWait"), WctProcessWaitType),
     SIP(SREF(L"线程"), WctThreadType),
-    SIP(SREF(L"COM Activation"), WctComActivationType),
+    SIP(SREF(L"COM 激活"), WctComActivationType),
     SIP(SREF(L"未知"), WctUnknownType),
-    SIP(SREF(L"Socket I/O"), WctSocketIoType),
+    SIP(SREF(L"套接字 I/O"), WctSocketIoType),
     SIP(SREF(L"SMB I/O"), WctSmbIoType)
 };
 
 static PH_KEY_VALUE_PAIR WaitChainObjectStatusPairs[] =
 {
-    SIP(SREF(L"No Access"), WctStatusNoAccess),
+    SIP(SREF(L"无访问权限"), WctStatusNoAccess),
     SIP(SREF(L"运行中"), WctStatusRunning),
     SIP(SREF(L"Blocked"), WctStatusBlocked),
-    SIP(SREF(L"Pid Only"), WctStatusPidOnly),
-    SIP(SREF(L"Pid Only (RPCSS)"), WctStatusPidOnlyRpcss),
+    SIP(SREF(L"仅 PID"), WctStatusPidOnly),
+    SIP(SREF(L"仅 PID（RPCSS）"), WctStatusPidOnlyRpcss),
     SIP(SREF(L"Owned"), WctStatusOwned),
-    SIP(SREF(L"Not Owned"), WctStatusNotOwned),
+    SIP(SREF(L"非拥有"), WctStatusNotOwned),
     SIP(SREF(L"已废弃"), WctStatusAbandoned),
     SIP(SREF(L"未知"), WctStatusUnknown),
     SIP(SREF(L"错误"), WctStatusError),
@@ -465,8 +465,8 @@ INT_PTR CALLBACK WaitChainDlgProc(
                     if (selectedNode = WtcGetSelectedWaitNode(&context->TreeContext))
                     {
                         menu = PhCreateEMenu();
-                        PhInsertEMenuItem(menu, PhCreateEMenuItem(0, ID_WCT_MENU_GOTOPROCESS, L"Go to Process...", NULL, NULL), ULONG_MAX);
-                        PhInsertEMenuItem(menu, PhCreateEMenuItem(0, ID_WCT_MENU_GOTOTHREAD, L"Go to Thread...", NULL, NULL), ULONG_MAX);
+                        PhInsertEMenuItem(menu, PhCreateEMenuItem(0, ID_WCT_MENU_GOTOPROCESS, L"转到进程...", NULL, NULL), ULONG_MAX);
+                        PhInsertEMenuItem(menu, PhCreateEMenuItem(0, ID_WCT_MENU_GOTOTHREAD, L"转到线程...", NULL, NULL), ULONG_MAX);
                         PhSetFlagsEMenuItem(menu, ID_WCT_MENU_PROPERTIES, PH_EMENU_DEFAULT, PH_EMENU_DEFAULT);
 
                         if (selectedNode->ThreadId > 0)
@@ -917,7 +917,7 @@ VOID WtcInitializeWaitTree(
     PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_THREADID, TRUE, L"ThreadId", 50, PH_ALIGN_LEFT, 1, 0);
     PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_PROCESSID, TRUE, L"ProcessId", 50, PH_ALIGN_LEFT, 2, 0);
     PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_STATUS, TRUE, L"状态", 80, PH_ALIGN_LEFT, 3, 0);
-    PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_CONTEXTSWITCH, TRUE, L"Context Switches", 70, PH_ALIGN_LEFT, 4, 0);
+    PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_CONTEXTSWITCH, TRUE, L"上下文切换", 70, PH_ALIGN_LEFT, 4, 0);
     PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_WAITTIME, TRUE, L"WaitTime", 60, PH_ALIGN_LEFT, 5, 0);
     PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_TIMEOUT, TRUE, L"Timeout", 60, PH_ALIGN_LEFT, 6, 0);
     PhAddTreeNewColumn(WindowHandle, TREE_COLUMN_ITEM_ALERTABLE, TRUE, L"Alertable", 50, PH_ALIGN_LEFT, 7, 0);
@@ -1076,7 +1076,7 @@ VOID EtWaitChainSetTreeStatusMessage(
     }
     else
     {
-        PhMoveReference(&Context->StatusMessage, PhCreateString(L"Querying thread wait chain sessions..."));
+        PhMoveReference(&Context->StatusMessage, PhCreateString(L"正在查询线程等待链会话..."));
         TreeNew_SetEmptyText(Context->TreeNewHandle, &Context->StatusMessage->sr, 0);
     }
 }

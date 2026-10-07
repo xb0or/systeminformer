@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -159,7 +159,7 @@ VOID AtpListDevices(
 
     if (!(tree = PhReferenceDeviceTree()))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The device tree is not available.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"设备树不可用。");
         PhClearReference(&nameContains);
         PhClearReference(&deviceClass);
         PhClearReference(&service);
@@ -381,14 +381,14 @@ VOID AtpGetDeviceResources(
 
     if (!(tree = PhReferenceDeviceTree()))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The device tree is not available.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"设备树不可用。");
         PhDereferenceObject(instanceId);
         return;
     }
 
     if (!(item = PhLookupDeviceItem(tree, &instanceId->sr)))
     {
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"No device has that instance id.");
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"没有具有该实例 ID 的设备。");
         PhDereferenceObject(tree);
         PhDereferenceObject(instanceId);
         return;
@@ -468,7 +468,7 @@ VOID AtpSetDeviceEnabled(
             Result,
             AtpDeviceErrorCode(result),
             PhDosErrorToNtStatus(CM_MapCrToWin32Err(result, ERROR_INVALID_HANDLE_STATE)),
-            L"The device node could not be opened (CONFIGRET %lu).%s",
+            L"无法打开设备节点 (CONFIGRET %lu)。%s",
             (ULONG)result,
             result == CR_NO_SUCH_DEVNODE || result == CR_INVALID_DEVNODE || result == CR_INVALID_DEVICE_ID ?
                 L" No device with that instance id; list_devices reports the ones there are." :
@@ -494,7 +494,7 @@ VOID AtpSetDeviceEnabled(
             AtpDeviceErrorCode(result),
             PhDosErrorToNtStatus(CM_MapCrToWin32Err(result, ERROR_INVALID_HANDLE_STATE)),
             L"%s failed (CONFIGRET %lu).%s",
-            enable ? L"Enabling the device" : L"Disabling the device",
+            enable ? L"正在启用设备" : L"正在禁用设备",
             (ULONG)result,
             result == CR_REMOVE_VETOED ?
                 L" A driver in the device's stack refused to stop it, which usually means something "
@@ -558,7 +558,7 @@ VOID AtDeviceInvokeTool(
         AtpSetDeviceEnabled(Call, Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

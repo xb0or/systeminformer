@@ -352,7 +352,7 @@ PPH_STRING GraphicsDeviceQueryInterfaceName(
 
     PhDereferenceObject(normalizedDeviceInterface);
 
-    return PhCreateString(L"Unknown device");
+    return PhCreateString(L"未知设备");
 }
 
 VOID FindGraphicsDevices(

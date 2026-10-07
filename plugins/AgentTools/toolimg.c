@@ -1526,7 +1526,7 @@ VOID AtpGetImageStrings(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the file");
+        AtSetToolStatusError(Result, status, L"正在打开文件");
         PhClearReference(&context.Contains);
         PhDereferenceObject(path);
         return;

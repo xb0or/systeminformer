@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -25,7 +25,7 @@ VOID EtGpuMiniInformationInitializing(
 
     memset(&section, 0, sizeof(PH_MINIINFO_LIST_SECTION));
     section.Callback = EtpGpuMemoryListSectionCallback;
-    Pointers->CreateListSection(L"GPU Memory", 0, &section);
+    Pointers->CreateListSection(L"GPU 内存", 0, &section);
 }
 
 BOOLEAN EtpGpuListSectionCallback(

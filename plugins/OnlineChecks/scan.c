@@ -2318,8 +2318,8 @@ BOOLEAN InitializeScanning(
     ScanUnauthorizedString = PhCreateString(L"Unauthorized");
     ScanCleanString = PhCreateString(L"Clean");
     ScanUnknownString = PhCreateString(L"未知");
-    ScanRateLimitedString = PhCreateString(L"Rate limited...");
-    ScanFileTooLarge = PhCreateString(L"File too large");
+    ScanRateLimitedString = PhCreateString(L"速率受限...");
+    ScanFileTooLarge = PhCreateString(L"文件过大");
     ScanSubmittingString = PhCreateString(L"Submitting...");
 
     result = FALSE;

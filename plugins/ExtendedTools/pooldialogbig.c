@@ -105,7 +105,7 @@ INT_PTR CALLBACK EtBigPoolMonDlgProc(
 
             PhSetApplicationWindowIcon(WindowHandle);
 
-            PhSetWindowText(WindowHandle, PhaFormatString(L"Large Allocations (%s)", context->TagString)->Buffer);
+            PhSetWindowText(WindowHandle, PhaFormatString(L"大分配 (%s)", context->TagString)->Buffer);
 
             PhSetListViewStyle(context->ListViewHandle, FALSE, TRUE);
             PhSetControlTheme(context->ListViewHandle, L"explorer");

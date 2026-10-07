@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -225,7 +225,7 @@ VOID AtpGetSystemHistory(
 
     if (!NT_SUCCESS(NtQuerySystemInformation(SystemBasicInformation, &basicInfo, sizeof(basicInfo), NULL)))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The system page size could not be read.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"无法读取系统页面大小。");
         return;
     }
 
@@ -623,7 +623,7 @@ VOID AtHistoryInvokeTool(
         AtpRankProcesses(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

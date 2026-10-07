@@ -108,7 +108,7 @@ PPH_STRING GeoLiteDatabaseNameFormatString(
     switch (GeoLiteDatabaseType)
     {
     default:
-        return PhFormatString(Format, L"Country");
+        return PhFormatString(Format, L"国家");
     case 1:
         return PhFormatString(Format, L"City");
     }
@@ -240,7 +240,7 @@ BOOLEAN GeoLiteDownloadUpdateToFile(
     if (!NT_SUCCESS(status = PhHttpBeginRequest(httpContext, NULL, PhGetString(httpRequestString), PH_HTTP_FLAG_SECURE)))
         goto CleanupExit;
 
-    SetDialogStatusText(Context->DialogHandle, L"Sending download request...");
+    SetDialogStatusText(Context->DialogHandle, L"正在发送下载请求...");
 
     {
         PPH_STRING key = PhGetStringSetting(SETTING_NAME_GEOLITE_API_KEY);
@@ -263,7 +263,7 @@ BOOLEAN GeoLiteDownloadUpdateToFile(
     if (!NT_SUCCESS(status = PhHttpSendRequest(httpContext, PH_HTTP_NO_ADDITIONAL_HEADERS, 0, PH_HTTP_NO_REQUEST_DATA, 0, PH_HTTP_IGNORE_REQUEST_TOTAL_LENGTH)))
         goto CleanupExit;
 
-    SetDialogStatusText(Context->DialogHandle, L"Waiting for response...");
+    SetDialogStatusText(Context->DialogHandle, L"等待响应...");
 
     if (!NT_SUCCESS(status = PhHttpReceiveResponse(httpContext)))
         goto CleanupExit;
@@ -434,7 +434,7 @@ BOOLEAN GeoLiteDownloadUpdateToFile(
                 WCHAR string[MAX_PATH];
 
                 // L"Downloaded: %s of %s (%.0f%%)\r\nSpeed: %s/s"
-                PhInitFormatS(&format[0], L"Downloaded: ");
+                PhInitFormatS(&format[0], L"已下载：");
                 PhInitFormatSize(&format[1], bytesTotalDownloaded);
                 PhInitFormatS(&format[2], L" of ");
                 PhInitFormatSize(&format[3], httpContentLength);
@@ -858,10 +858,10 @@ VOID ShowGeoLiteUpdateDialog(
         config.pfCallback = GeoLiteMissingKeyTaskDialogCallbackProc;
         config.cxWidth = 200;
 
-        config.pszWindowTitle = L"Network Tools - GeoLite Updater";
-        config.pszMainInstruction = L"Unable to download GeoLite database updates.";
+        config.pszWindowTitle = L"网络工具 - GeoLite 更新器";
+        config.pszMainInstruction = L"无法下载 GeoLite 数据库更新。";
         config.pszContent =
-            L"A license key and account number are required to download GeoLite database updates and either the key or number are not configured.\n\n"
+            L"下载 GeoLite 数据库更新需要许可证密钥和账户号，但密钥或账户号未配置。\n\n"
             L"GeoLite license keys and accounts are free. If you're unsure how to create keys then please review the documentation here: <a href=\"https://support.maxmind.com/hc/en-us/articles/4407111582235-Generate-a-License-Key\">Generate-a-License-Key</a>\n\n"
             L"Once you've created the key you can copy/paste the text into the Options window > NetworkTools settings and System Informer can start downloading GeoLite database updates.\n\n"
             L"Special thanks to MaxMind (<a href=\"https://www.maxmind.com\">https://www.maxmind.com</a>) for continuing free GeoLite services <3";

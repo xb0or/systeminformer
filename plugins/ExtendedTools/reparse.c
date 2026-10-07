@@ -1161,13 +1161,13 @@ INT_PTR CALLBACK EtReparseDlgProc(
             switch (context->MenuItemIndex)
             {
             case ID_REPARSE_POINTS:
-                PhSetWindowText(WindowHandle, L"NTFS Reparse Points");
+                PhSetWindowText(WindowHandle, L"NTFS 重分析点");
                 break;
             case ID_REPARSE_OBJID:
-                PhSetWindowText(WindowHandle, L"NTFS Object Identifiers");
+                PhSetWindowText(WindowHandle, L"NTFS 对象标识符");
                 break;
             case ID_REPARSE_SDDL:
-                PhSetWindowText(WindowHandle, L"NTFS Security Descriptors");
+                PhSetWindowText(WindowHandle, L"NTFS 安全描述符");
                 break;
             }
 
@@ -1191,14 +1191,14 @@ INT_PTR CALLBACK EtReparseDlgProc(
             switch (context->MenuItemIndex)
             {
             case ID_REPARSE_POINTS:
-                PhAddListViewColumn(context->ListViewHandle, 1, 1, 1, LVCFMT_LEFT, 100, L"File index");
-                PhAddListViewColumn(context->ListViewHandle, 2, 2, 2, LVCFMT_LEFT, 100, L"Reparse tag");
+                PhAddListViewColumn(context->ListViewHandle, 1, 1, 1, LVCFMT_LEFT, 100, L"文件索引");
+                PhAddListViewColumn(context->ListViewHandle, 2, 2, 2, LVCFMT_LEFT, 100, L"重分析标记");
                 PhAddListViewColumn(context->ListViewHandle, 3, 3, 3, LVCFMT_LEFT, 250, L"文件名");
                 PhLoadListViewColumnsFromSetting(SETTING_NAME_REPARSE_LISTVIEW_COLUMNS, context->ListViewHandle);
                 break;
             case ID_REPARSE_OBJID:
-                PhAddListViewColumn(context->ListViewHandle, 1, 1, 1, LVCFMT_LEFT, 100, L"File index");
-                PhAddListViewColumn(context->ListViewHandle, 2, 2, 2, LVCFMT_LEFT, 100, L"Object identifier");
+                PhAddListViewColumn(context->ListViewHandle, 1, 1, 1, LVCFMT_LEFT, 100, L"文件索引");
+                PhAddListViewColumn(context->ListViewHandle, 2, 2, 2, LVCFMT_LEFT, 100, L"对象标识符");
                 PhAddListViewColumn(context->ListViewHandle, 3, 3, 3, LVCFMT_LEFT, 250, L"文件名");
                 PhLoadListViewColumnsFromSetting(SETTING_NAME_REPARSE_OBJECTID_LISTVIEW_COLUMNS, context->ListViewHandle);
                 break;
@@ -1346,7 +1346,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
 
             if (!NT_SUCCESS(status))
             {
-                PhShowStatus(WindowHandle, L"Unable to enumerate the objects.", status, 0);
+                PhShowStatus(WindowHandle, L"无法枚举对象。", status, 0);
             }
 
             EnableWindow(GetDlgItem(WindowHandle, IDRETRY), TRUE);
@@ -1388,7 +1388,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
                     NMLVEMPTYMARKUP* listview = (NMLVEMPTYMARKUP*)lParam;
 
                     listview->dwFlags = EMF_CENTERED;
-                    wcsncpy_s(listview->szMarkup, RTL_NUMBER_OF(listview->szMarkup), L"Querying objects...", _TRUNCATE);
+                    wcsncpy_s(listview->szMarkup, RTL_NUMBER_OF(listview->szMarkup), L"正在查询对象...", _TRUNCATE);
 
                     SetWindowLongPtr(WindowHandle, DWLP_MSGRESULT, TRUE);
                     return TRUE;
@@ -1419,7 +1419,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
                             PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 1, L"Remove...", NULL, NULL), ULONG_MAX);
                             break;
                         case ID_REPARSE_SDDL:
-                            PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 1, L"Find files...", NULL, NULL), ULONG_MAX);
+                            PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 1, L"查找文件...", NULL, NULL), ULONG_MAX);
                             break;
                         }
 
@@ -1458,7 +1458,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
                                                 WindowHandle,
                                                 L"移除",
                                                 L"the repase point",
-                                                L"The repase point will be permanently deleted.",
+                                                L"重分析点将被永久删除。",
                                                 FALSE
                                                 ))
                                             {
@@ -1473,7 +1473,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
                                                 WindowHandle,
                                                 L"移除",
                                                 L"the object identifier",
-                                                L"The object identifier will be permanently deleted.",
+                                                L"对象标识符将被永久删除。",
                                                 FALSE
                                                 ))
                                             {
@@ -1510,7 +1510,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
                                                     }
                                                     else
                                                     {
-                                                        PhShowStatus(WindowHandle, L"Unable to remove the reparse point.", status, 0);
+                                                        PhShowStatus(WindowHandle, L"无法移除重分析点。", status, 0);
                                                     }
                                                 }
                                                 break;
@@ -1526,7 +1526,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
                                                     }
                                                     else
                                                     {
-                                                        PhShowStatus(WindowHandle, L"Unable to remove the object identifier.", status, 0);
+                                                        PhShowStatus(WindowHandle, L"无法移除对象标识符。", status, 0);
                                                     }
                                                 }
                                                 break;
@@ -1546,7 +1546,7 @@ INT_PTR CALLBACK EtReparseDlgProc(
                                                     }
                                                     else
                                                     {
-                                                        PhShowStatus(WindowHandle, L"Unable to locate files with the SecurityId.", STATUS_NOT_FOUND, 0);
+                                                        PhShowStatus(WindowHandle, L"无法找到具有此 SecurityId 的文件。", STATUS_NOT_FOUND, 0);
                                                     }
                                                 }
                                                 break;

@@ -108,7 +108,7 @@ VOID AtpFindHandles(
 
     if (!NT_SUCCESS(status = PhEnumHandlesEx(&handles)))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating the handles");
+        AtSetToolStatusError(Result, status, L"正在枚举句柄");
         PhClearReference(&context.NameContains);
         PhClearReference(&context.TypeName);
         return;
@@ -651,7 +651,7 @@ VOID AtpGetFileUsers(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Opening the file");
+        AtSetToolStatusError(Result, status, L"正在打开文件");
         PhDereferenceObject(path);
         return;
     }
@@ -905,7 +905,7 @@ VOID AtpListObjectDirectory(
 
     if (!NT_SUCCESS(status) && status != STATUS_TIMEOUT && context.Rows.Rows->Count == 0)
     {
-        AtSetToolStatusError(Result, status, L"Opening the object directory");
+        AtSetToolStatusError(Result, status, L"正在打开对象目录");
         AtDeleteRows(&context.Rows);
         PhClearReference(&context.TypeName);
         PhClearReference(&context.NameContains);
@@ -1515,9 +1515,9 @@ VOID AtpGetObjectInfo(
     if (!objectHandle && !target && PhIsNullOrEmptyString(typeName))
     {
         if (!NT_SUCCESS(directoryStatus))
-            AtSetToolStatusError(Result, directoryStatus, L"Listing the parent directory");
+            AtSetToolStatusError(Result, directoryStatus, L"正在列出父目录");
         else
-            AtSetToolStatusError(Result, STATUS_OBJECT_NAME_NOT_FOUND, L"Finding the object");
+            AtSetToolStatusError(Result, STATUS_OBJECT_NAME_NOT_FOUND, L"正在查找对象");
         PhClearReference(&typeName);
         PhDereferenceObject(path);
         return;
@@ -1651,7 +1651,7 @@ VOID AtpGetDriverObject(
             Result,
             "failed",
             STATUS_NOT_SUPPORTED,
-            L"Driver and device objects are read through the System Informer driver at maximum "
+            L"驱动和设备对象通过 System Informer 驱动以最大"
             L"access, which is not available to this instance (access level: %s).",
             AtKphLevelString(KsiLevel())
             );
@@ -1667,7 +1667,7 @@ VOID AtpGetDriverObject(
 
         if (!PhStringRefToUnicodeString(&path->sr, &objectName))
         {
-            AtSetToolError(Result, "invalid_arguments", STATUS_NAME_TOO_LONG, L"The path is too long.");
+            AtSetToolError(Result, "invalid_arguments", STATUS_NAME_TOO_LONG, L"路径过长。");
             PhDereferenceObject(path);
             return;
         }
@@ -1695,7 +1695,7 @@ VOID AtpGetDriverObject(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, isDevice ? L"Opening the device object" : L"Opening the driver object");
+        AtSetToolStatusError(Result, status, isDevice ? L"正在打开设备对象" : L"正在打开驱动对象");
         PhDereferenceObject(path);
         return;
     }
@@ -1778,7 +1778,7 @@ VOID AtFindInvokeTool(
         AtpGetObjectInfo(Call, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

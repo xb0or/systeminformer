@@ -828,13 +828,13 @@ PPH_STRING EtGetNodeEngineTypeString(
     case DXGK_ENGINE_TYPE_3D:
         return PhCreateString(L"3D");
     case DXGK_ENGINE_TYPE_VIDEO_DECODE:
-        return PhCreateString(L"Video Decode");
+        return PhCreateString(L"视频解码");
     case DXGK_ENGINE_TYPE_VIDEO_ENCODE:
-        return PhCreateString(L"Video Encode");
+        return PhCreateString(L"视频编码");
     case DXGK_ENGINE_TYPE_VIDEO_PROCESSING:
-        return PhCreateString(L"Video Processing");
+        return PhCreateString(L"视频处理");
     case DXGK_ENGINE_TYPE_SCENE_ASSEMBLY:
-        return PhCreateString(L"Scene Assembly");
+        return PhCreateString(L"场景组装");
     case DXGK_ENGINE_TYPE_COPY:
         return PhCreateString(L"复制");
     case DXGK_ENGINE_TYPE_OVERLAY:
@@ -842,7 +842,7 @@ PPH_STRING EtGetNodeEngineTypeString(
     case DXGK_ENGINE_TYPE_CRYPTO:
         return PhCreateString(L"Crypto");
     case DXGK_ENGINE_TYPE_VIDEO_CODEC:
-        return PhCreateString(L"Video Codec");
+        return PhCreateString(L"视频编解码器");
     }
 
     return PhFormatString(L"ERROR (%lu)", NodeMetaData->NodeData.EngineType);

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2022 Winsider Seminars & Solutions, Inc.  All rights reserved.
  *
  * This file is part of System Informer.
@@ -256,7 +256,7 @@ PPH_STRING AtpFormatRequester(
 
     PhAcquireQueuedLockExclusive(&Connection->Lock);
 
-    PhAppendStringBuilder2(&builder, L"Requested by ");
+    PhAppendStringBuilder2(&builder, L"请求者：");
 
     if (Connection->ClientName)
     {
@@ -680,9 +680,9 @@ VOID AtpCreateSessionPolicyControls(
     _In_ PAT_CONSENT_REQUEST Request
     )
 {
-    static PCWSTR longLabel = L"Authorization this session:";
-    static PCWSTR shortLabel = L"This session:";
-    static PCWSTR items[] = { L"Ask every time", L"Allow for this session", L"Delegate to client" };
+    static PCWSTR longLabel = L"此会话授权：";
+    static PCWSTR shortLabel = L"此会话：";
+    static PCWSTR items[] = { L"每次询问", L"此会话允许", L"委托给客户端" };
     AT_BUTTON_ROW row;
     PCWSTR labelText;
     HFONT font;
@@ -864,8 +864,8 @@ VOID AtpCompleteConnectionRequest(
     if (Request->TimedOut)
     {
         PhShowIconNotification(
-            L"Agent connection denied",
-            L"An agent connected to System Informer and nobody allowed it in time. It was disconnected."
+            L"代理连接被拒绝",
+            L"代理连接到 System Informer 但无人及时允许。连接已断开。"
             );
     }
 
@@ -932,7 +932,7 @@ NTSTATUS NTAPI AtpConsentDialogWorker(
         config.cxWidth = 250;
 
         if (request->OfferHoldAnswer)
-            config.pszVerificationText = L"Use this answer for all connections until restart";
+            config.pszVerificationText = L"重启前所有连接使用此答案";
 
         buttons[0].nButtonID = IDYES;
         buttons[0].pszButtonText = request->AcceptText ? request->AcceptText : L"Approve";
@@ -992,7 +992,7 @@ PAT_CONSENT_REQUEST AtpCreateConsentRequest(
     PhInitializeEvent(&request->CompletedEvent);
     request->Action = Action;
     request->MainIcon = AtpCreateRequestIcon(Connection);
-    request->Footer = PhFormatString(L"Automatically denied in %u seconds.", AT_CONSENT_TIMEOUT_MS / 1000);
+    request->Footer = PhFormatString(L"在 %u 秒内自动拒绝。", AT_CONSENT_TIMEOUT_MS / 1000);
 
     return request;
 }
@@ -1117,8 +1117,8 @@ AT_CONSENT_RESULT AtpAskUser(
     if (result == AtConsentTimeout)
     {
         PhShowIconNotification(
-            L"Agent request denied",
-            L"An agent asked System Informer to perform an action and nobody confirmed it in time. The request was denied."
+            L"代理请求被拒绝",
+            L"代理请求 System Informer 执行操作但无人及时确认。请求被拒绝。"
             );
     }
 
@@ -1144,7 +1144,7 @@ BOOLEAN AtpConfirmSessionPolicy(
 
     request = AtpCreateConsentRequest(Action, connection);
     PhMoveReference(&request->Footer,
-        PhFormatString(L"No answer in %u seconds keeps asking each time.", AT_CONSENT_TIMEOUT_MS / 1000));
+        PhFormatString(L"%u 秒内无答复将继续每次询问。", AT_CONSENT_TIMEOUT_MS / 1000));
 
     if (Policy == AtSessionDelegate)
     {
@@ -1154,8 +1154,8 @@ BOOLEAN AtpConfirmSessionPolicy(
             L"Informer, which cannot check how the client presents them.",
             Action->Verb
             );
-        request->AcceptText = L"Let the client ask";
-        request->DeclineText = L"Keep asking here";
+        request->AcceptText = L"让客户端询问";
+        request->DeclineText = L"继续在此询问";
     }
     else
     {
@@ -1167,8 +1167,8 @@ BOOLEAN AtpConfirmSessionPolicy(
         else
             content = PhFormatString(L"This connection will be able to %s, against any target, without being asked again.", Action->Verb);
 
-        request->AcceptText = L"Stop asking";
-        request->DeclineText = L"Ask each time";
+        request->AcceptText = L"停止询问";
+        request->DeclineText = L"每次询问";
     }
 
     request->Content = PhConcatStringRef2(&content->sr, &undo);
@@ -1197,7 +1197,7 @@ PPH_STRING AtpFormatConnectionRequester(
     // The client's own name when it has sent initialize; the launcher as reported.
     if (Connection->ClientName)
     {
-        PhAppendStringBuilder2(&builder, L"Requested by ");
+        PhAppendStringBuilder2(&builder, L"请求者：");
         PhAppendStringBuilder(&builder, &Connection->ClientName->sr);
 
         if (Connection->ClientVersion)

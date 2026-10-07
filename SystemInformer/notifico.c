@@ -2022,7 +2022,7 @@ VOID PhNfpPhysicalHistoryIconUpdateCallback(
     physicalUsage = PhSystemBasicInformation.NumberOfPhysicalPages - PhPerfInformation.AvailablePages;
     physicalFraction = (FLOAT)physicalUsage / (FLOAT)PhSystemBasicInformation.NumberOfPhysicalPages;
 
-    PhInitFormatS(&format[0], L"Physical memory: ");
+    PhInitFormatS(&format[0], L"物理内存：");
     PhInitFormatSize(&format[1], UInt32x32To64(physicalUsage, PAGE_SIZE));
     PhInitFormatS(&format[2], L" (");
     PhInitFormatF(&format[3], physicalFraction * 100, PhMaxPrecisionUnit);
@@ -2168,7 +2168,7 @@ VOID PhNfpCpuUsageIconUpdateCallback(
         }
     }
 
-    PhInitFormatS(&format[0], L"CPU usage: ");
+    PhInitFormatS(&format[0], L"CPU 使用率：");
     PhInitFormatF(&format[1], (PhCpuKernelUsage + PhCpuUserUsage) * 100, PhMaxPrecisionUnit);
     PhInitFormatC(&format[2], L'%');
     if (maxCpuText) PhInitFormatSR(&format[3], maxCpuText->sr);
@@ -2263,7 +2263,7 @@ VOID PhNfpCpuUsageTextIconUpdateCallback(
         }
     }
 
-    PhInitFormatS(&format[0], L"CPU usage: ");
+    PhInitFormatS(&format[0], L"CPU 使用率：");
     PhInitFormatF(&format[1], (PhCpuKernelUsage + PhCpuUserUsage) * 100.f, PhMaxPrecisionUnit);
     PhInitFormatC(&format[2], L'%');
     if (maxCpuText) PhInitFormatSR(&format[3], maxCpuText->sr);
@@ -2530,7 +2530,7 @@ VOID PhNfpPhysicalUsageTextIconUpdateCallback(
 
     // Text
 
-    PhInitFormatS(&format[0], L"Physical memory: ");
+    PhInitFormatS(&format[0], L"物理内存：");
     PhInitFormatSize(&format[1], UInt32x32To64(physicalUsage, PAGE_SIZE));
     PhInitFormatS(&format[2], L" (");
     PhInitFormatF(&format[3], physicalFraction * 100.f, PhMaxPrecisionUnit);

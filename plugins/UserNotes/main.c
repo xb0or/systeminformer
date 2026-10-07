@@ -327,9 +327,9 @@ VOID NTAPI MainMenuInitializingCallback(
         return;
 
     onlineMenuItem = PhPluginCreateEMenuItem(PluginInstance, 0, 0, L"&User Notes", NULL);
-    PhInsertEMenuItem(onlineMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, FILE_PRIORITY_SAVE_IFEO, L"Configure priority for executable...", NULL), ULONG_MAX);
-    PhInsertEMenuItem(onlineMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, FILE_IO_PRIORITY_SAVE_IFEO, L"Configure IO priority for executable...", NULL), ULONG_MAX);
-    PhInsertEMenuItem(onlineMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, FILE_PAGE_PRIORITY_SAVE_IFEO, L"Configure page priority for executable...", NULL), ULONG_MAX);
+    PhInsertEMenuItem(onlineMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, FILE_PRIORITY_SAVE_IFEO, L"为可执行文件配置优先级...", NULL), ULONG_MAX);
+    PhInsertEMenuItem(onlineMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, FILE_IO_PRIORITY_SAVE_IFEO, L"为可执行文件配置 I/O 优先级...", NULL), ULONG_MAX);
+    PhInsertEMenuItem(onlineMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, FILE_PAGE_PRIORITY_SAVE_IFEO, L"为可执行文件配置页面优先级...", NULL), ULONG_MAX);
     PhInsertEMenuItem(menuInfo->Menu, onlineMenuItem, ULONG_MAX);
 }
 
@@ -386,7 +386,7 @@ PPH_STRING ShowFileDialog(
         if (!NT_SUCCESS(status))
         {
             PhClearReference(&fileName);
-            PhShowStatus(ParentWindowHandle, L"Unable to configure IFEO priority for this image.", status, 0);
+            PhShowStatus(ParentWindowHandle, L"无法为此映像配置 IFEO 优先级。", status, 0);
         }
     }
 
@@ -456,7 +456,7 @@ HRESULT CALLBACK TaskDialogBootstrapCallback(
                             config.dwCommonButtons = TDCBF_CLOSE_BUTTON;
                             config.pszMainIcon = TD_ERROR_ICON;
                             config.pszWindowTitle = SystemInformer_GetWindowName();
-                            config.pszMainInstruction = L"Unable to update the IFEO key for priority.";
+                            config.pszMainInstruction = L"无法更新优先级的 IFEO 项。";
                             config.cxWidth = 200;
 
                             if (context->StatusMessage = PhGetStatusMessage(status, 0))
@@ -499,7 +499,7 @@ HRESULT CALLBACK TaskDialogBootstrapCallback(
                             config.dwCommonButtons = TDCBF_CLOSE_BUTTON;
                             config.pszMainIcon = TD_ERROR_ICON;
                             config.pszWindowTitle = SystemInformer_GetWindowName();
-                            config.pszMainInstruction = L"Unable to update the IFEO key for priority.";
+                            config.pszMainInstruction = L"无法更新优先级的 IFEO 项。";
                             config.cxWidth = 200;
 
                             if (context->StatusMessage = PhGetStatusMessage(status, 0))
@@ -542,7 +542,7 @@ HRESULT CALLBACK TaskDialogBootstrapCallback(
                             config.dwCommonButtons = TDCBF_CLOSE_BUTTON;
                             config.pszMainIcon = TD_ERROR_ICON;
                             config.pszWindowTitle = SystemInformer_GetWindowName();
-                            config.pszMainInstruction = L"Unable to update the IFEO key for priority.";
+                            config.pszMainInstruction = L"无法更新优先级的 IFEO 项。";
                             config.cxWidth = 200;
 
                             if (context->StatusMessage = PhGetStatusMessage(status, 0))
@@ -605,9 +605,9 @@ VOID ShowProcessPriorityDialog(
     config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION | TDF_CAN_BE_MINIMIZED | TDF_ENABLE_HYPERLINKS | TDF_POSITION_RELATIVE_TO_WINDOW;
     config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(MenuItem->OwnerWindow));
     config.pszWindowTitle = PhGetString(FileName);
-    config.pszMainInstruction = L"Select the default process priority.";
+    config.pszMainInstruction = L"选择默认进程优先级。";
     config.pszContent = L"The process priority will be applied by Windows even when System Informer isn't currently running. "
-    L"Note: Realtime priority requires the User has the SeIncreaseBasePriorityPrivilege or the process running as Administrator.";
+    L"注意：实时优先级需要用户具有 SeIncreaseBasePriorityPrivilege 或以管理员身份运行。";
     config.nDefaultButton = IDCANCEL;
     config.pRadioButtons = TaskDialogRadioButtonArray;
     config.cRadioButtons = RTL_NUMBER_OF(TaskDialogRadioButtonArray);
@@ -688,9 +688,9 @@ VOID ShowProcessIoPriorityDialog(
     config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION | TDF_CAN_BE_MINIMIZED | TDF_ENABLE_HYPERLINKS | TDF_POSITION_RELATIVE_TO_WINDOW;
     config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(MenuItem->OwnerWindow));
     config.pszWindowTitle = PhGetString(FileName);
-    config.pszMainInstruction = L"Select the default process IO priority.";
+    config.pszMainInstruction = L"选择默认进程 I/O 优先级。";
     config.pszContent = L"The IO priority will be applied by Windows even when System Informer isn't currently running. "
-    L"Note: High IO priority requires the User has the SeIncreaseBasePriorityPrivilege or the process running as Administrator.";
+    L"注意：高 I/O 优先级需要用户具有 SeIncreaseBasePriorityPrivilege 或以管理员身份运行。";
     config.nDefaultButton = IDCANCEL;
     config.pRadioButtons = TaskDialogRadioButtonArray;
     config.cRadioButtons = RTL_NUMBER_OF(TaskDialogRadioButtonArray);
@@ -766,7 +766,7 @@ VOID ShowProcessPagePriorityDialog(
     config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION | TDF_CAN_BE_MINIMIZED | TDF_ENABLE_HYPERLINKS | TDF_POSITION_RELATIVE_TO_WINDOW;
     config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(MenuItem->OwnerWindow));
     config.pszWindowTitle = PhGetString(FileName);
-    config.pszMainInstruction = L"Select the default process page priority.";
+    config.pszMainInstruction = L"选择默认进程页面优先级。";
     config.pszContent = L"The page priority will be applied by Windows even when System Informer isn't currently running.";
     config.nDefaultButton = IDCANCEL;
     config.pRadioButtons = TaskDialogRadioButtonArray;
@@ -859,8 +859,8 @@ VOID ShowProcessD3DKMTPriorityDialog(
         config.dwFlags = TDF_USE_HICON_MAIN | TDF_ALLOW_DIALOG_CANCELLATION | TDF_CAN_BE_MINIMIZED | TDF_ENABLE_HYPERLINKS | TDF_POSITION_RELATIVE_TO_WINDOW;
         config.hMainIcon = PhGetApplicationIcon(FALSE, PhGetWindowDpi(MenuItem->OwnerWindow));
         config.pszWindowTitle = L"D3DKMT scheduling priority";
-        config.pszMainInstruction = L"Select the graphics scheduling priority.";
-        config.pszContent = L"Note: Realtime priority requires the User has the SeIncreaseBasePriorityPrivilege or the process running as Administrator.";
+        config.pszMainInstruction = L"选择图形调度优先级。";
+        config.pszContent = L"注意：实时优先级需要用户具有 SeIncreaseBasePriorityPrivilege 或以管理员身份运行。";
         config.nDefaultButton = IDCANCEL;
         config.nDefaultRadioButton = priorityClass;
         config.pRadioButtons = TaskDialogRadioButtonArray;
@@ -886,13 +886,13 @@ VOID ShowProcessD3DKMTPriorityDialog(
 
             if (!NT_SUCCESS(status))
             {
-                PhShowStatus(MenuItem->OwnerWindow, L"Unable to update graphics scheduling priority", status, 0);
+                PhShowStatus(MenuItem->OwnerWindow, L"无法更新图形调度优先级", status, 0);
             }
         }
     }
     else
     {
-        PhShowStatus(MenuItem->OwnerWindow, L"Unable to query graphics scheduling priority", status, 0);
+        PhShowStatus(MenuItem->OwnerWindow, L"无法查询图形调度优先级", status, 0);
     }
 }
 
@@ -929,11 +929,11 @@ VOID NTAPI MenuItemCallback(
 
                     if (NT_SUCCESS(status))
                     {
-                        PhShowInformation2(menuItem->OwnerWindow, L"Successfully deleted the IFEO key.", L"%s", L"");
+                        PhShowInformation2(menuItem->OwnerWindow, L"已成功删除 IFEO 项。", L"%s", L"");
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to update the IFEO for priority.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法更新优先级的 IFEO。", status, 0);
                     }
                 }
                 else
@@ -966,11 +966,11 @@ VOID NTAPI MenuItemCallback(
 
                     if (NT_SUCCESS(status))
                     {
-                        PhShowInformation2(menuItem->OwnerWindow, L"Successfully deleted the IFEO key.", L"%s", L"");
+                        PhShowInformation2(menuItem->OwnerWindow, L"已成功删除 IFEO 项。", L"%s", L"");
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to update the IFEO for IO priority.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法更新 I/O 优先级的 IFEO。", status, 0);
                     }
                 }
                 else
@@ -1003,11 +1003,11 @@ VOID NTAPI MenuItemCallback(
 
                     if (NT_SUCCESS(status))
                     {
-                        PhShowInformation2(menuItem->OwnerWindow, L"Successfully deleted the IFEO key.", L"%s", L"");
+                        PhShowInformation2(menuItem->OwnerWindow, L"已成功删除 IFEO 项。", L"%s", L"");
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to update the IFEO for page priority.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法更新页面优先级的 IFEO。", status, 0);
                     }
                 }
                 else
@@ -1054,7 +1054,7 @@ VOID NTAPI MenuItemCallback(
                 }
                 else
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to query priority.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法查询优先级。", status, 0);
                 }
             }
 
@@ -1090,7 +1090,7 @@ VOID NTAPI MenuItemCallback(
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to query priority.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法查询优先级。", status, 0);
                     }
                 }
 
@@ -1115,7 +1115,7 @@ VOID NTAPI MenuItemCallback(
 
                 if (!NT_SUCCESS(status))
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to update the IFEO for priority.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法更新优先级的 IFEO。", status, 0);
                 }
             }
             else
@@ -1151,7 +1151,7 @@ VOID NTAPI MenuItemCallback(
                 }
                 else
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to query IO priority.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法查询 I/O 优先级。", status, 0);
                 }
             }
 
@@ -1187,7 +1187,7 @@ VOID NTAPI MenuItemCallback(
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to query IO priority.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法查询 I/O 优先级。", status, 0);
                     }
                 }
 
@@ -1213,7 +1213,7 @@ VOID NTAPI MenuItemCallback(
 
                 if (!NT_SUCCESS(status))
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to update the IFEO for IO priority.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法更新 I/O 优先级的 IFEO。", status, 0);
                 }
             }
             else
@@ -1368,7 +1368,7 @@ VOID NTAPI MenuItemCallback(
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to query process affinity.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法查询进程亲和性。", status, 0);
                     }
                 }
             }
@@ -1424,7 +1424,7 @@ VOID NTAPI MenuItemCallback(
                         }
                         else
                         {
-                            PhShowStatus(menuItem->OwnerWindow, L"Unable to query process affinity.", status, 0);
+                            PhShowStatus(menuItem->OwnerWindow, L"无法查询进程亲和性。", status, 0);
                         }
                     }
                 }
@@ -1461,7 +1461,7 @@ VOID NTAPI MenuItemCallback(
                 }
                 else
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to query page priority.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法查询页面优先级。", status, 0);
                 }
             }
 
@@ -1497,7 +1497,7 @@ VOID NTAPI MenuItemCallback(
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to query page priority.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法查询页面优先级。", status, 0);
                     }
                 }
 
@@ -1523,7 +1523,7 @@ VOID NTAPI MenuItemCallback(
 
                 if (!NT_SUCCESS(status))
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to update the IFEO for page priority.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法更新页面优先级的 IFEO。", status, 0);
                 }
             }
             else
@@ -1553,7 +1553,7 @@ VOID NTAPI MenuItemCallback(
 
             if (!NT_SUCCESS(status))
             {
-                PhShowStatus(menuItem->OwnerWindow, L"Unable to query process boost.", status, 0);
+                PhShowStatus(menuItem->OwnerWindow, L"无法查询进程提升。", status, 0);
             }
         }
         break;
@@ -1583,7 +1583,7 @@ VOID NTAPI MenuItemCallback(
                 }
                 else
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to query process boost.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法查询进程提升。", status, 0);
                 }
             }
 
@@ -1619,7 +1619,7 @@ VOID NTAPI MenuItemCallback(
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to query process boost.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法查询进程提升。", status, 0);
                     }
                 }
 
@@ -1656,7 +1656,7 @@ VOID NTAPI MenuItemCallback(
 
             if (!NT_SUCCESS(status))
             {
-                PhShowStatus(menuItem->OwnerWindow, L"Unable to query process efficiency mode.", status, 0);
+                PhShowStatus(menuItem->OwnerWindow, L"无法查询进程效率模式。", status, 0);
             }
         }
         break;
@@ -1697,7 +1697,7 @@ VOID NTAPI MenuItemCallback(
                 }
                 else
                 {
-                    PhShowStatus(menuItem->OwnerWindow, L"Unable to query process efficiency mode.", status, 0);
+                    PhShowStatus(menuItem->OwnerWindow, L"无法查询进程效率模式。", status, 0);
                 }
             }
 
@@ -1744,7 +1744,7 @@ VOID NTAPI MenuItemCallback(
                     }
                     else
                     {
-                        PhShowStatus(menuItem->OwnerWindow, L"Unable to query process efficiency mode.", status, 0);
+                        PhShowStatus(menuItem->OwnerWindow, L"无法查询进程效率模式。", status, 0);
                     }
                 }
 
@@ -2386,7 +2386,7 @@ VOID ProcessMenuInitializingCallback(
     if (gdiHandlesMenuItem = PhFindEMenuItem(miscMenuItem, 0, NULL, PHAPP_ID_MISCELLANEOUS_GDIHANDLES))
     {
         ULONG index = PhIndexOfEMenuItem(miscMenuItem, gdiHandlesMenuItem);
-        PhInsertEMenuItem(miscMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, PROCESS_D3DKMT_ID, L"Graphics priority...", NULL), index + 1);
+        PhInsertEMenuItem(miscMenuItem, PhPluginCreateEMenuItem(PluginInstance, 0, PROCESS_D3DKMT_ID, L"图形优先级...", NULL), index + 1);
     }
 
     LockDb();
@@ -2978,7 +2978,7 @@ LOGICAL DllMain(
             return FALSE;
 
         info->Interface = &PluginInterface;
-        info->DisplayName = L"User Notes";
+        info->DisplayName = L"用户备注";
         info->Description = L"Allows the user to add comments for processes and services,"
             L" save process priority and affinity, highlight individual processes and show processes collapsed by default.";
 

@@ -74,7 +74,7 @@ INT_PTR CALLBACK OptionsDlgProc(
                     timeRelativeString = PH_AUTO(PhFormatTimeSpanRelative(currentTime.QuadPart - lastTimeUpdateTicks.QuadPart));
 
                     PhSetDialogItemText(WindowHandle, IDC_TEXT, PhaFormatString(
-                        L"Last update check: %s (%s ago)",
+                        L"上次检查更新：%s（%s 前）",
                         PhGetStringOrEmpty(timeString),
                         PhGetStringOrEmpty(timeRelativeString)
                         )->Buffer);
@@ -91,7 +91,7 @@ INT_PTR CALLBACK OptionsDlgProc(
                     {
                         timeRelativeString = PH_AUTO(PhFormatTimeSpanRelative(time.QuadPart));
                         PhSetDialogItemText(WindowHandle, IDC_TEXT2, PhaFormatString(
-                            L"Next update check: %s (%s)",
+                            L"下次检查更新：%s（%s）",
                             PhGetStringOrEmpty(timeString),
                             PhGetStringOrEmpty(timeRelativeString)
                             )->Buffer);
@@ -99,7 +99,7 @@ INT_PTR CALLBACK OptionsDlgProc(
                     else
                     {
                         PhSetDialogItemText(WindowHandle, IDC_TEXT2, PhaFormatString(
-                            L"Next update check: %s",
+                            L"下次检查更新：%s",
                             PhGetStringOrEmpty(timeString)
                             )->Buffer);
                     }
@@ -707,7 +707,7 @@ INT_PTR CALLBACK TextDlgProc(
                     NMLVEMPTYMARKUP* listview = (NMLVEMPTYMARKUP*)lParam;
 
                     listview->dwFlags = EMF_CENTERED;
-                    wcsncpy_s(listview->szMarkup, RTL_NUMBER_OF(listview->szMarkup), L"Querying changelog...", _TRUNCATE);
+                    wcsncpy_s(listview->szMarkup, RTL_NUMBER_OF(listview->szMarkup), L"正在查询更新日志...", _TRUNCATE);
 
                     SetWindowLongPtr(WindowHandle, DWLP_MSGRESULT, TRUE);
                     return TRUE;
@@ -860,7 +860,7 @@ INT_PTR CALLBACK TextDlgProc(
                 if (PhGetSelectedListViewItemParams(context->ListViewHandle, &listviewItems, &numberOfItems))
                 {
                     menu = PhCreateEMenu();
-                    PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 1, L"View on Github", NULL, NULL), ULONG_MAX);
+                    PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 1, L"在 GitHub 上查看", NULL, NULL), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuSeparator(), ULONG_MAX);
                     PhInsertEMenuItem(menu, PhCreateEMenuItem(0, 2, L"复制(&C)", NULL, NULL), ULONG_MAX);
                     PhInsertCopyListViewEMenuItem(menu, 2, context->ListViewHandle);

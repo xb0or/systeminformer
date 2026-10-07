@@ -20,8 +20,8 @@ static HWND DiskTreeNewHandle = NULL;
 static ULONG DiskTreeNewSortColumn = 0;
 static PH_SORT_ORDER DiskTreeNewSortOrder = NoSortOrder;
 static CONST PH_STRINGREF DiskPageText = PH_STRINGREF_INIT(L"磁盘");
-static CONST PH_STRINGREF DiskBannerText = PH_STRINGREF_INIT(L"Search Disk");
-static CONST PH_STRINGREF DiskTreeEmptyText = PH_STRINGREF_INIT(L"Disk monitoring requires System Informer to be restarted with administrative privileges.");
+static CONST PH_STRINGREF DiskBannerText = PH_STRINGREF_INIT(L"搜索磁盘");
+static CONST PH_STRINGREF DiskTreeEmptyText = PH_STRINGREF_INIT(L"磁盘监控需要以管理员权限重启 System Informer。");
 static PPH_STRING DiskTreeErrorText = NULL;
 
 static PPH_HASHTABLE DiskNodeHashtable = NULL; // hashtable of all nodes
@@ -143,7 +143,7 @@ BOOLEAN EtpDiskPageCallback(
                     {
                         DiskTreeErrorText = PhFormatString(
                             L"%s %s (%lu)",
-                            L"Unable to start the kernel event tracing session: ",
+                            L"无法启动内核事件跟踪会话：",
                             statusMessage->Buffer,
                             EtEtwStatus
                             );
@@ -153,7 +153,7 @@ BOOLEAN EtpDiskPageCallback(
                     {
                         DiskTreeErrorText = PhFormatString(
                             L"%s (%lu)",
-                            L"Unable to start the kernel event tracing session: ",
+                            L"无法启动内核事件跟踪会话：",
                             EtEtwStatus
                             );
                     }
@@ -304,17 +304,17 @@ VOID EtInitializeDiskTreeList(
     PhAddTreeNewColumn(WindowHandle, ETDSTNC_NAME, TRUE, L"名称", 100, PH_ALIGN_LEFT, 0, 0);
     PhAddTreeNewColumn(WindowHandle, ETDSTNC_PID, TRUE, L"PID", 50, PH_ALIGN_RIGHT, 1, DT_RIGHT);
     PhAddTreeNewColumn(WindowHandle, ETDSTNC_FILE, TRUE, L"文件", 400, PH_ALIGN_LEFT, 2, DT_PATH_ELLIPSIS);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_READRATEAVERAGE, TRUE, L"Read rate average", 70, PH_ALIGN_RIGHT, 3, DT_RIGHT, TRUE);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_WRITERATEAVERAGE, TRUE, L"Write rate average", 70, PH_ALIGN_RIGHT, 4, DT_RIGHT, TRUE);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_TOTALRATEAVERAGE, TRUE, L"Total rate average", 70, PH_ALIGN_RIGHT, 5, DT_RIGHT, TRUE);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_READRATE, TRUE, L"Read rate", 70, PH_ALIGN_RIGHT, 6, DT_RIGHT, TRUE);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_WRITERATE, TRUE, L"Write rate", 70, PH_ALIGN_RIGHT, 7, DT_RIGHT, TRUE);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_TOTALRATE, TRUE, L"Total rate", 70, PH_ALIGN_RIGHT, 8, DT_RIGHT, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_READRATEAVERAGE, TRUE, L"平均读取速率", 70, PH_ALIGN_RIGHT, 3, DT_RIGHT, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_WRITERATEAVERAGE, TRUE, L"平均写入速率", 70, PH_ALIGN_RIGHT, 4, DT_RIGHT, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_TOTALRATEAVERAGE, TRUE, L"平均总速率", 70, PH_ALIGN_RIGHT, 5, DT_RIGHT, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_READRATE, TRUE, L"读取速率", 70, PH_ALIGN_RIGHT, 6, DT_RIGHT, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_WRITERATE, TRUE, L"写入速率", 70, PH_ALIGN_RIGHT, 7, DT_RIGHT, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_TOTALRATE, TRUE, L"总速率", 70, PH_ALIGN_RIGHT, 8, DT_RIGHT, TRUE);
     PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_READBYTES, TRUE, L"读取字节", 70, PH_ALIGN_RIGHT, 9, DT_RIGHT, TRUE);
     PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_WRITEBYTES, TRUE, L"写入字节", 70, PH_ALIGN_RIGHT, 10, DT_RIGHT, TRUE);
     PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_TOTALBYTES, TRUE, L"总字节", 70, PH_ALIGN_RIGHT, 11, DT_RIGHT, TRUE);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_IOPRIORITY, TRUE, L"I/O priority", 70, PH_ALIGN_LEFT, 12, 0, TRUE);
-    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_RESPONSETIME, TRUE, L"Response time (ms)", 70, PH_ALIGN_RIGHT, 13, 0, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_IOPRIORITY, TRUE, L"I/O 优先级", 70, PH_ALIGN_LEFT, 12, 0, TRUE);
+    PhAddTreeNewColumnEx(WindowHandle, ETDSTNC_RESPONSETIME, TRUE, L"响应时间（毫秒）", 70, PH_ALIGN_RIGHT, 13, 0, TRUE);
     PhAddTreeNewColumn(WindowHandle, ETDSTNC_ORIGINALNAME, FALSE, L"原始名称", 200, PH_ALIGN_LEFT, ULONG_MAX, DT_PATH_ELLIPSIS);
 
     PhInitializeTreeNewFilterSupport(&FilterSupport, WindowHandle, DiskNodeList);
@@ -1151,7 +1151,7 @@ PPH_STRING EtpGetDiskItemProcessName(
     }
     else
     {
-        PhInitFormatS(&format[0], L"No process");
+        PhInitFormatS(&format[0], L"无进程");
     }
 
     return PhFormat(format, RTL_NUMBER_OF(format), 0);
@@ -1346,7 +1346,7 @@ VOID EtHandleDiskCommand(
                 }
                 else
                 {
-                    PhShowError2(WindowHandle, L"Unable to select the process.", L"%s", L"进程不存在。");
+                    PhShowError2(WindowHandle, L"无法选择进程。", L"%s", L"进程不存在。");
                 }
 
                 PhDereferenceObject(diskItem);
@@ -1475,7 +1475,7 @@ VOID EtpInitializeDiskMenu(
             {
                 if (item = PhFindEMenuItem(Menu, 0, NULL, ID_DISK_GOTOPROCESS))
                 {
-                    item->Text = L"Process Properties";
+                    item->Text = L"进程属性";
                     item->Flags &= ~PH_EMENU_TEXT_OWNED;
                 }
             }

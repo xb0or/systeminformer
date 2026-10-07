@@ -530,7 +530,7 @@ VOID AtpGetProcessThreads(
 
     if (!NT_SUCCESS(status))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating threads");
+        AtSetToolStatusError(Result, status, L"正在枚举线程");
         return;
     }
 
@@ -560,7 +560,7 @@ VOID AtpGetProcessThreads(
                 PhAddJsonArrayObject(results, AtCreateBatchError(
                     processId,
                     "not_found",
-                    L"This pid is not in the provider cache or has exited."
+                    L"此 PID 不在提供程序缓存中或已退出。"
                     ));
             }
         }
@@ -775,7 +775,7 @@ VOID AtpGetThreadStack(
 
     if (!(context.SymbolProvider = AtCreateSymbolProvider(Target->ProcessItem->ProcessId)))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The symbol provider could not be created.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"无法创建符号提供程序。");
         return;
     }
 
@@ -813,7 +813,7 @@ VOID AtpGetThreadStack(
 
     if (!NT_SUCCESS(status) && context.Count == 0)
     {
-        AtSetToolStatusError(Result, status, L"Walking the thread stack");
+        AtSetToolStatusError(Result, status, L"正在遍历线程堆栈");
         PhFreeJsonObject(context.Frames);
         return;
     }
@@ -922,13 +922,13 @@ VOID AtpGetProcessStacks(
     // plain enumeration returns the smaller SYSTEM_THREAD_INFORMATION at a different stride.
     if (!NT_SUCCESS(status = PhEnumProcessesEx(&processes, SystemExtendedProcessInformation)))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating the processes");
+        AtSetToolStatusError(Result, status, L"正在枚举进程");
         return;
     }
 
     if (!(process = PhFindProcessInformation(processes, Target->ProcessItem->ProcessId)))
     {
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"The process is no longer running.");
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"进程已不再运行。");
         PhFree(processes);
         return;
     }
@@ -950,7 +950,7 @@ VOID AtpGetProcessStacks(
     // threadCount comes from the snapshot, so the size is checked rather than assumed to fit.
     if (!NT_SUCCESS(RtlSizeTMult(sizeof(AT_STACK_THREAD), max(threadCount, 1), &threadsSize)))
     {
-        AtSetToolError(Result, "failed", STATUS_INTEGER_OVERFLOW, L"That process has too many threads to walk.");
+        AtSetToolError(Result, "failed", STATUS_INTEGER_OVERFLOW, L"该进程线程过多无法遍历。");
         PhFree(processes);
         return;
     }
@@ -978,7 +978,7 @@ VOID AtpGetProcessStacks(
 
     if (!(symbolProvider = AtCreateSymbolProvider(Target->ProcessItem->ProcessId)))
     {
-        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The symbol provider could not be created.");
+        AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"无法创建符号提供程序。");
         PhClearReference(&order);
         PhFree(threads);
         PhFree(processes);
@@ -1194,7 +1194,7 @@ VOID AtpResolveSymbol(
 
     if (!isFile && !AtJsonGetObjectMember(Call->Arguments, "pid", PH_JSON_OBJECT_TYPE_INT))
     {
-        AtSetToolError(Result, "invalid_arguments", STATUS_INVALID_PARAMETER, L"Either pid or path is required.");
+        AtSetToolError(Result, "invalid_arguments", STATUS_INVALID_PARAMETER, L"需要 pid 或 path。");
         PhClearReference(&path);
         PhClearReference(&name);
         return;
@@ -1222,7 +1222,7 @@ VOID AtpResolveSymbol(
 
         if (!nativePath)
         {
-            AtSetToolError(Result, "invalid_arguments", STATUS_OBJECT_PATH_INVALID, L"The path could not be resolved.");
+            AtSetToolError(Result, "invalid_arguments", STATUS_OBJECT_PATH_INVALID, L"无法解析路径。");
             PhClearReference(&path);
             PhClearReference(&name);
             return;
@@ -1232,7 +1232,7 @@ VOID AtpResolveSymbol(
 
         if (!symbolProvider)
         {
-            AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The file could not be loaded for symbols.");
+            AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"无法加载文件以获取符号。");
             PhClearReference(&nativePath);
             PhClearReference(&path);
             PhClearReference(&name);
@@ -1256,7 +1256,7 @@ VOID AtpResolveSymbol(
 
         if (!symbolProvider)
         {
-            AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"The symbol provider could not be created.");
+            AtSetToolError(Result, "failed", STATUS_UNSUCCESSFUL, L"无法创建符号提供程序。");
             AtDeleteTarget(&target);
             PhClearReference(&name);
             return;
@@ -1318,7 +1318,7 @@ VOID AtpResolveSymbol(
         }
         else
         {
-            AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"No symbol named %s was found. A name resolves only from a symbol file or an export table.", PhGetString(name));
+            AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"找不到名为 %s 的符号。名称只能从符号文件或导出表解析。", PhGetString(name));
             PhFreeJsonObject(structured);
             goto CleanupExit;
         }
@@ -1463,7 +1463,7 @@ VOID AtThreadInvokeTool(
         AtpControlThread(Tool, Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

@@ -396,7 +396,7 @@ VOID AtpListServices(
     // (signature, flags), so each SCM service is enriched from the cached item when present.
     if (!NT_SUCCESS(status = PhEnumServices(&services, &numberOfServiceItems)))
     {
-        AtSetToolStatusError(Result, status, L"Enumerating the service control manager");
+        AtSetToolStatusError(Result, status, L"正在枚举服务控制管理器");
         PhClearReference(&filter.NameContains);
         return;
     }
@@ -780,7 +780,7 @@ VOID AtpGetService(
 
     if (!(serviceItem = PhReferenceServiceItem(&name->sr)))
     {
-        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"No service named %s is in the provider cache.", PhGetString(name));
+        AtSetToolError(Result, "not_found", STATUS_NOT_FOUND, L"提供程序缓存中没有名为 %s 的服务。", PhGetString(name));
         PhDereferenceObject(name);
         return;
     }
@@ -1141,7 +1141,7 @@ VOID AtServiceInvokeTool(
         AtpControlService(Tool, Call, Target, Result);
         break;
     default:
-        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"This tool is not implemented.");
+        AtSetToolError(Result, "failed", STATUS_NOT_IMPLEMENTED, L"此工具未实现。");
         break;
     }
 }

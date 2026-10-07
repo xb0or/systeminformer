@@ -905,7 +905,7 @@ INT_PTR CALLBACK TracertDlgProc(
                 PhaFormatString(L"Tracing %s...", context->RemoteAddressString)->Buffer
                 );
             PhSetWindowText(GetDlgItem(hwndDlg, IDC_STATUS),
-                PhaFormatString(L"Tracing route to %s with %lu bytes of data...", context->RemoteAddressString, PhGetIntegerSetting(SETTING_NAME_PING_SIZE))->Buffer
+                PhaFormatString(L"正在跟踪到 %s 的路由（数据 %lu 字节）...", context->RemoteAddressString, PhGetIntegerSetting(SETTING_NAME_PING_SIZE))->Buffer
                 );
 
             dpiValue = PhGetWindowDpi(hwndDlg);
@@ -982,7 +982,7 @@ INT_PTR CALLBACK TracertDlgProc(
                         context->RemoteAddressString
                         )->Buffer);
                     PhSetWindowText(GetDlgItem(hwndDlg, IDC_STATUS), PhaFormatString(
-                        L"Tracing route to %s with %lu bytes of data...",
+                        L"正在跟踪到 %s 的路由（数据 %lu 字节）...",
                         context->RemoteAddressString,
                         PhGetIntegerSetting(SETTING_NAME_PING_SIZE)
                         )->Buffer);
